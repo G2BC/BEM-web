@@ -1,0 +1,78 @@
+/* Estilos atualizados para o footer */
+.footer {
+  background-color: #131313;
+  color: #ffffff;
+  padding: 10px 20px;
+  margin-top: 400px; /* Adicionando margem superior para distanciar do conteúdo acima */
+  
+}
+
+.footer-content {
+display: flex;
+justify-content: space-between;
+width: 80%;
+margin: 0 auto;
+text-align: left;
+}
+
+.logo-footer{
+  flex: 40%;
+
+}
+
+.footer-section {
+  flex: 60%;
+  display: flex;
+}
+
+.footer-section h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  
+}
+
+.logo-footer h2{
+  font-size: 3rem;
+  display: inline;
+  
+}
+
+.logo-footer .footer-image {
+  width: 50px; /* Ajuste conforme necessário */
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 50%;
+  
+}
+
+.footer-section ul li {
+  margin-bottom: 25px;
+}
+
+.footer-section ul li a {
+  color: #ffffff;
+  text-decoration: none;
+ 
+}
+
+.juntese-section{
+  width: 50%;
+
+}
+
+.footer-section ul li a:hover {
+  color: #a65f3e;
+}
+
+.footer-bottom {
+  margin-left: 80px;
+  text-align: left;
+  font-size: 0.8rem;
+}
+.footer-section div{
+  width: 50%;
+}

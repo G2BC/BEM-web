@@ -1,0 +1,34 @@
+.header {
+  background-color: #131313;
+  padding: 10px 20px;
+
+}
+
+.head-logo img {
+  width: 50px;
+  height: 50px;
+
+}
+
+.head-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 100px;
+  display: flex;
+  align-items: center;
+}
+
+.head-item {
+  margin-right: 15px;
+}
+
+.head-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.headF-link:hover {
+  text-decoration: underline;
+}
