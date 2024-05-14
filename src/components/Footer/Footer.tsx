@@ -1,34 +1,48 @@
 import React from 'react';
-import './Footer.css'; // Estilo CSS para o Footer (substitua pelo seu arquivo CSS)
-import Logo from './../../assets/cogumelo.png'
+import {
+  FooterContainer,
+  FooterContent,
+  LogoFooter,
+  FooterSection,
+  FooterHeading,
+  BigLogo,
+  FooterImage,
+  FooterList,
+  FooterListItem,
+  FooterLink,
+  JunteseSection,
+  FooterBottom,
+  FooterButton
+} from './Footer.styles';
+import Logo from './../../assets/cogumelo.png';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <div className="logo-footer">
-        <img src={Logo} alt="Logo" className="footer-image" />
-          <h2>BEM</h2>
-        </div>
-        <div className="footer-section">
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/sobre">Sobre</a></li>
-            <li><a href="/ajuda">Ajuda</a></li>
-            <li><a href="/colaboradores">Colaboradores</a></li>
-            <li><a href="/fale conosco">Fale Conosco</a></li>
-          </ul>
-          <div className="juntese-section">
-            <h2>Junte-se à nós:</h2>
-            <p>Venha se unir à nossa comunidade fungística
-              e explore o mundo dos cogumelos conosco!</p>
-          </div>
-        </div>
-      </div>
-      <div className="footer-bottom">
-      Copyright &copy; {new Date().getFullYear()} Brazilian Edible Mushrooms 
-      </div>
-    </footer>
+    <FooterContainer>
+      <FooterContent>
+        <LogoFooter>
+          <FooterImage src={Logo} alt="Logo" />
+          <BigLogo>BEM</BigLogo>
+        </LogoFooter>
+        <FooterSection>
+          <FooterList>
+            <FooterListItem><FooterLink href="/">Home</FooterLink></FooterListItem>
+            <FooterListItem><FooterLink href="/sobre">Sobre</FooterLink></FooterListItem>
+            <FooterListItem><FooterLink href="/ajuda">Ajuda</FooterLink></FooterListItem>
+            <FooterListItem><FooterLink href="/colaboradores">Colaboradores</FooterLink></FooterListItem>
+            <FooterListItem><FooterLink href="/fale conosco">Fale Conosco</FooterLink></FooterListItem>
+          </FooterList>
+          <JunteseSection>
+            <FooterHeading>Junte-se à nós:</FooterHeading>
+            <p>Venha se unir à nossa comunidade fungística e explore o mundo dos cogumelos conosco!</p>
+            <FooterButton>Cadastrar-se</FooterButton>
+          </JunteseSection>
+        </FooterSection>
+      </FooterContent>
+      <FooterBottom>
+        Copyright &copy; {new Date().getFullYear()} Brazilian Edible Mushrooms
+      </FooterBottom>
+    </FooterContainer>
   );
 };
 

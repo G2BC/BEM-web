@@ -1,42 +1,55 @@
 import React, { FC } from 'react';
-import './Button.css';
+import styled from 'styled-components';
 
 interface ButtonProps {
   text: string;
-  onClick?: () => void;// voltar para corrigir tirando essas interrogaçoes 
+  onClick?: () => void;
   textColor?: string;
   backgroundColor?: string;
-  children?: React.ReactNode;
   border?: string;
-  icon?:string;
+  icon?: string;
 }
 
-const Button: FC<ButtonProps> = ({ onClick, children, text, textColor = '#ffffff', backgroundColor = '#131313',border='#a65f3e',icon }) => {
+interface StyledButtonProps {
+  backgroundColor?: string;
+  textColor?: string;
+  border?: string;
+}
 
-  const buttonStyle = {
-    backgroundColor: backgroundColor,
-    color: textColor,
-    border: `2px solid ${border}`,/* Definindo borda sólida vermelha */
-    borderRadius: "5px", /* Definindo raio de borda */
-    padding: "5px 30px"
-  };
+const StyledButton = styled.button<StyledButtonProps>`
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 20px;
+  background-color: ${(props) => props.backgroundColor || '#131313'};
+  color: ${(props) => props.textColor || '#ffffff'};
+  border: 2px solid ${(props) => props.border || '#a65f3e'};
+  border-radius: 5px;
 
-  const iconStyle = {
-    marginRight: '10px', // Espaçamento à direita do ícone
-    width: '12px', // Largura do ícone
-    height: '12px', // Altura do ícone
-  };
-
-  function capitalize(str: string): string {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+  &:hover {
+    background-color: #9D8D8F;
+    color: #ffffff;
+    border: #9D8D8F;
   }
+`;
 
+const Icon = styled.img`
+  margin-right: 10px;
+  width: 12px;
+  height: 12px;
+`;
+
+const capitalize = (str: string): string => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+const Button: FC<ButtonProps> = ({ onClick, text, textColor, backgroundColor, border, icon }) => {
   return (
-    <button style={buttonStyle} className="custom-button" onClick={onClick}>
-      {icon && <img src={icon} alt="Icon" style={iconStyle} />} {/* Renderizar ícone se estiver definido */}
-      {capitalize(text)}
-    </button>
+    <StyledButton onClick={onClick} backgroundColor={backgroundColor} textColor={textColor} border={border}>
+      {icon && <Icon src={icon} alt="Icon" />} {capitalize(text)}
+    </StyledButton>
   );
-}
+};
 
 export default Button;

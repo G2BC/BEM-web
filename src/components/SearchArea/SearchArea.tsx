@@ -1,35 +1,45 @@
 import React, { ChangeEvent, FC } from 'react';
+import styled from 'styled-components';
 import Button from '../Button/Button';
 import FilterIcon from '../../assets/filterIcon.png';
-import './SearchArea.css'
+import SearchIcon from '../../assets/searchIcon.png';
 
 interface SearchAreaProps {
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;// lembrar de voltar aqui para remover as interrogaçoes pois estamos roubando
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
 }
 
-const SearchArea: React.FC<SearchAreaProps> = ({ onChange, placeholder }) => {
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+`;
+
+const Input = styled.input`
+  width: 300px;
+  padding: 8px 32px 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-image: url(${SearchIcon});
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 20px;
+`;
+
+const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
   return (
-    <div >
-      <div id='container'>
-
-        <input
-          type="text"
-          placeholder={placeholder}
-          onChange={onChange}
-        // style={{ width: '300px', padding: '10px', marginLeft: '550px', marginTop: '20px' }}
-        />
-        <Button text="Buscar" backgroundColor="#a65f3e" />
-        <Button text="Filtros" backgroundColor="#131313" border="#131313" icon={FilterIcon} />
-      </div>
-    </div>
+    <Container>
+      <Input
+        type="text"
+        placeholder={placeholder}
+        onChange={onChange}
+      />
+      <Button text="Filtros" backgroundColor="#ffffff" border="#131313" icon={FilterIcon}textColor="#131313" />
+      <Button text="Buscar" backgroundColor="#a65f3e" />
+    </Container>
   );
-
-  // Função para lidar com os filtros (a ser implementada)
-  const handleFilters = () => {
-    console.log('Aplicando filtros...');
-    // Implemente a lógica de aplicar filtros aqui
-  };
 };
 
 export default SearchArea;
+
