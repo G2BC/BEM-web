@@ -14,4 +14,16 @@ export default class FungiService {
         }
 
     }
+
+    public async getAll(): Promise<Array<any>|undefined> {
+        try {
+
+            let response: any = await api.get(`${this.basePath}`);
+
+            return response.data;
+        } catch (error) {
+            console.log('Error', error.message);
+        }
+
+    }
 }
