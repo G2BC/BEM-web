@@ -6,12 +6,15 @@ const HomePage: React.FC = () => {
     const [fungisHeatMap, setFungisHeatMap] = useState<any>([]);
 
     useEffect(() => {
-        setFungisHeatMap(fungiForMap);
+        getFungisForMap();
     }, [])
 
-    const fungiForMap = async () => {
+    const getFungisForMap = async () => {
         let data = await fungiService.getForHeatMap();
-        console.log(data);
+        if (data) {
+            setFungisHeatMap(data);
+
+        }
 
         return data;
     };
