@@ -1,55 +1,15 @@
 import React, { ChangeEvent, FC, useState } from 'react';
 import styled from 'styled-components';
-import { Menu, MenuItem, FormControl, InputLabel, Select, SelectChangeEvent, TextField } from '@mui/material';
+import { Menu, MenuItem, FormControl, InputLabel, Select, SelectChangeEvent, TextField, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SelectStates from '../../../Utils/SelectStates';
 import SelectBemClassification from '../../../Utils/SelectBemClassification';
+import { Container, SearchInput, StyledButton } from './SearchArea.styles';
 
 interface SearchAreaProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
 }
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: 100px;
-`;
-
-const SearchInput = styled(TextField)`
-  width: 300px;
-  background-color: white;
-
-  .MuiOutlinedInput-root {
-    height: 48px;
-  }
-`;
-
-const StyledButton = styled.button`
-  background: #ff5e14;
-  padding: 13px 20px;
-  border: 1px solid #ff5e14;
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 48px; /* Ensure the height matches the input field */
-
-  &:hover {
-    background: #ffffff;
-    color: #ff5e14;
-  }
-
-  .MuiSvgIcon-root {
-    margin-right: 8px;
-  }
-`;
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -70,8 +30,12 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClickMenuFilters = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleClickSearch = (event: React.MouseEvent<HTMLElement>) => {
+
   };
 
   const handleClose = () => {
@@ -108,11 +72,11 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
           endAdornment: null,
         }}
       />
-      <StyledButton onClick={handleClick}>
+      <StyledButton onClick={handleClickMenuFilters}>
         <MenuIcon />
         Filtros
       </StyledButton>
-      <StyledButton>Buscar</StyledButton>
+      <StyledButton onClick={handleClickSearch}>Buscar</StyledButton>
       <Menu
         anchorEl={anchorEl}
         open={open}
