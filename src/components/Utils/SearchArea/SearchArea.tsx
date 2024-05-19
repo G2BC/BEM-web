@@ -1,15 +1,7 @@
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import styled from 'styled-components';
-// import Button from '../Button/Button';
-import FilterIcon from '../../../assets/filterIcon.png';
-import SearchIcon from '../../../assets/searchIcon.png';
-import { Autocomplete, Button, FormControl, InputLabel, Menu, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
+import { Menu, MenuItem, FormControl, InputLabel, Select, SelectChangeEvent, TextField } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import FungiService from '../../../services/FungiService';
-import getClassificationName from '../../../Utils/Enums/BemClassification';
-import SelectInterface from '../../../Interfaces/Select';
-import SelectStates from '../../../Utils/SelectStates';
-import SelectBemClassification from '../../../Utils/SelectBemClassification';
 
 interface SearchAreaProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -20,18 +12,41 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   height: 100px;
 `;
 
-const Input = styled.input`
+const SearchInput = styled(TextField)`
   width: 300px;
-  padding: 8px 32px 8px 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-image: url(${SearchIcon});
-  background-repeat: no-repeat;
-  background-position: right 8px center;
-  background-size: 20px;
+  background-color: white;
+
+  .MuiOutlinedInput-root {
+    height: 48px;
+  }
+`;
+
+const StyledButton = styled.button`
+  background: #ff5e14;
+  padding: 13px 20px;
+  border: 1px solid #ff5e14;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px; /* Ensure the height matches the input field */
+
+  &:hover {
+    background: #ffffff;
+    color: #ff5e14;
+  }
+
+  .MuiSvgIcon-root {
+    margin-right: 8px;
+  }
 `;
 
 const ITEM_HEIGHT = 48;
@@ -46,12 +61,8 @@ const MenuProps = {
 };
 
 const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
-  const fungiService: FungiService = new FungiService();
-  const states: SelectInterface = SelectStates();
-  const bemClassifications: SelectInterface = SelectBemClassification();
-  const [fungis, setFungis] = useState<Array<any>>([]);
-  const [state, setState] = React.useState('');
-  const [bem, setBem] = React.useState('');
+  const [state, setState] = useState<string>('');
+  const [bem, setBem] = useState<string>('');
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -64,65 +75,59 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
   };
 
   const handleChangeState = (event: SelectChangeEvent) => {
-    setState(event.target.value);
+    setState(event.target.value as string);
   };
 
   const handleChangeBem = (event: SelectChangeEvent) => {
-    setBem(event.target.value);
+    setBem(event.target.value as string);
   };
 
-  useEffect(() => {
-    getFungis();
+  // Lista de estados do Brasil
+  const brazilianStates = [
+    'Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará', 'Espírito Santo',
+    'Goiás', 'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais', 
+    'Pará', 'Paraíba', 'Paraná', 'Pernambuco', 'Piauí', 'Rio de Janeiro', 
+    'Rio Grande do Norte', 'Rio Grande do Sul', 'Rondônia', 'Roraima', 'Santa Catarina', 
+    'São Paulo', 'Sergipe', 'Tocantins'
+  ];
 
-  }, [])
-
-  const getFungis = async () => {
-    let data = await fungiService.getAll();
-    if (data) {
-      data = data.map((fungi: any) => {
-
-        return {
-          ...fungi,
-          bemName: getClassificationName(fungi.bem),
-        }
-      });
-
-      setFungis(data);
-    }
-
-  };
+  // Mapear os estados para o formato de opção do Menu
+  const stateOptions = brazilianStates.map((state, index) => (
+    <MenuItem key={index} value={state}>
+      {state}
+    </MenuItem>
+  ));
 
   return (
     <Container>
-      <Autocomplete
-        id="grouped-demo"
-        options={fungis?.sort((a: any, b: any) => a.bem - b.bem)}
-        groupBy={(option: any) => option?.bemName}
-        getOptionLabel={(option: any) => option?.scientific_name}
-        sx={{ width: 300, backgroundColor: 'white' }}
-        renderInput={(params) => <TextField {...params} label="Espécies" />}
-      />
-      <Button variant="contained">Buscar</Button>
-      <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-        endIcon={<MenuIcon />}
-      >
-        Filtros
-      </Button>
-      <Menu
-        id="long-menu"
-        MenuListProps={{
-          'aria-labelledby': 'long-button',
+      <SearchInput
+        variant="outlined"
+        placeholder={placeholder || "Espécies"}
+        onChange={onChange}
+        InputProps={{
+          endAdornment: null,
         }}
+      />
+      <StyledButton onClick={handleClick}>
+        <MenuIcon />
+        Filtros
+      </StyledButton>
+      <StyledButton>Buscar</StyledButton>
+      <Menu
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+        PaperProps={{
+          style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: '20ch',
+          },
+        }}
       >
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }} size='small'>
+        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }} size="small">
           <MenuItem>
             <InputLabel id="select-standard-label">Estado</InputLabel>
             <Select
@@ -136,18 +141,9 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
               <MenuItem value="">
                 <em>Nenhum</em>
               </MenuItem>
-              {states.options.map((state) => (
-                <MenuItem
-                  key={state.id}
-                  value={state.value}
-                // style={getStyles(name, personName, theme)}
-                >
-                  {state.value}
-                </MenuItem>
-              ))}
+              {stateOptions}
             </Select>
           </MenuItem>
-
           <MenuItem>
             <InputLabel id="select-bem-label">BEM</InputLabel>
             <Select
@@ -161,33 +157,16 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
               <MenuItem value="">
                 <em>Nenhum</em>
               </MenuItem>
-              {bemClassifications.options.map((bem) => (
-                <MenuItem
-                  key={bem.id}
-                  value={bem.value}
-                // style={getStyles(name, personName, theme)}
-                >
-                  {bem.id}
-                </MenuItem>
-              ))}
+              {/* Adicione suas opções de BEM aqui */}
             </Select>
           </MenuItem>
-
           <MenuItem>
             <TextField id="input-habitat" label="Habitat" variant="standard" />
           </MenuItem>
         </FormControl>
       </Menu>
-      {/* <Input
-        type="text"
-        placeholder={placeholder}
-        onChange={onChange}
-      /> */}
-      {/* <Button text="Filtros" backgroundColor="#ffffff" border="#131313" icon={FilterIcon}textColor="#131313" /> */}
-      {/* <Button text="Buscar" backgroundColor="#a65f3e" /> */}
     </Container>
   );
 };
 
 export default SearchArea;
-
