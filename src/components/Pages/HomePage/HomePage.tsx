@@ -22,13 +22,6 @@ const HomePage: React.FC = () => {
         }
     };
 
-    const heatData = [
-        { state: 'SP', intensity: 0.5 },
-        { state: 'RJ', intensity: 0.4 },
-        { state: 'DF', intensity: 0.3 },
-        // Adicione mais dados conforme necessário
-    ];
-
     return (
         <>
             <div>
