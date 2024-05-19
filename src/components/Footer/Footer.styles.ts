@@ -116,20 +116,21 @@ export const FooterBottom = styled.div`
   color: white;
 `;
 
-export const FooterButton = styled.button`
-  background: #ff5e14;
-  padding: 13px 20px;
-  border: 1px solid #ff5e14;
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+export const FooterButton = styled.button({
+  background: '#ff5e14',
+  padding: '13px 20px',
+  border: '1px solid #ff5e14',
+  borderRadius: 3,
+  color: '#fff',
+  fontSize: '16px',
+  fontWeight: 'bold',
+  cursor: 'pointer',
+  transition: 'background-color 0.3s ease, color 0.3s ease',
 
-  &:hover {
-    background: #ffffff;
-    color: #ff5e14;
+  '&:hover': {
+    background: '#ffffff',
+    color: '#ff5e14',
   }
-`;
+});
 
 
