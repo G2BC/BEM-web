@@ -2,6 +2,8 @@ import React, { ChangeEvent, FC, useState } from 'react';
 import styled from 'styled-components';
 import { Menu, MenuItem, FormControl, InputLabel, Select, SelectChangeEvent, TextField } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import SelectStates from '../../../Utils/SelectStates';
+import SelectBemClassification from '../../../Utils/SelectBemClassification';
 
 interface SearchAreaProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -61,6 +63,8 @@ const MenuProps = {
 };
 
 const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
+  const brazilianStates = SelectStates();
+  const bemClassifications = SelectBemClassification();
   const [state, setState] = useState<string>('');
   const [bem, setBem] = useState<string>('');
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -82,19 +86,15 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
     setBem(event.target.value as string);
   };
 
-  // Lista de estados do Brasil
-  const brazilianStates = [
-    'Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará', 'Espírito Santo',
-    'Goiás', 'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais', 
-    'Pará', 'Paraíba', 'Paraná', 'Pernambuco', 'Piauí', 'Rio de Janeiro', 
-    'Rio Grande do Norte', 'Rio Grande do Sul', 'Rondônia', 'Roraima', 'Santa Catarina', 
-    'São Paulo', 'Sergipe', 'Tocantins'
-  ];
+  const stateOptions = brazilianStates.options.map((state) => (
+    <MenuItem key={state.id} value={state.value}>
+      {state.id}
+    </MenuItem>
+  ));
 
-  // Mapear os estados para o formato de opção do Menu
-  const stateOptions = brazilianStates.map((state, index) => (
-    <MenuItem key={index} value={state}>
-      {state}
+  const bemOptions = bemClassifications.options.map((bem) => (
+    <MenuItem key={bem.id} value={bem.value}>
+      {bem.id}
     </MenuItem>
   ));
 
@@ -157,7 +157,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
               <MenuItem value="">
                 <em>Nenhum</em>
               </MenuItem>
-              {/* Adicione suas opções de BEM aqui */}
+              {bemOptions}
             </Select>
           </MenuItem>
           <MenuItem>
