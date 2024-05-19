@@ -18,19 +18,68 @@ export const HeadList = styled.ul`
   align-items: center;
 `;
 
-export const HeadItem = styled.li`
-  margin-right: 15px;
+
+
+export const HeadItem = styled.div`
+  display: flex;
+  align-items: center;
+
+  &.head-buttons {
+    gap: 10px; /* Adiciona espaçamento entre os botões */
+  }
 `;
 
 export const HeadLink = styled.a`
-  color: #fff;
+  font-size: 2rem;
   text-decoration: none;
   font-weight: bold;
-  font-size: 30px;
+  color: white;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+
+  text-shadow:
+    1px 1px 0 #ff5e14,
+    2px 2px 0 #ff5e14,
+    3px 3px 0 #ff5e14,
+    4px 4px 0 #ff5e14;
 `;
 
 export const HeadLinkHover = styled(HeadLink)`
   &:hover {
     text-decoration: underline;
+  }
+`;
+
+
+export const HeadButton1 = styled.button`
+  background: #ff5e14;
+  padding: 13px 20px;
+  border: 1px solid #ff5e14;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background: #ffffff;
+    color: #ff5e14;
+  }
+`;
+
+export const HeadButton2 = styled.button`
+  background: #fff;
+  padding: 13px 20px;
+  border: 1px solid #ff5e14;
+  color: #ff5e14;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background: #ff5e14;
+    color: #ffffff;
   }
 `;
