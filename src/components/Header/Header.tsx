@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderContainer, LogoImage, HeadList, HeadItem, HeadLink, HeadButton1, HeadButton2} from './Header.styles';
+import { HeaderContainer, LogoImage, HeadList, HeadItem, HeadLink, HeadButtonEnter, HeadButtonRegister } from './Header.styles';
 // import Button from '../Utils/Button/Button';
 import Logo from '../../assets/cogumelo.png';
 import SearchArea from '../Utils/SearchArea/SearchArea';
@@ -19,16 +19,16 @@ const Header: React.FC = () => {
         </HeadItem>
 
         <HeadItem style={{ flex: 1, justifyContent: 'center' }}>
-            <SearchArea/>
+          <SearchArea />
         </HeadItem>
 
         <HeadItem className="head-buttons" style={{ justifyContent: 'flex-end' }}>
-          <HeadButton2>Entrar</HeadButton2>
-          <HeadButton1>Cadastrar</HeadButton1>  
+          <HeadButtonEnter>Entrar</HeadButtonEnter>
+          <HeadButtonRegister>Cadastrar</HeadButtonRegister>
         </HeadItem>
       </HeadList>
-      
-      
+
+
     </HeaderContainer>
   );
 };

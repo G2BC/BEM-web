@@ -52,34 +52,35 @@ export const HeadLinkHover = styled(HeadLink)`
 `;
 
 
-export const HeadButton1 = styled.button`
-  background: #ff5e14;
-  padding: 13px 20px;
-  border: 1px solid #ff5e14;
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+export const HeadButtonEnter = styled.button({
+  background: '#ff5e14',
+  borderRadius: 3,
+  padding: '13px 20px',
+  border: '1px solid #ff5e14',
+  color: '#fff',
+  fontSize: '16px',
+  fontWeight: 'bold',
+  cursor: 'pointer',
+  transition: 'background-color 0.3s ease, color 0.3s ease',
 
-  &:hover {
-    background: #ffffff;
-    color: #ff5e14;
+  '&:hover': {
+    background: '#ffffff',
+    color: '#ff5e14'
   }
-`;
+});
 
-export const HeadButton2 = styled.button`
-  background: #fff;
-  padding: 13px 20px;
-  border: 1px solid #ff5e14;
-  color: #ff5e14;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-
-  &:hover {
-    background: #ff5e14;
-    color: #ffffff;
+export const HeadButtonRegister = styled.button({
+  background: '#fff',
+  borderRadius: 3,
+  padding: '13px 20px',
+  border: '1px solid #ff5e14',
+  color: '#ff5e14',
+  fontSize: '16px',
+  fontWeight: 'bold',
+  cursor: 'pointer',
+  transition: 'background - color 0.3s ease, color 0.3s ease',
+  '&: hover': {
+    background: '#ff5e14',
+    color: '#ffffff',
   }
-`;
+});
