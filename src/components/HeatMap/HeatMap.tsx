@@ -36,7 +36,7 @@ const HeatMap: React.FC<HeatMapProps> = ({ data }) => {
         }).addTo(map);
     }, [data]);
 
-    return <div id="heatmap" style={{ height: '500px', width: '60%' }}></div>;
+    return <div id="heatmap" style={{ height: '100%', width: '100%' }}></div>;
 };
 
 export default HeatMap;
