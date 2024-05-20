@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import myImage from '../../../assets/round.png'; // Atualize o caminho para a imagem personalizada
+import myImage from '../../../assets/brazilFlag.png'; 
 
 interface RecipeReviewCardProps {
   title: string;
@@ -16,9 +16,6 @@ interface RecipeReviewCardProps {
 export default function RecipeReviewCard({ title, subheader, imageUrl }: RecipeReviewCardProps) {
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <Card sx={{ maxWidth: 280, maxHeight: 275 }}>
@@ -39,8 +36,8 @@ export default function RecipeReviewCard({ title, subheader, imageUrl }: RecipeR
         <IconButton aria-label="Observações">
           <VisibilityIcon style={{ width: 25, height: 25 }} />
         </IconButton>
-        <IconButton aria-label="Brazilian Flag">
-          <img src={myImage} alt="Brazilian Flag" style={{ width: 25, height: 25 }} />
+        <IconButton aria-label="Brazil Flag">
+          <img src={myImage} alt="Brazil Flag" style={{ width: 25, height: 25 }} />
         </IconButton>
       </CardActions>
     </Card>
