@@ -50,8 +50,7 @@ export const SubtitleTooltip = styled.div`
   font-size: 12px;
   width: 200px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  top: 100%; /* Position the tooltip below the item */
-  left: 50%;
+  right: 56%;
   transform: translateX(-50%);
   z-index: 1000;
   display:flex;
