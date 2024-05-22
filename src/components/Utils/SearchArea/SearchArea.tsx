@@ -1,136 +1,96 @@
 import React, { ChangeEvent, FC, useState } from 'react';
-import styled from 'styled-components';
-import { Menu, MenuItem, FormControl, InputLabel, Select, SelectChangeEvent, TextField, Button } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import SelectStates from '../../../Utils/SelectStates';
-import SelectBemClassification from '../../../Utils/SelectBemClassification';
-import { Container, SearchInput, StyledButton } from './SearchArea.styles';
+import {
+  Container,
+  SearchInput,
+  StyledButton,
+  FormContainer,
+  MenuContainer,
+  StyledSelect,
+  StyledTextField,
+} from './SearchArea.styles';
 
 interface SearchAreaProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
 }
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
 const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
-  const brazilianStates = SelectStates();
-  const bemClassifications = SelectBemClassification();
   const [state, setState] = useState<string>('');
   const [bem, setBem] = useState<string>('');
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const [showFilters, setShowFilters] = useState<boolean>(false); // Estado para controlar a visibilidade da caixa de filtros
 
-  const handleClickMenuFilters = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+  const handleToggleFilters = () => {
+    setShowFilters(!showFilters);
   };
 
-  const handleClickSearch = (event: React.MouseEvent<HTMLElement>) => {
-
+  const handleChangeState = (event: ChangeEvent<HTMLSelectElement>) => {
+    setState(event.target.value);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleChangeBem = (event: ChangeEvent<HTMLSelectElement>) => {
+    setBem(event.target.value);
   };
 
-  const handleChangeState = (event: SelectChangeEvent) => {
-    setState(event.target.value as string);
-  };
+  const brazilianStates = [
+    'Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará', 'Espírito Santo',
+    'Goiás', 'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais', 
+    'Pará', 'Paraíba', 'Paraná', 'Pernambuco', 'Piauí', 'Rio de Janeiro', 
+    'Rio Grande do Norte', 'Rio Grande do Sul', 'Rondônia', 'Roraima', 'Santa Catarina', 
+    'São Paulo', 'Sergipe', 'Tocantins'
+  ];
 
-  const handleChangeBem = (event: SelectChangeEvent) => {
-    setBem(event.target.value as string);
-  };
-
-  const stateOptions = brazilianStates.options.map((state) => (
-    <MenuItem key={state.id} value={state.value}>
-      {state.id}
-    </MenuItem>
-  ));
-
-  const bemOptions = bemClassifications.options.map((bem) => (
-    <MenuItem key={bem.id} value={bem.value}>
-      {bem.id}
-    </MenuItem>
+  const stateOptions = brazilianStates.map((state, index) => (
+    <option key={index} value={state}>
+      {state}
+    </option>
   ));
 
   return (
     <Container>
       <SearchInput
-        variant="outlined"
         placeholder={placeholder || "Espécies"}
         onChange={onChange}
-        InputProps={{
-          endAdornment: null,
-        }}
       />
-      <StyledButton onClick={handleClickMenuFilters}>
-        <MenuIcon />
+      <StyledButton onClick={handleToggleFilters}>
         Filtros
       </StyledButton>
-      <StyledButton onClick={handleClickSearch}>Buscar</StyledButton>
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-        PaperProps={{
-          style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: '20ch',
-          },
-        }}
-      >
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }} size="small">
-          <MenuItem>
-            <InputLabel id="select-standard-label">Estado</InputLabel>
-            <Select
-              labelId="select-standard-label"
-              id="select-standard"
+      <StyledButton>Buscar</StyledButton>
+      {showFilters && (
+        <MenuContainer>
+          <FormContainer>
+            <StyledSelect
+              id="select-state"
               value={state}
               onChange={handleChangeState}
-              label="Estado"
-              MenuProps={MenuProps}
+              defaultValue=""
             >
-              <MenuItem value="">
-                <em>Nenhum</em>
-              </MenuItem>
+              <option value="" disabled>Estado</option>
+              <option value="">Nenhum</option>
               {stateOptions}
-            </Select>
-          </MenuItem>
-          <MenuItem>
-            <InputLabel id="select-bem-label">BEM</InputLabel>
-            <Select
-              labelId="select-bem-label"
+            </StyledSelect>
+            <StyledSelect
               id="select-bem"
               value={bem}
               onChange={handleChangeBem}
-              label="BEM"
-              MenuProps={MenuProps}
+              defaultValue=""
             >
-              <MenuItem value="">
-                <em>Nenhum</em>
-              </MenuItem>
-              {bemOptions}
-            </Select>
-          </MenuItem>
-          <MenuItem>
-            <TextField id="input-habitat" label="Habitat" variant="standard" />
-          </MenuItem>
-        </FormControl>
-      </Menu>
+              <option value="" disabled>BEM</option>
+              <option value="">Nenhum</option>
+              {/* Adicione suas opções de BEM aqui */}
+            </StyledSelect>
+            <StyledTextField
+              id="input-habitat"
+              placeholder="Habitat"
+            />
+          </FormContainer>
+        </MenuContainer>
+      )}
     </Container>
   );
+};
+
+export default SearchArea;
+
 };
 
 export default SearchArea;
