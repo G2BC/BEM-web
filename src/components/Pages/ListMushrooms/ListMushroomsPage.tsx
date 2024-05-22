@@ -16,14 +16,14 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
   const [mushrooms, setMushrooms] = useState<Array<any>>([]);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    taxonomy = params.get("taxonomy") ?? "";
     getFungis();
   }, []);
 
   const getFungis = async () => {
-    const result = await fungiService.getForMushroomsList(
-      taxonomy ? taxonomy : "auricularia"
-    );
-    console.log(result);
+    if (!taxonomy) return;
+    const result = await fungiService.getForMushroomsList(taxonomy);
     if (!result) return;
     const data = result.data;
     let urls = await Promise.all(

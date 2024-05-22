@@ -62,6 +62,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
   const [fungis, setFungis] = useState<Array<any>>([]);
   const [state, setState] = React.useState("");
   const [bem, setBem] = React.useState("");
+  const [taxon, setTaxon] = useState("");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -99,17 +100,25 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
     }
   };
 
+  const onClickSearchButton = async () => {
+    window.location.href = "/list?taxonomy=" + taxon;
+  };
+
   return (
     <Container>
       <Autocomplete
         id="grouped-demo"
+        freeSolo
         options={fungis?.sort((a: any, b: any) => a.bem - b.bem)}
+        onInputChange={(event, value) => (value ? setTaxon(value) : null)}
         groupBy={(option: any) => option?.bemName}
         getOptionLabel={(option: any) => option?.scientific_name}
         sx={{ width: 300, backgroundColor: "white" }}
         renderInput={(params) => <TextField {...params} label="Espécies" />}
       />
-      <Button variant="contained">Buscar</Button>
+      <Button variant="contained" onClick={onClickSearchButton}>
+        Buscar
+      </Button>
       <Button
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
