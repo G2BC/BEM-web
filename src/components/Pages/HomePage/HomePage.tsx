@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import FungiService from "../../../services/FungiService";
-import ViewMushroomPage from "../ViewMushroom/ViewMushroomPage";
 
 const HomePage: React.FC = () => {
     const fungiService: FungiService = new FungiService();
@@ -25,7 +24,6 @@ const HomePage: React.FC = () => {
     return (
         <div>
             <h1>Mapa de calor</h1>
-            <ViewMushroomPage/>
         </div>
     )
 }

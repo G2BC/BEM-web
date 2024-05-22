@@ -12,89 +12,15 @@ import BEM9Icon from "../../assets/BEM9.png";
 import BEM10Icon from "../../assets/BEM10.png";
 import P1Icon from "../../assets/P1.png";
 import P2Icon from "../../assets/P2.png";
+import { SubtitileContainer, SubtitleTitle, SubtitleItem, ItemLeft, MushroomIcon, SubtitleTooltip, TooltipImage } from "./BemSubtitle.styles";
 
-const LegendContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border: 1px solid #ccc;
-  width: 250px;
-  font-family: Arial, sans-serif;
-  margin-left: auto; /* Adicionado para movê-lo para a direita */
-  margin-right: 20px; /* Espaçamento opcional à direita */
-  margin-top: 20px;
-  z-index: 500;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-`;
-
-
-const LegendTitle = styled.h3`
-  margin: 0;
-  padding: 10px;
-  text-align: center;
-  background-color: #000;
-  color: #fff;
-  font-size: 16px;
-`;
-
-const LegendItem = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-  position: relative;
-
-  &:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.3s;
-  }
-`;
-
-const Tooltip = styled.div`
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 12px;
-  width: 200px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  top: 100%; /* Position the tooltip below the item */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  display:flex;
-  aligh-items:center;
-`;
-
-const ItemLeft = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-
-const MushroomIcon = styled.img`
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-`;
-
-const TooltipImage = styled.img`
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-`;
 
 interface Icons {
-    [key: string]: string;
-  }
-  
+  [key: string]: string;
+}
 
-const icons:Icons = {
+const BemSubtitle: React.FC = () => {
+  const icons: Icons = {
     BEM1: BEM1Icon,
     BEM2: BEM2Icon,
     BEM3: BEM3Icon,
@@ -208,25 +134,25 @@ const icons:Icons = {
     },
   ];
 
-const Legend: React.FC = () => {
-    return (
-      <LegendContainer className="legend-container">
-        <LegendTitle>Cogumelos com Ocorrência no Brasil</LegendTitle>
-        {mushroomTypes.map((mushroom) => (
-          <LegendItem key={mushroom.name}>
-            <ItemLeft>
-              <MushroomIcon src={icons[mushroom.name]} alt="Mushroom Icon" />
-              <span>{mushroom.name}</span>
-            </ItemLeft>
-            <span>{mushroom.species} Espécies</span>
-            <Tooltip className="tooltip">
+
+  return (
+    <SubtitileContainer className="legend-container">
+      <SubtitleTitle>Cogumelos com Ocorrência no Brasil</SubtitleTitle>
+      {mushroomTypes.map((mushroom) => (
+        <SubtitleItem key={mushroom.name}>
+          <ItemLeft>
+            <MushroomIcon src={icons[mushroom.name]} alt="Mushroom Icon" />
+            <span>{mushroom.name}</span>
+          </ItemLeft>
+          <span>{mushroom.species} Espécies</span>
+          <SubtitleTooltip className="tooltip">
             <TooltipImage src={mushroom.tooltipImage} alt={`${mushroom.name} image`} />
             {mushroom.tooltip}
-          </Tooltip>
-          </LegendItem>
-        ))}
-      </LegendContainer>
-    );
-  };
-  
-  export default Legend;
+          </SubtitleTooltip>
+        </SubtitleItem>
+      ))}
+    </SubtitileContainer>
+  );
+};
+
+export default BemSubtitle;
