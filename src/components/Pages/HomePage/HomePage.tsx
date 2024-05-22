@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import FungiService from "../../../services/FungiService";
-import HeatMap from "../../HeatMap/HeatMap";
-import BemSubtitle from "../../Classifications/BemSubtitle";
 import { Grid } from "@mui/material";
+import BemSubtitle from "../../Classifications/BemSubtitle";
+import HeatMap from "../../HeatMap/HeatMap";
 
 const HomePage: React.FC = () => {
     const fungiService: FungiService = new FungiService();
