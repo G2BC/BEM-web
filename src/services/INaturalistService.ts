@@ -1,4 +1,4 @@
-import api from "./Service";
+import axios from "axios";
 
 export default class INaturalistService {
   private basePath: string = "https://api.inaturalist.org/v1";
@@ -12,16 +12,10 @@ export default class INaturalistService {
     };
 
     try {
-      const response = await api.get(url, { params });
-      const observations = response.data.results;
-
-      for (const observation of observations) {
-        if (observation.photos && observation.photos.length > 0) {
-          return observation.photos[0].url;
-        }
-      }
-
-      return null;
+      const response = await axios.get(url, { params });
+      if (!response.data.results) return null;
+      const observation = response.data.results[0];
+      return observation.taxon.default_photo.medium_url;
     } catch (error) {
       console.error(`Erro: ${error}`);
       return null;

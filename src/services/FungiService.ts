@@ -23,11 +23,12 @@ export default class FungiService {
     }
   }
 
-  public async getForMushroomsList(): Promise<Array<any> | undefined> {
+  public async getForMushroomsList(taxonomy: string): Promise<any> {
     try {
-      let response: any = await api.get(`${this.basePath}/fungi`);
+      let response: any = await api.get(
+        `${this.basePath}/taxonomy?taxonomy=${taxonomy}&page=${1}`
+      );
 
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log("Error", (error as Error).message);

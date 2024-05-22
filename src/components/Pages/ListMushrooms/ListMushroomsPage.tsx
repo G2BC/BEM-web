@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import FungiService from "../../../services/FungiService";
 import Grid from "@mui/material/Grid";
 import RecipeReviewCard from "./MushroomCard";
+import INaturalistService from "../../../services/INaturalistService";
 
 interface ListMushroomsPageProps {
   taxonomy?: string;
@@ -11,6 +12,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
   taxonomy = "",
 }) => {
   const fungiService: FungiService = new FungiService();
+  const iNaturalistService: INaturalistService = new INaturalistService();
   const [mushrooms, setMushrooms] = useState<Array<any>>([]);
 
   useEffect(() => {
@@ -18,12 +20,25 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
   }, []);
 
   const getFungis = async () => {
-    let data = await fungiService.getForMushroomsList();
+    const result = await fungiService.getForMushroomsList(
+      taxonomy ? taxonomy : "auricularia"
+    );
+    console.log(result);
+    if (!result) return;
+    const data = result.data;
+    let urls = await Promise.all(
+      data.map((item: any) =>
+        iNaturalistService.getMushroomsPicture(item.inaturalist_taxa)
+      )
+    );
+    for (let i = 0; i < data.length; i++) data[i].imageUrl = urls[i];
+
+    setMushrooms(data);
   };
 
   return (
     <div>
-      <h1>Mapa de Calor BEM</h1>
+      <h1>Lista de Cogumelos</h1>
       {mushrooms != undefined ? (
         <>
           <Grid container spacing={2}>
