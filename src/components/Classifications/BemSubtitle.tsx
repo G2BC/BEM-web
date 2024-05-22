@@ -19,7 +19,11 @@ interface Icons {
   [key: string]: string;
 }
 
-const BemSubtitle: React.FC = () => {
+interface BemSubtitleProps {
+  filter: Function;
+}
+
+const BemSubtitle: React.FC = (filter) => {
   const icons: Icons = {
     BEM1: BEM1Icon,
     BEM2: BEM2Icon,
@@ -137,9 +141,11 @@ const BemSubtitle: React.FC = () => {
 
   return (
     <SubtitileContainer className="legend-container">
-      <SubtitleTitle>Cogumelos com Ocorrência no Brasil</SubtitleTitle>
+      <SubtitleTitle>Classificação dos Cogumelos com Ocorrência no Brasil</SubtitleTitle>
       {mushroomTypes.map((mushroom) => (
-        <SubtitleItem key={mushroom.name}>
+        <SubtitleItem key={mushroom.name} onClick={((event: any) => {
+          filter(mushroom.name)
+        })}>
           <ItemLeft>
             <MushroomIcon src={icons[mushroom.name]} alt="Mushroom Icon" />
             <span>{mushroom.name}</span>

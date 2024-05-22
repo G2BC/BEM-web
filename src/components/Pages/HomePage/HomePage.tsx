@@ -6,7 +6,8 @@ import { Grid } from "@mui/material";
 
 const HomePage: React.FC = () => {
     const fungiService: FungiService = new FungiService();
-    const [fungisHeatMap, setFungisHeatMap] = useState<any>();
+    const [fungisHeatMap, setFungisHeatMap] = useState<{ state: string, intensity: number }[]>();
+    const [fungisOccurrencesCount, setFungisOccurrencesCount] = useState<any>();
 
     useEffect(() => {
         getFungisForMap();
@@ -15,6 +16,8 @@ const HomePage: React.FC = () => {
     const getFungisForMap = async () => {
         let data = await fungiService.getForHeatMap();
         if (data) {
+            setFungisOccurrencesCount(data);
+
             data = Object.keys(data).map((stateAc) => {
 
                 return { state: stateAc, intensity: data[stateAc].occurrences_count }
@@ -23,6 +26,21 @@ const HomePage: React.FC = () => {
 
         }
     };
+
+    const classificationFilter = (bemName: string) => {
+        if (fungisOccurrencesCount) {
+
+            let filteredKeys = Object.keys(fungisOccurrencesCount).filter((stateAc: string) => {
+                return fungisOccurrencesCount[stateAc].classifications_count[bemName] > 0;
+            })
+
+            return filteredKeys.map((key) => {
+
+                return { state: key, intensity: fungisOccurrencesCount[key].classifications_count[bemName] }
+            })
+
+        }
+    }
 
     return (
         <div>
@@ -34,7 +52,7 @@ const HomePage: React.FC = () => {
                             <HeatMap data={fungisHeatMap} />
                         </Grid>
                         <Grid item xs={2}>
-                            <BemSubtitle />
+                            <BemSubtitle filter={classificationFilter}/>
                         </Grid>
                     </Grid>
                 </>
