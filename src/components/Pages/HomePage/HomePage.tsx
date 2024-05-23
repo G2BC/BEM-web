@@ -2,11 +2,16 @@ import { useEffect, useState } from "react";
 import FungiService from "../../../services/FungiService";
 import { Grid } from "@mui/material";
 import BemSubtitle from "../../Classifications/BemSubtitle";
-import HeatMap from "../../HeatMap/HeatMap";
+import HeatMap from "../../HeatMap/HeatMapLayer";
+import { MapContainer, TileLayer, useMap } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import 'leaflet.heat'; // Certifique-se de que este import funciona após a declaração do módulo.
+import stateCoordinates from '../../../Utils/StateCoordinates';
+import HeatMapLayer from "../../HeatMap/HeatMapLayer";
 
 const HomePage: React.FC = () => {
     const fungiService: FungiService = new FungiService();
-    const [fungisHeatMap, setFungisHeatMap] = useState<{ state: string, intensity: number }[]>();
+    const [fungisHeatMap, setFungisHeatMap] = useState<[number, number, number][]>();
     const [fungisOccurrencesCount, setFungisOccurrencesCount] = useState<any>();
 
     useEffect(() => {
@@ -21,9 +26,9 @@ const HomePage: React.FC = () => {
             data = Object.keys(data).map((stateAc) => {
 
                 return { state: stateAc, intensity: data[stateAc].occurrences_count }
-            })
-            setFungisHeatMap(data);
+            });
 
+            setFungisHeatMap(formatHeatData(data));
         }
     };
 
@@ -32,14 +37,23 @@ const HomePage: React.FC = () => {
 
             let filteredKeys = Object.keys(fungisOccurrencesCount).filter((stateAc: string) => {
                 return fungisOccurrencesCount[stateAc].classifications_count[bemName] > 0;
-            })
+            });
 
-            return filteredKeys.map((key) => {
+            let filteredMushrooms = filteredKeys.map((key) => {
 
                 return { state: key, intensity: fungisOccurrencesCount[key].classifications_count[bemName] }
-            })
+            });
 
+            setFungisHeatMap(formatHeatData(filteredMushrooms))
         }
+    }
+
+    const formatHeatData = (data: { state: string, intensity: number }[]): [number, number, number][] => {
+        return data.map(({ state, intensity }) => {
+            let coords = stateCoordinates[state];
+
+            return [coords[0], coords[1], intensity] as [number, number, number];
+        });
     }
 
     return (
@@ -49,10 +63,16 @@ const HomePage: React.FC = () => {
                 <>
                     <Grid container spacing={1} direction="row" justifyContent='center' alignItems='stretch'>
                         <Grid item xs={10}>
-                            <HeatMap data={fungisHeatMap} />
+                            <MapContainer center={[-14.235004, -51.92528]} zoom={4} id="heatmap" style={{ height: '100%', width: '100%' }}>
+                                <TileLayer
+                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                />
+                                <HeatMapLayer data={fungisHeatMap} />
+                            </MapContainer>
                         </Grid>
                         <Grid item xs={2}>
-                            <BemSubtitle filter={classificationFilter}/>
+                            <BemSubtitle filter={classificationFilter} />
                         </Grid>
                     </Grid>
                 </>
