@@ -20,10 +20,10 @@ interface Icons {
 }
 
 interface BemSubtitleProps {
-  filter: Function;
+  filter: (bemName: string) => void;
 }
 
-const BemSubtitle: React.FC = (filter) => {
+const BemSubtitle: React.FC<BemSubtitleProps> = ({ filter }) => {
   const icons: Icons = {
     BEM1: BEM1Icon,
     BEM2: BEM2Icon,
@@ -39,7 +39,7 @@ const BemSubtitle: React.FC = (filter) => {
     P2: P2Icon,
   };
 
-  const mushroomTypes = [
+  const classifications = [
     {
       name: "BEM1",
       color: "#66BB6A",
@@ -142,18 +142,18 @@ const BemSubtitle: React.FC = (filter) => {
   return (
     <SubtitileContainer className="legend-container">
       <SubtitleTitle>Classificação dos Cogumelos com Ocorrência no Brasil</SubtitleTitle>
-      {mushroomTypes.map((mushroom) => (
-        <SubtitleItem key={mushroom.name} onClick={((event: any) => {
-          filter(mushroom.name)
+      {classifications.map((bem) => (
+        <SubtitleItem key={bem.name} onClick={((event: any) => {
+          filter(bem.name)
         })}>
           <ItemLeft>
-            <MushroomIcon src={icons[mushroom.name]} alt="Mushroom Icon" />
-            <span>{mushroom.name}</span>
+            <MushroomIcon src={icons[bem.name]} alt="Mushroom Icon" />
+            <span>{bem.name}</span>
           </ItemLeft>
-          <span>{mushroom.species} Espécies</span>
+          {/* <span>{bem.species} Espécies</span> */}
           <SubtitleTooltip className="tooltip">
-            <TooltipImage src={mushroom.tooltipImage} alt={`${mushroom.name} image`} />
-            {mushroom.tooltip}
+            <TooltipImage src={bem.tooltipImage} alt={`${bem.name} image`} />
+            {bem.tooltip}
           </SubtitleTooltip>
         </SubtitleItem>
       ))}
