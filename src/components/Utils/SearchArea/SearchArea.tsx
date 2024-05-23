@@ -70,18 +70,36 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
   const [state, setState] = useState('');
   const [bem, setBem] = useState('');
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const openMenu = Boolean(anchorEl);
+  const [openState, setOpenState] = React.useState(false);
+  const [openBem, setOpenBem] = React.useState(false);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleCloseMenu = () => {
     setAnchorEl(null);
+  };
+
+  const handleCloseState = () => {
+    setOpenState(false);
+  };
+
+  const handleOpenState = () => {
+    setOpenState(true);
   };
 
   const handleChangeState = (event: SelectChangeEvent) => {
     setState(event.target.value);
+  };
+
+  const handleCloseBem = () => {
+    setOpenBem(false);
+  };
+
+  const handleOpenBem = () => {
+    setOpenBem(true);
   };
 
   const handleChangeBem = (event: SelectChangeEvent) => {
@@ -119,9 +137,9 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
       </InputWrapper>
       <FilterButton
         id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
+        aria-controls={openMenu ? 'basic-menu' : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={openMenu ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<MenuIcon />}
         variant="contained"
@@ -138,17 +156,20 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
           'aria-labelledby': 'long-button',
         }}
         anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
+        open={openMenu}
+        onClose={handleCloseMenu}
       >
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }} size='small'>
+        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
           <MenuItem>
-            <InputLabel id="select-standard-label">Estado</InputLabel>
+            <InputLabel id="select-standard-label" color='warning'>Estado</InputLabel>
             <Select
               labelId="select-standard-label"
               id="select-standard"
               value={state}
               onChange={handleChangeState}
+              open={openState}
+              onOpen={handleOpenState}
+              onClose={handleCloseState}
               label="Estado"
               sx={{ height: 50, width: 200, padding: '15px 20px', borderBottom: '2px solid #ff5e14', borderRadius: 0, fontSize: 14, fontWeight: 'bold' }}
             >
@@ -167,14 +188,34 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
           </MenuItem>
 
           <MenuItem>
-            <InputLabel id="select-bem-label">BEM</InputLabel>
+            <InputLabel id="select-bem-label" color='warning'>BEM</InputLabel>
             <Select
               labelId="select-bem-label"
               id="select-bem"
               value={bem}
+              open={openBem}
+              onOpen={handleOpenBem}
+              onClose={handleCloseBem}
               onChange={handleChangeBem}
               label="BEM"
-              sx={{ height: 50, width: 200, padding: '15px 20px', borderBottom: '2px solid #ff5e14', borderRadius: 0, fontSize: 14, fontWeight: 'bold' }}
+              sx={{
+                height: 50,
+                width: 200,
+                padding: '15px 20px',
+                borderBottom: '2px solid #ff5e14',
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderBottom: '#ff5e14', // default border color
+                  },
+                  '&:hover fieldset': {
+                    borderBottom: '#ff5e14', // border color when hovered
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderBottom: '#ff5e14', // border color when focused
+                  },
+                },
+                borderRadius: 0, fontSize: 14, fontWeight: 'bold'
+              }}
             >
               <MenuItem value="">
                 <em>Nenhum</em>
@@ -190,8 +231,8 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
             </Select>
           </MenuItem>
 
-          <MenuItem>
-            <TextField id="input-habitat" label="Habitat" variant="standard" sx={{ height: 50, width: 200, padding: '15px 20px', borderBottom: '2px solid #ff5e14', borderRadius: 0, fontSize: 14, fontWeight: 'bold' }} />
+          <MenuItem sx={{ height: 50, width: 230, padding: '15px 20px', borderBottom: '2px solid #ff5e14', borderRadius: 0, fontSize: 14, fontWeight: 'bold' }}>
+            <TextField id="input-habitat" label="Habitat" variant="standard" color='warning' />
           </MenuItem>
         </FormControl>
       </Menu>
