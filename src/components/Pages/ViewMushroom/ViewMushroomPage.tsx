@@ -25,16 +25,18 @@ const Header = styled.div`
   padding: 16px;
 `;
 
-const Title = styled.h1`
-  font-size: 24px;
-  margin: 0;
-`;
-
 const ScientificName = styled.h2`
-  font-size: 16px;
-  color: gray;
+  font-size: 30px;
+  color: black;
   margin: 0;
   font-style: italic;
+`;
+
+const Name = styled.h1`
+  font-size: 24px;
+  margin: 0;
+  color: gray;
+  font-style: italic
 `;
 
 const StatusBadge = styled.img`
@@ -49,14 +51,40 @@ const ImageSection = styled.div`
 `;
 
 const LargeImage = styled.img`
-  width: 100%;
+  width: 50%; // Reduzindo a largura da imagem para 50%
   height: auto;
+  float: left; // Alinhando à esquerda
+  margin-right: 16px; // Adicionando margem à direita para separar das outras seções
 `;
+
 
 const MapSection = styled.div`
   width: 80%;
   height: 300px;
   margin: 16px 0;
+`;
+
+const CarouselContainer = styled.div`
+  width: 50%;  // Ajuste esta largura conforme necessário
+  margin: 16px 0 ;
+  float: left;
+  .slick-prev:before, .slick-next:before {
+    color: black; // Cor das setas de navegação
+  }
+  .slick-dots li button:before {
+    font-size: 12px;
+    color: black; // Cor dos pontos de navegação
+  }
+  .slick-dots li.slick-active button:before {
+    color: red; // Cor dos pontos ativos
+  }
+`;
+
+const ThumbnailImage = styled.img`
+  width: 100%;
+  height: 100px; // Altura das imagens no carrossel
+  object-fit: cover;
+  cursor: pointer;
 `;
 
 const photos = [
@@ -79,31 +107,32 @@ const ViewMushroomPage = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 4,
     slidesToScroll: 1
   };
+  
 
   return (
     <SpeciesContainer>
       <Header>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Title>Galinhas Do Bosque</Title>
+        <ScientificName>Laetiporus sulphureus</ScientificName>
           <StatusBadge src={VU} alt="VU"/>
         </div>
-        <ScientificName>(Laetiporus sulphureus)</ScientificName>
+          <Name>(Laetiporus sulphureus)</Name>
       </Header>
       <ImageSection>
         <LargeImage src={photos[0].src} alt={photos[0].alt} />
       </ImageSection>
-      <ImageSection>
+      <CarouselContainer>
         <Slider {...settings}>
           {photos.map((photo, index) => (
             <div key={index}>
-              <img src={photo.src} alt={photo.alt} style={{ width: '80px',height:'60px' }} />
+              <ThumbnailImage src={photo.src} alt={photo.alt} />
             </div>
           ))}
         </Slider>
-      </ImageSection>
+      </CarouselContainer>
       <MapSection>
         <MapContainer center={[-14.235, -51.9253]} zoom={4} style={{ height: '100%', width: '100%' }}>
           <TileLayer
