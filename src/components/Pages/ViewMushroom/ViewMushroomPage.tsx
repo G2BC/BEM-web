@@ -5,9 +5,9 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import VU from '../../../assets/VU.png'
-import Cogumelo from '../../../assets/Galinhadomato.png'
-
+import VU from '../../../assets/VU.png';
+import Cogumelo from '../../../assets/Galinhadomato.png';
+import TabsComponent from '../../Utils/Tabs/TabsComponent';
 
 const SpeciesContainer = styled.div`
   display: flex;
@@ -25,27 +25,28 @@ const Header = styled.div`
   padding: 16px;
 `;
 
-const ScientificName = styled.h2`
+const ScientificName = styled.h1`
   font-size: 30px;
   color: black;
   margin: 0;
   font-style: italic;
 `;
 
-const Name = styled.h1`
+const Name = styled.h2`
   font-size: 24px;
   margin: 0;
   color: gray;
-  font-style: italic
+  font-style: italic;
 `;
 
 const StatusBadge = styled.img`
   margin-left: 8px;
-  width: 50px; 
-  height: 50px; 
+  width: 50px;
+  height: 50px;
 `;
 
-const ImageSection = styled.div`
+const ContentSection = styled.div`
+  display: flex;
   width: 80%;
   margin: 16px 0;
 `;
@@ -53,10 +54,12 @@ const ImageSection = styled.div`
 const LargeImage = styled.img`
   width: 50%; // Reduzindo a largura da imagem para 50%
   height: auto;
-  float: left; // Alinhando à esquerda
   margin-right: 16px; // Adicionando margem à direita para separar das outras seções
 `;
 
+const TabsContainer = styled.div`
+  width: 50%; 
+`;
 
 const MapSection = styled.div`
   width: 80%;
@@ -65,16 +68,20 @@ const MapSection = styled.div`
 `;
 
 const CarouselContainer = styled.div`
-  width: 50%;  // Ajuste esta largura conforme necessário
-  margin: 16px 0 ;
+  width: 40%;
+  margin: 16px 0 16px 16px;
   float: left;
-  .slick-prev:before, .slick-next:before {
+
+  .slick-prev:before,
+  .slick-next:before {
     color: black; // Cor das setas de navegação
   }
+
   .slick-dots li button:before {
     font-size: 12px;
     color: black; // Cor dos pontos de navegação
   }
+
   .slick-dots li.slick-active button:before {
     color: red; // Cor dos pontos ativos
   }
@@ -90,15 +97,15 @@ const ThumbnailImage = styled.img`
 const photos = [
   {
     src: Cogumelo,
-    alt: 'Image 1'
+    alt: 'Image 1',
   },
   {
     src: Cogumelo,
-    alt: 'Image 2'
+    alt: 'Image 2',
   },
   {
     src: Cogumelo,
-    alt: 'Image 3'
+    alt: 'Image 3',
   },
 ];
 
@@ -108,22 +115,24 @@ const ViewMushroomPage = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 1
+    slidesToScroll: 1,
   };
-  
 
   return (
     <SpeciesContainer>
       <Header>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-        <ScientificName>Laetiporus sulphureus</ScientificName>
-          <StatusBadge src={VU} alt="VU"/>
+          <ScientificName>Laetiporus sulphureus</ScientificName>
+          <StatusBadge src={VU} alt="VU" />
         </div>
-          <Name>(Laetiporus sulphureus)</Name>
+        <Name>(Laetiporus sulphureus)</Name>
       </Header>
-      <ImageSection>
+      <ContentSection>
         <LargeImage src={photos[0].src} alt={photos[0].alt} />
-      </ImageSection>
+        <TabsContainer>
+          <TabsComponent />
+        </TabsContainer>
+      </ContentSection>
       <CarouselContainer>
         <Slider {...settings}>
           {photos.map((photo, index) => (
@@ -134,21 +143,19 @@ const ViewMushroomPage = () => {
         </Slider>
       </CarouselContainer>
       <MapSection>
-        <MapContainer center={[-14.235, -51.9253]} zoom={4} style={{ height: '100%', width: '100%' }}>
+        <MapContainer
+          center={[-14.235, -51.9253]}
+          zoom={4}
+          style={{ height: '100%', width: '100%' }}
+        >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution="&copy; <a href='https://osm.org/copyright'>OpenStreetMap</a> contributors"
           />
         </MapContainer>
       </MapSection>
-      
-        
-      
     </SpeciesContainer>
   );
 };
-
-
-
 
 export default ViewMushroomPage;

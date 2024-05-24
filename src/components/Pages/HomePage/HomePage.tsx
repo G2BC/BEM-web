@@ -25,7 +25,7 @@ const HomePage: React.FC = () => {
     return (
         <div>
             <h1>Mapa de calor</h1>
-            <ViewMushroomPage/>
+            
         </div>
     )
 }
