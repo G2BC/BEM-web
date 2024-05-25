@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import Slider from 'react-slick';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import VU from '../../../assets/VU.png';
-import Cogumelo from '../../../assets/Galinhadomato.png';
+import VU from '../../../assets/Group 133.png';
 import TabsComponent from '../../Utils/Tabs/TabsComponent';
+import CarouselComponent from './CarouselComponent';
+import CardsList from './CardsList';
+
 
 const SpeciesContainer = styled.div`
   display: flex;
@@ -41,8 +40,8 @@ const Name = styled.h2`
 
 const StatusBadge = styled.img`
   margin-left: 8px;
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 35px;
 `;
 
 const ContentSection = styled.div`
@@ -51,73 +50,23 @@ const ContentSection = styled.div`
   margin: 16px 0;
 `;
 
-const LargeImage = styled.img`
-  width: 50%; // Reduzindo a largura da imagem para 50%
-  height: auto;
-  margin-right: 16px; // Adicionando margem à direita para separar das outras seções
-`;
 
 const TabsContainer = styled.div`
-  width: 50%; 
+  width: 50%;
 `;
 
 const MapSection = styled.div`
   width: 80%;
   height: 300px;
-  margin: 16px 0;
+  margin: 32px 0;
 `;
 
 const CarouselContainer = styled.div`
   width: 40%;
-  margin: 16px 0 16px 16px;
-  float: left;
-
-  .slick-prev:before,
-  .slick-next:before {
-    color: black; // Cor das setas de navegação
-  }
-
-  .slick-dots li button:before {
-    font-size: 12px;
-    color: black; // Cor dos pontos de navegação
-  }
-
-  .slick-dots li.slick-active button:before {
-    color: red; // Cor dos pontos ativos
-  }
+  margin: 16px 16px 16px 0;
 `;
-
-const ThumbnailImage = styled.img`
-  width: 100%;
-  height: 100px; // Altura das imagens no carrossel
-  object-fit: cover;
-  cursor: pointer;
-`;
-
-const photos = [
-  {
-    src: Cogumelo,
-    alt: 'Image 1',
-  },
-  {
-    src: Cogumelo,
-    alt: 'Image 2',
-  },
-  {
-    src: Cogumelo,
-    alt: 'Image 3',
-  },
-];
 
 const ViewMushroomPage = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-  };
-
   return (
     <SpeciesContainer>
       <Header>
@@ -128,20 +77,13 @@ const ViewMushroomPage = () => {
         <Name>(Laetiporus sulphureus)</Name>
       </Header>
       <ContentSection>
-        <LargeImage src={photos[0].src} alt={photos[0].alt} />
+        <CarouselContainer>
+          <CarouselComponent />
+        </CarouselContainer>
         <TabsContainer>
           <TabsComponent />
         </TabsContainer>
       </ContentSection>
-      <CarouselContainer>
-        <Slider {...settings}>
-          {photos.map((photo, index) => (
-            <div key={index}>
-              <ThumbnailImage src={photo.src} alt={photo.alt} />
-            </div>
-          ))}
-        </Slider>
-      </CarouselContainer>
       <MapSection>
         <MapContainer
           center={[-14.235, -51.9253]}
@@ -154,6 +96,7 @@ const ViewMushroomPage = () => {
           />
         </MapContainer>
       </MapSection>
+      <CardsList/>
     </SpeciesContainer>
   );
 };
