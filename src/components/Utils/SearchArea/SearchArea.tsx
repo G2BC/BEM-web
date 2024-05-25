@@ -101,7 +101,14 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
   };
 
   const onClickSearchButton = async () => {
-    window.location.href = "/list?taxonomy=" + taxon;
+    let habitatTextField = document.getElementById(
+      "input-habitat"
+    ) as HTMLInputElement;
+    let habitatValue = habitatTextField?.value;
+    console.log(habitatValue);
+    window.location.href = `/list?taxonomy=${taxon ?? ""}&state=${
+      state ?? ""
+    }&bem=${bem ?? ""}&habitat=${habitatValue ?? ""}`;
   };
 
   return (

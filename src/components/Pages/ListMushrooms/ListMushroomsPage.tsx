@@ -6,10 +6,16 @@ import INaturalistService from "../../../services/INaturalistService";
 
 interface ListMushroomsPageProps {
   taxonomy?: string;
+  state?: string;
+  bem?: number;
+  habitat?: string;
 }
 
 const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
   taxonomy = "",
+  state,
+  bem,
+  habitat,
 }) => {
   const fungiService: FungiService = new FungiService();
   const iNaturalistService: INaturalistService = new INaturalistService();
@@ -18,12 +24,22 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     taxonomy = params.get("taxonomy") ?? "";
+    state = params.get("state") ?? "";
+    if (params.get("bem")) {
+      bem = parseInt(params.get("bem")!);
+    }
+    habitat = params.get("habitat") ?? "";
     getFungis();
   }, []);
 
   const getFungis = async () => {
     if (!taxonomy) return;
-    const result = await fungiService.getForMushroomsList(taxonomy);
+    const result = await fungiService.getForMushroomsList(
+      taxonomy,
+      state,
+      bem,
+      habitat
+    );
     if (!result) return;
     const data = result.data;
     let urls = await Promise.all(

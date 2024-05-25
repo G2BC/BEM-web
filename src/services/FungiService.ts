@@ -23,11 +23,16 @@ export default class FungiService {
     }
   }
 
-  public async getForMushroomsList(taxonomy: string): Promise<any> {
+  public async getForMushroomsList(
+    taxonomy: string,
+    stateAc?: string,
+    bem?: number,
+    biome?: string
+  ): Promise<any> {
     try {
-      let response: any = await api.get(
-        `${this.basePath}/taxonomy?taxonomy=${taxonomy}&page=${1}`
-      );
+      let params = `taxonomy?taxonomy=${taxonomy}&stateAc${stateAc}&biome=${biome}&page=${1}`;
+      if (bem) params += `&bem${bem}`;
+      let response: any = await api.get(`${this.basePath}/${params}`);
 
       return response.data;
     } catch (error) {
