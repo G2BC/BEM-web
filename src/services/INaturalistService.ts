@@ -21,4 +21,24 @@ export default class INaturalistService {
       return null;
     }
   }
+
+  public async getAllMushroomsPictures(
+    taxonId: number
+  ): Promise<Array<any> | null> {
+    const url = `${this.basePath}/observations`;
+    const params = {
+      taxon_id: taxonId,
+      photos: "true",
+    };
+
+    try {
+      const response = await axios.get(url, { params });
+      if (!response.data.results) return null;
+      const observations = response.data.results;
+      return observations.map((obs: any) => obs.taxon.default_photo.medium_url);
+    } catch (error) {
+      console.error(`Erro: ${error}`);
+      return null;
+    }
+  }
 }
