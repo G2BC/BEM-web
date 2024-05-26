@@ -1,15 +1,25 @@
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
-import styled from 'styled-components';
+import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import styled from "styled-components";
 // import Button from '../Button/Button';
-import FilterIcon from '../../../assets/filterIcon.png';
-import SearchIcon from '../../../assets/searchIcon.png';
-import { Autocomplete, Button, FormControl, InputLabel, Menu, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import FungiService from '../../../services/FungiService';
-import getClassificationName from '../../../Utils/Enums/BemClassification';
-import SelectInterface from '../../../Interfaces/Select';
-import SelectStates from '../../../Utils/SelectStates';
-import SelectBemClassification from '../../../Utils/SelectBemClassification';
+import FilterIcon from "../../../assets/filterIcon.png";
+import SearchIcon from "../../../assets/searchIcon.png";
+import {
+  Autocomplete,
+  Button,
+  FormControl,
+  InputLabel,
+  Menu,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  TextField,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import FungiService from "../../../services/FungiService";
+import getClassificationName from "../../../Utils/Enums/BemClassification";
+import SelectInterface from "../../../Interfaces/Select";
+import SelectStates from "../../../Utils/SelectStates";
+import SelectBemClassification from "../../../Utils/SelectBemClassification";
 
 interface SearchAreaProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -50,8 +60,9 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
   const states: SelectInterface = SelectStates();
   const bemClassifications: SelectInterface = SelectBemClassification();
   const [fungis, setFungis] = useState<Array<any>>([]);
-  const [state, setState] = React.useState('');
-  const [bem, setBem] = React.useState('');
+  const [state, setState] = React.useState("");
+  const [bem, setBem] = React.useState("");
+  const [taxon, setTaxon] = useState("");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -73,41 +84,53 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
 
   useEffect(() => {
     getFungis();
-
-  }, [])
+  }, []);
 
   const getFungis = async () => {
     let data = await fungiService.getAll();
     if (data) {
       data = data.map((fungi: any) => {
-
         return {
           ...fungi,
           bemName: getClassificationName(fungi.bem),
-        }
+        };
       });
 
       setFungis(data);
     }
+  };
 
+  const onClickSearchButton = async () => {
+    let habitatTextField = document.getElementById(
+      "input-habitat"
+    ) as HTMLInputElement;
+    let habitatValue = habitatTextField?.value;
+    console.log(habitatValue);
+    window.location.href = `/list?taxonomy=${taxon ?? ""}&state=${
+      state ?? ""
+    }&bem=${bem ?? ""}&habitat=${habitatValue ?? ""}`;
   };
 
   return (
     <Container>
       <Autocomplete
         id="grouped-demo"
+        freeSolo
         options={fungis?.sort((a: any, b: any) => a.bem - b.bem)}
+        onInputChange={(event, value) => (value ? setTaxon(value) : null)}
         groupBy={(option: any) => option?.bemName}
         getOptionLabel={(option: any) => option?.scientific_name}
-        sx={{ width: 300, backgroundColor: 'white' }}
+        sx={{ width: 300, backgroundColor: "white" }}
         renderInput={(params) => <TextField {...params} label="Espécies" />}
       />
-      <Button variant="contained">Buscar</Button>
+      <Button variant="contained" onClick={onClickSearchButton}>
+        Buscar
+      </Button>
       <Button
         id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
+        aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
         endIcon={<MenuIcon />}
       >
@@ -116,13 +139,17 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
       <Menu
         id="long-menu"
         MenuListProps={{
-          'aria-labelledby': 'long-button',
+          "aria-labelledby": "long-button",
         }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
       >
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }} size='small'>
+        <FormControl
+          variant="standard"
+          sx={{ m: 1, minWidth: 120 }}
+          size="small"
+        >
           <MenuItem>
             <InputLabel id="select-standard-label">Estado</InputLabel>
             <Select
@@ -140,7 +167,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                 <MenuItem
                   key={state.id}
                   value={state.value}
-                // style={getStyles(name, personName, theme)}
+                  // style={getStyles(name, personName, theme)}
                 >
                   {state.value}
                 </MenuItem>
@@ -165,7 +192,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                 <MenuItem
                   key={bem.id}
                   value={bem.value}
-                // style={getStyles(name, personName, theme)}
+                  // style={getStyles(name, personName, theme)}
                 >
                   {bem.id}
                 </MenuItem>
@@ -190,4 +217,3 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
 };
 
 export default SearchArea;
-
