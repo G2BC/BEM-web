@@ -3,7 +3,7 @@ import axios from "axios";
 export default class SpeciesLinkService {
   private basePath: string = "https://specieslink.net/ws/1.0";
 
-  public async get(scientificName: string): Promise<any | null> {
+  public async get(scientificName: string): Promise<Array<any> | null> {
     const url = `${this.basePath}/search`;
     const params = {
       scientificName: scientificName,
@@ -11,9 +11,12 @@ export default class SpeciesLinkService {
 
     try {
       const response = await axios.get(url, { params });
-      if (!response.data.features[0].properties) return null;
+      if (!response.data.features) return null;
 
-      return response.data.features[0].properties;
+      return response.data.features.map((feature: any) => ({
+        long: feature.geometry.coordinates[0],
+        lat: feature.geometry.coordinates[1],
+      }));
     } catch (error) {
       console.error(`Erro: ${error}`);
       return null;
