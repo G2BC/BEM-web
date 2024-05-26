@@ -11,9 +11,9 @@ export default class SpeciesLinkService {
 
     try {
       const response = await axios.get(url, { params });
-      if (!response.data.features.properties) return null;
+      if (!response.data.features[0].properties) return null;
 
-      return response.data.features.properties;
+      return response.data.features[0].properties;
     } catch (error) {
       console.error(`Erro: ${error}`);
       return null;
