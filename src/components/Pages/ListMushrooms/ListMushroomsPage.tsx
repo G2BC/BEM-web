@@ -57,13 +57,14 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
       <h1>Lista de Cogumelos</h1>
       {mushrooms != undefined ? (
         <>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} marginLeft={9} marginBottom={5}>
             {mushrooms.map((mushroom) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={mushroom.id}>
                 <RecipeReviewCard
-                  title={mushroom.popular_name}
-                  subheader={mushroom.scientific_name}
+                  title={mushroom.scientific_name}
+                  subheader={mushroom.popular_name}
                   imageUrl={mushroom.imageUrl || ""}
+                  brazilianType={mushroom.brazilian_type || mushroom.brazilian_type_synonym}
                 />
               </Grid>
             ))}

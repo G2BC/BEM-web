@@ -62,8 +62,8 @@ const HomePage: React.FC = () => {
             {fungisHeatMap != undefined ?
                 <>
                     <Grid container spacing={1} direction="row" justifyContent='center' alignItems='stretch'>
-                        <Grid item xs={10}>
-                            <MapContainer center={[-14.235004, -51.92528]} zoom={4} id="heatmap" style={{ height: '100%', width: '100%' }}>
+                        <Grid item xs={10} marginBottom={5}>
+                            <MapContainer center={[-14.235004, -51.92528]} zoom={4} id="heatmap" style={{ height: '100%', width: '100%', marginLeft: '15px'}}>
                                 <TileLayer
                                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -71,7 +71,7 @@ const HomePage: React.FC = () => {
                                 <HeatMapLayer data={fungisHeatMap} />
                             </MapContainer>
                         </Grid>
-                        <Grid item xs={2}>
+                        <Grid item xs={2} marginBottom={7}>
                             <BemSubtitle filter={classificationFilter} />
                         </Grid>
                     </Grid>

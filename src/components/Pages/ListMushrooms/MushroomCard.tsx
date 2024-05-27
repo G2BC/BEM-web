@@ -11,12 +11,14 @@ interface RecipeReviewCardProps {
   title: string;
   subheader: string;
   imageUrl: string;
+  brazilianType: string;
 }
 
 export default function RecipeReviewCard({
   title,
   subheader,
   imageUrl,
+  brazilianType
 }: RecipeReviewCardProps) {
   const [expanded, setExpanded] = React.useState(false);
 
@@ -42,7 +44,8 @@ export default function RecipeReviewCard({
         <IconButton aria-label="Observações">
           <VisibilityIcon style={{ width: 25, height: 25 }} />
         </IconButton>
-        <IconButton aria-label="Brazil Flag">
+        <IconButton laaria-label="Brazil Flag">
+          {/* {brazilianType} */}
           <img
             src={myImage}
             alt="Brazil Flag"

@@ -139,7 +139,9 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
       <InputWrapper>
         <Autocomplete
           id="grouped-demo"
+          freeSolo
           options={fungis?.sort((a: any, b: any) => a.bem - b.bem)}
+          onInputChange={(event, value) => (value ? setTaxon(value) : null)}
           groupBy={(option: any) => option?.bemName}
           getOptionLabel={(option: any) => option?.scientific_name}
           sx={{ height: 50, width: 500, backgroundColor: 'white' }}
@@ -157,7 +159,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
       >
         Filtros
       </FilterButton>
-      <StyledButton variant="contained" sx={{ marginLeft: '10px' }}>
+      <StyledButton onClick={onClickSearchButton} variant="contained" sx={{ marginLeft: '10px' }}>
         <SearchIcon />
         Buscar
       </StyledButton>
