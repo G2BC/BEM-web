@@ -105,10 +105,9 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
       "input-habitat"
     ) as HTMLInputElement;
     let habitatValue = habitatTextField?.value;
-    console.log(habitatValue);
-    window.location.href = `/list?taxonomy=${taxon ?? ""}&state=${
-      state ?? ""
-    }&bem=${bem ?? ""}&habitat=${habitatValue ?? ""}`;
+
+    window.location.href = `/list?taxonomy=${taxon ?? ""}&state=${state ?? ""
+      }&bem=${bem ?? ""}&habitat=${habitatValue ?? ""}`;
   };
 
   return (
@@ -167,7 +166,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                 <MenuItem
                   key={state.id}
                   value={state.value}
-                  // style={getStyles(name, personName, theme)}
+                // style={getStyles(name, personName, theme)}
                 >
                   {state.value}
                 </MenuItem>
@@ -192,7 +191,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                 <MenuItem
                   key={bem.id}
                   value={bem.value}
-                  // style={getStyles(name, personName, theme)}
+                // style={getStyles(name, personName, theme)}
                 >
                   {bem.id}
                 </MenuItem>
