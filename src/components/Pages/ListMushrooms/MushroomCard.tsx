@@ -1,55 +1,55 @@
+// Importações necessárias
 import * as React from "react";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import myImage from "../../../assets/brazilFlag.png";
+import { CardContainer, CardHeader, CardImage, CardActionContainer } from "./MushroomCard.styles";
 
+// Interface para as propriedades do componente
 interface RecipeReviewCardProps {
   title: string;
   subheader: string;
   imageUrl: string;
+  brazilianType: string;
 }
 
-export default function RecipeReviewCard({
+// Componente RecipeReviewCard
+const RecipeReviewCard: React.FC<RecipeReviewCardProps> = ({
   title,
   subheader,
   imageUrl,
-}: RecipeReviewCardProps) {
+  brazilianType
+}: RecipeReviewCardProps) => {
   const [expanded, setExpanded] = React.useState(false);
 
   return (
-    <Card sx={{ maxWidth: 280, maxHeight: 275 }}>
-      <CardMedia
-        component="img"
+    <CardContainer>
+      <CardImage
         height={169}
         width={280}
-        image={imageUrl}
+        src={imageUrl}
         alt={title}
+        as="img"
       />
-      <CardHeader
-        title={title}
-        subheader={subheader}
-        subheaderTypographyProps={{ style: { fontStyle: "italic" } }}
-        sx={{ width: 248, height: 30, textAlign: "center" }}
-      />
-      <CardActions
-        disableSpacing
-        sx={{ display: "flex", justifyContent: "space-between" }}
-      >
+      <CardHeader>
+        <h3>{title}</h3>
+        <p style={{ fontStyle: "italic" }}>{subheader}</p>
+      </CardHeader>
+      <CardActionContainer>
         <IconButton aria-label="Observações">
           <VisibilityIcon style={{ width: 25, height: 25 }} />
         </IconButton>
-        <IconButton aria-label="Brazil Flag">
+        <IconButton laaria-label="Brazil Flag">
           <img
             src={myImage}
             alt="Brazil Flag"
             style={{ width: 25, height: 25 }}
           />
         </IconButton>
-      </CardActions>
-    </Card>
+      </CardActionContainer>
+    </CardContainer>
   );
 }
+
+export default RecipeReviewCard;
