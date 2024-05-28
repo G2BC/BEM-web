@@ -5,12 +5,11 @@ export default class FungiService {
 
   public async getForHeatMap(): Promise<any | undefined> {
     try {
-
       let response: any = await api.get(`${this.basePath}/heatmap`);
 
       return response.data;
     } catch (error) {
-      console.log('Error', (error as Error).message);
+      console.log("Error", (error as Error).message);
     }
   }
 
@@ -28,10 +27,13 @@ export default class FungiService {
     taxonomy: string,
     stateAc?: string,
     bem?: number,
-    biome?: string
+    biome?: string,
+    page?: number
   ): Promise<any> {
     try {
-      let params = `taxonomy?taxonomy=${taxonomy}&stateAc${stateAc}&biome=${biome}&page=${1}`;
+      let params = `taxonomy?taxonomy=${taxonomy}&stateAc${stateAc}&biome=${biome}&page=${
+        page ?? 1
+      }`;
       if (bem) params += `&bem${bem}`;
       let response: any = await api.get(`${this.basePath}/${params}`);
 

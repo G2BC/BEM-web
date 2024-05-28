@@ -3,6 +3,7 @@ import FungiService from "../../../services/FungiService";
 import Grid from "@mui/material/Grid";
 import RecipeReviewCard from "./MushroomCard";
 import INaturalistService from "../../../services/INaturalistService";
+import Pagination from "@mui/material/Pagination";
 
 interface ListMushroomsPageProps {
   taxonomy?: string;
@@ -20,15 +21,17 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
   const fungiService: FungiService = new FungiService();
   const iNaturalistService: INaturalistService = new INaturalistService();
   const [mushrooms, setMushrooms] = useState<Array<any>>([]);
+  const [page, setPage] = useState<number>(1);
+  const [pagesCount, setPagesCount] = useState<number>(1);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     taxonomy = params.get("taxonomy") ?? "";
     state = params.get("state") ?? "";
-    if (params.get("bem")) {
-      bem = parseInt(params.get("bem")!);
-    }
     habitat = params.get("habitat") ?? "";
+    if (params.get("bem")) bem = parseInt(params.get("bem")!);
+    if (params.get("page")) setPage(parseInt(params.get("page")!));
+
     getFungis();
   }, []);
 
@@ -38,7 +41,8 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
       taxonomy,
       state,
       bem,
-      habitat
+      habitat,
+      page ?? 1
     );
     if (!result) return;
     const data = result.data;
@@ -50,6 +54,12 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
     for (let i = 0; i < data.length; i++) data[i].imageUrl = urls[i];
 
     setMushrooms(data);
+    setPagesCount(result.last_page);
+  };
+
+  const handleChange = (_: any, p: number) => {
+    setPage(p);
+    getFungis();
   };
 
   return (
@@ -64,11 +74,18 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
                   title={mushroom.scientific_name}
                   subheader={mushroom.popular_name}
                   imageUrl={mushroom.imageUrl || ""}
-                  brazilianType={mushroom.brazilian_type || mushroom.brazilian_type_synonym}
+                  brazilianType={
+                    mushroom.brazilian_type || mushroom.brazilian_type_synonym
+                  }
                 />
               </Grid>
             ))}
           </Grid>
+          <Pagination
+            shape="rounded"
+            count={pagesCount}
+            onChange={handleChange}
+          />
         </>
       ) : (
         <></>
