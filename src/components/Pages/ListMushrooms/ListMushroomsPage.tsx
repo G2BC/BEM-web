@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import FungiService from "../../../services/FungiService";
-import Grid from "@mui/material/Grid";
 import RecipeReviewCard from "./MushroomCard";
 import INaturalistService from "../../../services/INaturalistService";
 import Pagination from "@mui/material/Pagination";
+import { Container, CardGrid, CardItem } from "./ListMushroomsPage.styles";
 
 interface ListMushroomsPageProps {
   taxonomy?: string;
@@ -16,7 +16,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
   taxonomy = "",
   state,
   bem,
-  habitat,
+  habitat
 }) => {
   const fungiService: FungiService = new FungiService();
   const iNaturalistService: INaturalistService = new INaturalistService();
@@ -63,13 +63,13 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
   };
 
   return (
-    <div>
+    <Container>
       <h1>Lista de Cogumelos</h1>
       {mushrooms != undefined ? (
         <>
-          <Grid container spacing={2} marginLeft={9} marginBottom={5}>
+          <CardGrid>
             {mushrooms.map((mushroom) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={mushroom.id}>
+              <CardItem key={mushroom.id}>
                 <RecipeReviewCard
                   title={mushroom.scientific_name}
                   subheader={mushroom.popular_name}
@@ -78,9 +78,9 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
                     mushroom.brazilian_type || mushroom.brazilian_type_synonym
                   }
                 />
-              </Grid>
+              </CardItem>
             ))}
-          </Grid>
+          </CardGrid>
           <Pagination
             shape="rounded"
             count={pagesCount}
@@ -90,7 +90,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
       ) : (
         <></>
       )}
-    </div>
+    </Container>
   );
 };
 
