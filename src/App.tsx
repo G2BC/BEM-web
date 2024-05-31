@@ -11,24 +11,19 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
 const App: React.FC = () => {
-
   return (
     <div className="App">
       <Header />
-      <BrowserRouter basename='/'>
+      <BrowserRouter basename="/">
         <Routes>
-          <Route path='/' Component={HomePage}>
-          </Route>
-          <Route path='/list' Component={ListMushroomsPage}>
-          </Route>
-          <Route path='/mushroom/:uuid' Component={ViewMushroomPage}>
-          </Route>
+          <Route path="/" Component={HomePage}></Route>
+          <Route path="/list" Component={ListMushroomsPage}></Route>
+          <Route path="/mushroom/:uuid" Component={ViewMushroomPage}></Route>
         </Routes>
       </BrowserRouter>
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
-
