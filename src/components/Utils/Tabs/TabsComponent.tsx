@@ -104,6 +104,7 @@ const TabsList = styled(BaseTabsList)(
   border-radius: 12px;
   border: 1px solid ${grey[300]};
   margin-bottom: 16px;
+  margin-top: 19px;
   display: flex;
   align-items: center;
   justify-content: center;

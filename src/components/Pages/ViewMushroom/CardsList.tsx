@@ -45,16 +45,7 @@ const cardsData = [
     subheader: "Laetiporus sulphureus",
     imageUrl: myImage,
   },
-  {
-    title: "Laetiporus sulphureus",
-    subheader: "Laetiporus sulphureus",
-    imageUrl: myImage,
-  },
-  {
-    title: "Laetiporus sulphureus",
-    subheader: "Laetiporus sulphureus",
-    imageUrl: myImage,
-  },
+  
 ];
 
 export default function CardsList() {
