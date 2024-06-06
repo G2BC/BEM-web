@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button, TextField, Typography, Link, Grid, Paper, Avatar } from '@mui/material';
 import { styled } from '@mui/system';
 import background from '../../assets/background.png'; // Importe a imagem de fundo
-import logo from '../../assets/cogumelo.png'; // Importe a imagem do logo
+import logo from '../../assets/logoicon.png'; // Importe a imagem do logo
 
 
 const BackgroundImage = styled('div')({
