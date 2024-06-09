@@ -5,7 +5,8 @@ import 'leaflet/dist/leaflet.css';
 import VU from '../../../assets/Group 133.png';
 import TabsComponent from '../../Utils/Tabs/TabsComponent';
 import CarouselComponent from './CarouselComponent';
-import CardsList from './CardsList';
+import TabsViewMushroom from './TabsViewMushroom'
+
 
 
 const SpeciesContainer = styled.div`
@@ -35,7 +36,6 @@ const Name = styled.h2`
   font-size: 24px;
   margin: 0;
   color: gray;
-  font-style: italic;
 `;
 
 const StatusBadge = styled.img`
@@ -74,7 +74,7 @@ const ViewMushroomPage = () => {
           <ScientificName>Laetiporus sulphureus</ScientificName>
           <StatusBadge src={VU} alt="VU" />
         </div>
-        <Name>(Laetiporus sulphureus)</Name>
+        <Name>(Galinha do mato)</Name>
       </Header>
       <ContentSection>
         <CarouselContainer>
@@ -96,7 +96,7 @@ const ViewMushroomPage = () => {
           />
         </MapContainer>
       </MapSection>
-      <CardsList/>
+      <TabsViewMushroom/>
     </SpeciesContainer>
   );
 };
