@@ -24,7 +24,7 @@ export const SubtitleTitle = styled.h3`
   font-size: 16px;
 `;
 
-export const SubtitleItem = styled.div`
+export const SubtitleItem = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
