@@ -14,13 +14,15 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Header />
-      <BrowserRouter basename="/">
-        <Routes>
-          <Route path="/" Component={HomePage}></Route>
-          <Route path="/list" Component={ListMushroomsPage}></Route>
-          <Route path="/mushroom/:uuid" Component={ViewMushroomPage}></Route>
-        </Routes>
-      </BrowserRouter>
+      <div className="content">
+        <BrowserRouter basename="/">
+          <Routes>
+            <Route path="/" Component={HomePage}></Route>
+            <Route path="/list" Component={ListMushroomsPage}></Route>
+            <Route path="/mushroom/:uuid" Component={ViewMushroomPage}></Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
       <Footer />
     </div>
   );
