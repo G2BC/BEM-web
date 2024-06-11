@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   padding: 20px;
@@ -14,4 +14,10 @@ export const CardGrid = styled.div`
 export const CardItem = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 `;
