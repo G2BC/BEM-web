@@ -5,7 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Box, Grid } from "@mui/material";
-import Logo from '../../../assets/cogumelo.png';
+import Logo from '../../../assets/SLlogo.png';
 
 interface SpeciesLinkCardProps {
   imageUrl: string;
