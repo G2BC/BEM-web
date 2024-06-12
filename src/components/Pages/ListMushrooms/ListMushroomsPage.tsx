@@ -50,7 +50,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
       page ?? 1
     );
     if (!result) return;
-    const data = result.data;
+    const data = result.mushrooms;
     let urls = await Promise.all(
       data.map((item: any) =>
         iNaturalistService.getMushroomsPicture(item.inaturalist_taxa)
@@ -74,7 +74,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
   };
 
   const handleOnTap = (mushroom: any) => {
-    console.log(mushroom.scientific_name);
+    window.location.href = `/mushroom/${mushroom.uuid}`;
   };
 
   return (
