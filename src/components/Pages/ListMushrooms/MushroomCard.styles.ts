@@ -1,22 +1,33 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  max-width: 280px;
-  max-height: 275px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+`;
+
+export const CardHeader = styled.div`
+  text-align: center;
 `;
 
 export const CardImage = styled.img`
   width: 100%;
-  height: 169px;
-`;
-
-export const CardHeader = styled.div`
-  width: 248px;
-  height: 30px;
-  text-align: center;
+  max-width: 280px;
+  height: auto;
+  border-radius: 8px;
 `;
 
 export const CardActionContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+
+  button {
+    margin-right: 5px;
+  }
 `;
