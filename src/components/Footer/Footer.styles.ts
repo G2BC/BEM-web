@@ -15,13 +15,20 @@ export const FooterContent = styled.div`
   align-items: center;
   padding: 20px;
   width: 100%;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const LogoFooter = styled.div`
   flex: 40%;
+  margin-right: 20px; /* Adiciona margem à direita para separar o logotipo da lista de páginas */
 `;
 
 export const BigLogo = styled.h2`
+  margin-right: 50px;
   font-size: 3rem;
   color: white;
   text-align: center;
@@ -72,12 +79,15 @@ export const FooterHeading = styled.h3`
   }
 `;
 
-
 export const FooterList = styled.ul`
   list-style: none;
   margin-right: 112px;
   padding: 0;
   text-align: left;
+
+  @media screen and (max-width: 768px) {
+    margin-right: 0; /* Remove a margem à direita em telas menores */
+  }
 `;
 
 export const FooterListItem = styled.li`
@@ -107,6 +117,10 @@ export const JoinUsSection = styled.div`
     white-space: pre-wrap;
     
   }
+
+  @media screen and (max-width: 768px) {
+    margin-left: 0; /* Remove a margem à esquerda em telas menores */
+  }
 `;
 
 export const FooterBottom = styled.div`
@@ -132,5 +146,3 @@ export const FooterButton = styled.button({
     color: '#ff5e14',
   }
 });
-
-
