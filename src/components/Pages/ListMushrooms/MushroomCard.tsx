@@ -1,5 +1,4 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
 import IconButton from "@mui/material/IconButton";
 import observationImage from "../../../assets/observationButton.svg";
 import circuloBandeira from "../../../assets/bandeiraBrasil.svg";
@@ -8,6 +7,7 @@ import azulBandeira from "../../../assets/azulBandeira.svg";
 import letraTbandeira from "../../../assets/tBandeira.svg"; 
 import extinctionImage from "../../../assets/extinctionButton.svg";
 import { CardContainer, CardHeader, CardImage, CardActionContainer } from "./MushroomCard.styles";
+import vu from "../../../assets/vu.svg";
 
 interface RecipeReviewCardProps {
   title: string;
@@ -42,7 +42,7 @@ const RecipeReviewCard: React.FC<RecipeReviewCardProps> = ({
 
   return (
     <CardContainer>
-      <CardImage height={169} width={280} src={imageUrl} alt={"Mushroom"} />
+      <CardImage src={imageUrl} alt={"Mushroom"} />
       <CardHeader>
         <h3 style={titleStyle}><i>{title}</i></h3>
         <p style={subheaderStyle}>({subheader})</p>
@@ -61,11 +61,11 @@ const RecipeReviewCard: React.FC<RecipeReviewCardProps> = ({
               top: "50%",
               left: "50%",
               transform: "translate(-51%, -49%)",
-              width: "68%", // Largura da parte amarela em relação ao botão (ajuste conforme necessário)
-              height: "47%", // Altura da parte amarela em relação ao botão (ajuste conforme necessário)
-              backgroundImage: `url(${amareloBandeira})`, // Use a parte amarela da bandeira como imagem de fundo
-              backgroundSize: "cover", // Ajusta o tamanho da imagem para cobrir todo o elemento
-              backgroundRepeat: "no-repeat" // Evita a repetição da imagem de fundo
+              width: "68%", 
+              height: "47%", 
+              backgroundImage: `url(${amareloBandeira})`,
+              backgroundSize: "cover", 
+              backgroundRepeat: "no-repeat" 
             }}
           ></div>
           <img
@@ -76,8 +76,8 @@ const RecipeReviewCard: React.FC<RecipeReviewCardProps> = ({
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-              width: "16px", // Ajuste conforme necessário
-              height: "16px", // Ajuste conforme necessário
+              width: "16px", 
+              height: "16px", 
             }}
           />
           <img
@@ -95,6 +95,19 @@ const RecipeReviewCard: React.FC<RecipeReviewCardProps> = ({
         </IconButton>
         <IconButton aria-label="Extinção">
           <img src={extinctionImage} alt={"Extinction Image"} style={{ width: 35, height: 35 }} />
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "60%", // Largura da parte amarela em relação ao botão (ajuste conforme necessário)
+              height: "20%", // Altura da parte amarela em relação ao botão (ajuste conforme necessário)
+              backgroundImage: `url(${vu})`, // Use a parte amarela da bandeira como imagem de fundo
+              backgroundSize: "cover", // Ajusta o tamanho da imagem para cobrir todo o elemento
+              backgroundRepeat: "no-repeat" // Evita a repetição da imagem de fundo
+            }}
+          ></div>
         </IconButton>
       </CardActionContainer>
     </CardContainer>
