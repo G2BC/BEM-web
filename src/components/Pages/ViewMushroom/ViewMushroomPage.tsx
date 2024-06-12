@@ -17,6 +17,8 @@ import {
   CarouselContainer,
 } from "./ViewMushroomPage.styles";
 import FungiService from "../../../services/FungiService";
+import MushroomProps from "../../../Interfaces/mushroom";
+import INaturalistService from "../../../services/INaturalistService";
 
 interface ViewMushroomPageProps {
   uuid?: string;
@@ -24,7 +26,8 @@ interface ViewMushroomPageProps {
 
 const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
   const fungiService: FungiService = new FungiService();
-  const [mushroom, setMushroom] = useState<any>();
+  const iNaturalistService: INaturalistService = new INaturalistService();
+  const [mushroom, setMushroom] = useState<MushroomProps>();
 
   useEffect(() => {
     const url = window.location.href;
@@ -38,6 +41,10 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
     if (!uuid) return;
     const result = await fungiService.getByUuid(uuid);
     if (!result) return;
+    let url = result.inaturalist_taxa
+      ? await iNaturalistService.getMushroomsPicture(result.inaturalist_taxa)
+      : "";
+    result.imageUrl = url;
 
     setMushroom(result);
   };
@@ -57,7 +64,11 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
           </Header>
           <ContentSection>
             <CarouselContainer>
-              <CarouselComponent />
+              <CarouselComponent
+                photos={[
+                  { src: mushroom.imageUrl!, alt: mushroom.scientific_name! },
+                ]}
+              />
             </CarouselContainer>
             <TabsContainer>
               <TabsComponent mushroom={mushroom} />

@@ -1,29 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
-import Cogumelo from '../../../assets/Galinhadomato.png';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import Cogumelo from "../../../assets/Galinhadomato.png";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const photos = [
-  {
-    src: Cogumelo,
-    alt: 'Image 1',
-  },
-  {
-    src: Cogumelo,
-    alt: 'Image 2',
-  },
-  {
-    src: Cogumelo,
-    alt: 'Image 3',
-  },
-  {
-    src: Cogumelo,
-    alt: 'Image 4',
-  },
-];
+interface CarouselComponentProps {
+  photos: Array<{ src: string; alt: string }>;
+}
 
-function CarouselComponent() {
+export default function CarouselComponent(props: CarouselComponentProps) {
   const [nav1, setNav1] = useState<Slider | null>(null);
   const [nav2, setNav2] = useState<Slider | null>(null);
   const sliderRef1 = useRef<Slider | null>(null);
@@ -37,9 +22,13 @@ function CarouselComponent() {
   return (
     <div className="slider-container">
       <Slider asNavFor={nav2 as any} ref={sliderRef1}>
-        {photos.map((photo, index) => (
+        {props.photos.map((photo, index) => (
           <div key={index}>
-            <img src={photo.src} alt={photo.alt} style={{ width: '100%', height: '300px', objectFit: 'cover' }} />
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              style={{ width: "100%", height: "300px", objectFit: "cover" }}
+            />
           </div>
         ))}
       </Slider>
@@ -50,14 +39,16 @@ function CarouselComponent() {
         swipeToSlide={true}
         focusOnSelect={true}
       >
-        {photos.map((photo, index) => (
+        {props.photos.map((photo, index) => (
           <div key={index}>
-            <img src={photo.src} alt={photo.alt} style={{ width: '100%', height: '100px', objectFit: 'cover' }} />
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              style={{ width: "100%", height: "100px", objectFit: "cover" }}
+            />
           </div>
         ))}
       </Slider>
     </div>
   );
 }
-
-export default CarouselComponent;

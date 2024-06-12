@@ -4,6 +4,7 @@ import { Tabs } from "@mui/base/Tabs";
 import { TabsList as BaseTabsList } from "@mui/base/TabsList";
 import { TabPanel as BaseTabPanel } from "@mui/base/TabPanel";
 import { Tab as BaseTab, tabClasses } from "@mui/base/Tab";
+import MushroomProps from "../../../Interfaces/mushroom";
 
 const orange = {
   50: "#FFF3E0",
@@ -74,7 +75,7 @@ const TabsList = styled(BaseTabsList)`
 `;
 
 interface TabsComponentProps {
-  mushroom: any;
+  mushroom: MushroomProps;
 }
 
 export default function TabsComponent(props: TabsComponentProps) {
@@ -102,14 +103,14 @@ export default function TabsComponent(props: TabsComponentProps) {
       </TabPanel>
       <TabPanel value={1}>
         <div>
-          <p>➔ Reino: Fungi</p>
-          <p>➔ Filo: Basidiomycota</p>
-          <p>➔ Classe: Agaricomycetes</p>
-          <p>➔ Ordem: Agaricales</p>
-          <p>➔ Família: Hygrophoraceae</p>
-          <p>➔ Gênero: Lichenomphalia</p>
+          <p>➔ Reino: {props.mushroom.kingdom}</p>
+          <p>➔ Filo: {props.mushroom.phylum}</p>
+          <p>➔ Classe: {props.mushroom.class}</p>
+          <p>➔ Ordem: {props.mushroom.order}</p>
+          <p>➔ Família: {props.mushroom.family}</p>
+          <p>➔ Gênero: {props.mushroom.genus}</p>
           <p>
-            <i>➔ Lichenomphalia ericetorum</i>
+            <i>➔ {props.mushroom.specie}</i>
           </p>
         </div>
       </TabPanel>
