@@ -10,17 +10,20 @@ import { CardContainer, CardHeader, CardImage, CardActionContainer } from "./Mus
 import vu from "../../../assets/vu.svg";
 
 interface RecipeReviewCardProps {
-  title: string;
-  subheader: string;
+  scientificName: string;
+  popularName: string;
   imageUrl: string;
   brazilianType: string;
+  occurrencesCount: number;
+  redListClassification: number;
 }
 
 const RecipeReviewCard: React.FC<RecipeReviewCardProps> = ({
-  title,
-  subheader,
+  scientificName,
+  popularName,
   imageUrl,
-  brazilianType
+  brazilianType,
+  occurrencesCount
 }: RecipeReviewCardProps) => {
   const titleStyle: React.CSSProperties = {
     fontFamily: "Roboto",
@@ -44,14 +47,14 @@ const RecipeReviewCard: React.FC<RecipeReviewCardProps> = ({
     <CardContainer>
       <CardImage src={imageUrl} alt={"Mushroom"} />
       <CardHeader>
-        <h3 style={titleStyle}><i>{title}</i></h3>
-        <p style={subheaderStyle}>({subheader})</p>
+        <h3 style={titleStyle}><i>{scientificName}</i></h3>
+        <p style={subheaderStyle}>{popularName ?? (popularName)}</p>
       </CardHeader>
 
       <CardActionContainer>
         <IconButton aria-label="Observações">
-          <img src={observationImage} alt={"Observation Image"} style={{ width: 25, height: 25, marginRight: "25px" }} />
-          <span style={{ marginRight: "1px", fontSize: "20px", fontFamily: "H5 Bold",lineHeight:"12.5px" }}>Observações</span>
+          <img src={observationImage} alt={"Observation Image"} style={{ width: 25, height: 25, marginRight: "5px" }} />
+          <span style={{ marginRight: "1px", fontSize: "20px", fontFamily: "H5 Bold",lineHeight:"12.5px" }}>{occurrencesCount} Observações</span>
         </IconButton>
         <IconButton aria-label="Brazil Flag" style={{ position: "relative" }}>
           <img src={circuloBandeira} alt="Brazil Flag" style={{ width: 35, height: 35 }} />
