@@ -8,44 +8,60 @@ const cardsData = [
     title: "Laetiporus sulphureus",
     subheader: "Laetiporus sulphureus",
     imageUrl: myImage,
-    
+    brazilian_type: 'T',
+    brazilian_type_synonym: ''
+
   },
   {
     title: "Laetiporus sulphureus",
     subheader: "Laetiporus sulphureus",
     imageUrl: myImage,
+    brazilian_type: '',
+    brazilian_type_synonym: 'TS'
   },
   {
     title: "Laetiporus sulphureus",
     subheader: "Laetiporus sulphureus",
     imageUrl: myImage,
+    brazilian_type: 'T',
+    brazilian_type_synonym: ''
   },
   {
     title: "Laetiporus sulphureus",
     subheader: "Laetiporus sulphureus",
     imageUrl: myImage,
+    brazilian_type: '',
+    brazilian_type_synonym: 'TS'
   },
   {
     title: "Laetiporus sulphureus",
     subheader: "Laetiporus sulphureus",
     imageUrl: myImage,
+    brazilian_type: 'T',
+    brazilian_type_synonym: ''
   },
   {
     title: "Laetiporus sulphureus",
     subheader: "Laetiporus sulphureus",
     imageUrl: myImage,
+    brazilian_type: '',
+    brazilian_type_synonym: 'TS'
   },
   {
     title: "Laetiporus sulphureus",
     subheader: "Laetiporus sulphureus",
     imageUrl: myImage,
+    brazilian_type: 'T',
+    brazilian_type_synonym: ''
   },
   {
     title: "Laetiporus sulphureus",
     subheader: "Laetiporus sulphureus",
     imageUrl: myImage,
+    brazilian_type: '',
+    brazilian_type_synonym: 'TS'
   },
-  
+
 ];
 
 export default function CardsList() {
@@ -62,6 +78,9 @@ export default function CardsList() {
           title={card.title}
           subheader={card.subheader}
           imageUrl={card.imageUrl}
+          brazilianType={
+            card.brazilian_type || card.brazilian_type_synonym
+          }
         />
       ))}
     </Box>
