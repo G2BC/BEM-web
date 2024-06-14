@@ -74,9 +74,9 @@ export const StyledSelect = styled.select`
 `;
 
 export const StyledTextField = styled.input`
-  width: calc(100% - 32px); /* Largura automática menos o padding */
+  width: 100%;
   height: 48px;
-  padding: 0 16px; /* Manter o padding apenas para o lado direito */
+  padding: 0 16px;
   border: none;
   border-bottom: 2px solid #d3d3d3; /* Borda inferior cinza claro */
   border-radius: 0;

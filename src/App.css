@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Estilos para o contêiner principal da aplicação */
+.App {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Garantir que o conteúdo ocupe o espaço disponível */
+.content {
+  flex: 1;
+}
+
+
+
