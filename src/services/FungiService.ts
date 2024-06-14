@@ -1,29 +1,45 @@
 import api from "./Service";
 
 export default class FungiService {
-    private basePath: string = '/fungi';
+  private basePath: string = "/fungi";
 
-    public async getForHeatMap(): Promise<any | undefined> {
-        try {
+  public async getForHeatMap(): Promise<any | undefined> {
+    try {
+      let response: any = await api.get(`${this.basePath}/heatmap`);
 
-            let response: any = await api.get(`${this.basePath}/heatmap`);
-
-            return response.data;
-        } catch (error) {
-            console.log('Error', error.message);
-        }
-
+      return response.data;
+    } catch (error) {
+      console.log("Error", (error as Error).message);
     }
+  }
 
-    public async getAll(): Promise<Array<any> | undefined> {
-        try {
+  public async getAll(): Promise<Array<any> | undefined> {
+    try {
+      let response: any = await api.get(`${this.basePath}`);
 
-            let response: any = await api.get(`${this.basePath}`);
-
-            return response.data;
-        } catch (error) {
-            console.log('Error', error.message);
-        }
-
+      return response.data;
+    } catch (error) {
+      console.log("Error", (error as Error).message);
     }
+  }
+
+  public async getForMushroomsList(
+    taxonomy: string,
+    stateAc?: string,
+    bem?: number,
+    biome?: string,
+    page?: number
+  ): Promise<any> {
+    try {
+      let params = `taxonomy?taxonomy=${taxonomy}&stateAc${stateAc}&biome=${biome}&page=${
+        page ?? 1
+      }`;
+      if (bem) params += `&bem${bem}`;
+      let response: any = await api.get(`${this.basePath}/${params}`);
+
+      return response.data;
+    } catch (error) {
+      console.log("Error", (error as Error).message);
+    }
+  }
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import BEM1Icon from "../../assets/BEM1.png";
 import BEM2Icon from "../../assets/BEM2.png";
 import BEM3Icon from "../../assets/BEM3.png";
@@ -14,12 +13,15 @@ import P1Icon from "../../assets/P1.png";
 import P2Icon from "../../assets/P2.png";
 import { SubtitileContainer, SubtitleTitle, SubtitleItem, ItemLeft, MushroomIcon, SubtitleTooltip, TooltipImage } from "./BemSubtitle.styles";
 
-
 interface Icons {
   [key: string]: string;
 }
 
-const BemSubtitle: React.FC = () => {
+interface BemSubtitleProps {
+  filter: (bemName: string) => void;
+}
+
+const BemSubtitle: React.FC<BemSubtitleProps> = ({ filter }) => {
   const icons: Icons = {
     BEM1: BEM1Icon,
     BEM2: BEM2Icon,
@@ -35,7 +37,7 @@ const BemSubtitle: React.FC = () => {
     P2: P2Icon,
   };
 
-  const mushroomTypes = [
+  const classifications = [
     {
       name: "BEM1",
       color: "#66BB6A",
@@ -134,20 +136,18 @@ const BemSubtitle: React.FC = () => {
     },
   ];
 
-
   return (
     <SubtitileContainer className="legend-container">
-      <SubtitleTitle>Cogumelos com Ocorrência no Brasil</SubtitleTitle>
-      {mushroomTypes.map((mushroom) => (
-        <SubtitleItem key={mushroom.name}>
+      <SubtitleTitle>Classificação dos Cogumelos com Ocorrência no Brasil</SubtitleTitle>
+      {classifications.map((bem) => (
+        <SubtitleItem key={bem.name} onClick={() => filter(bem.name)}>
           <ItemLeft>
-            <MushroomIcon src={icons[mushroom.name]} alt="Mushroom Icon" />
-            <span>{mushroom.name}</span>
+            <MushroomIcon src={icons[bem.name]} alt="Mushroom Icon" />
+            <span>{bem.name}</span>
           </ItemLeft>
-          <span>{mushroom.species} Espécies</span>
           <SubtitleTooltip className="tooltip">
-            <TooltipImage src={mushroom.tooltipImage} alt={`${mushroom.name} image`} />
-            {mushroom.tooltip}
+            <TooltipImage src={bem.tooltipImage} alt={`${bem.name} image`} />
+            {bem.tooltip}
           </SubtitleTooltip>
         </SubtitleItem>
       ))}
