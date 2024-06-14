@@ -58,7 +58,6 @@ const HomePage: React.FC = () => {
 
     return (
         <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
-            <h1>Mapa de Calor BEM</h1>
             {fungisHeatMap != undefined ?
                 <>
                     <Grid container spacing={1} direction="row" justifyContent='center' alignItems='stretch'>
@@ -71,7 +70,7 @@ const HomePage: React.FC = () => {
                                 <HeatMapLayer data={fungisHeatMap} />
                             </MapContainer>
                         </Grid>
-                        <Grid item xs={2} marginBottom={7} style={{ width: '320px', backgroundColor: '#fff', zIndex: 1, boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', overflowY: 'auto' }}>
+                        <Grid item xs={2} marginBottom={7} style={{ width: '320px', backgroundColor: '#fff', zIndex: 1, boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)'}}>
                             <BemSubtitle filter={classificationFilter} />
                         </Grid>
                     </Grid>
