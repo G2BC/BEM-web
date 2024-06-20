@@ -1,9 +1,7 @@
 import React from 'react';
-import { HeaderContainer, LogoImage, HeadList, HeadItem, HeadLink } from './Header.styles';
-// import Button from '../Utils/Button/Button';
+import { HeaderContainer, LogoImage, HeadList, HeadItem, HeadLink, HeadButtonEnter, HeadButtonRegister } from './Header.styles';
 import Logo from '../../assets/cogumelo.png';
 import SearchArea from '../Utils/SearchArea/SearchArea';
-import { Button } from '@mui/material';
 
 const Header: React.FC = () => {
   return (
@@ -12,17 +10,18 @@ const Header: React.FC = () => {
         <HeadItem className="head-logo">
           <LogoImage src={Logo} alt="Logo" />
         </HeadItem>
-        <HeadItem className="head-item">
+
+        <HeadItem>
           <HeadLink href="/">BEM</HeadLink>
         </HeadItem>
+
         <HeadItem>
-            <SearchArea/>
+          <SearchArea />
         </HeadItem>
-        <HeadItem style={{ marginLeft: 'auto' }}>
-          <Button variant='contained'>Entrar</Button>
-        </HeadItem>
-        <HeadItem>
-          <Button variant="outlined">Cadastrar</Button>
+
+        <HeadItem className="head-buttons">
+          <HeadButtonEnter>Entrar</HeadButtonEnter>
+          <HeadButtonRegister>Cadastrar</HeadButtonRegister>
         </HeadItem>
       </HeadList>
     </HeaderContainer>
