@@ -26,7 +26,7 @@ const LoginBox = styled(Paper)(({ theme }) => ({
   alignItems: 'center',
   maxWidth: '400px', // Reduzido o tamanho máximo
   width: '100%', // Garante que ocupe 100% da largura disponível
-  height: '600px',
+  height: '520px',
   borderRadius: '16px',
   margin: theme.spacing(2),
   [theme.breakpoints.down('sm')]: {
