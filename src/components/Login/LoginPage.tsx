@@ -5,16 +5,19 @@ import background from '../../assets/background.png'; // Importe a imagem de fun
 import logo from '../../assets/logoicon.png'; // Importe a imagem do logo
 
 
+
 const BackgroundImage = styled('div')({
-  backgroundImage: `url(${background})`, 
+  backgroundImage: `url(${background})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  height: '100vh',
+  minHeight: '100vh', // Ajustado para usar minHeight em vez de height
   display: 'flex',
-  justifyContent: 'space-between', 
+  justifyContent: 'space-between',
   alignItems: 'center',
-  padding: '0 5%', 
+  padding: '0 5%',
+  boxSizing: 'border-box',
 });
+
 
 const LoginBox = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
@@ -39,7 +42,6 @@ const TitleText = styled(Box)(({ theme }) => ({
   },
   marginBottom: theme.spacing(2),
   textAlign: 'left', // Justificar o texto
-  paddingBottom: theme.spacing(50),
 }));
 
 const LogoBox = styled(Box)({
