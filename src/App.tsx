@@ -12,7 +12,7 @@ import RegisterPage from './components/Register/RegisterPage';
 
 const Layout: React.FC = () => {
   const location = useLocation();
-  const hideHeaderAndFooter = location.pathname === '/login' || location.pathname === '/registration';
+  const hideHeaderAndFooter = location.pathname === '/login' || location.pathname === '/register';
 
   return (
     <>
@@ -22,7 +22,7 @@ const Layout: React.FC = () => {
         <Route path='/list' Component={ListMushroomsPage} />
         <Route path='/mushroom/:uuid' Component={ViewMushroomPage} />
         <Route path='/login' Component={LoginPage} />
-        <Route path='/registration' Component={RegisterPage} />
+        <Route path='/register' Component={RegisterPage} />
       </Routes>
       {!hideHeaderAndFooter && <Footer />}
     </>

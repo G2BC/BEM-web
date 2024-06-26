@@ -22,10 +22,10 @@ const RegisterBox = styled(Paper)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  maxWidth: '400px',
+  maxWidth: '500px',
   width: '100%',
   borderRadius: '16px',
-  margin: theme.spacing(2),
+  margin: theme.spacing(5),
   boxSizing: 'border-box',
   [theme.breakpoints.down('sm')]: {
     padding: theme.spacing(4), // Reduzir padding em telas menores
@@ -38,8 +38,9 @@ const TitleText = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     display: 'none', // Ocultar o texto de boas-vindas em telas menores
   },
-  marginBottom: theme.spacing(2),
+  marginBottom: theme.spacing(12),
   textAlign: 'left', // Justificar o texto
+  
 }));
 
 const LogoBox = styled(Box)({
@@ -52,11 +53,11 @@ const RegisterPage: React.FC = () => {
   return (
     <BackgroundImage>
       <TitleText>
-        <Typography component="h1" variant="h3" fontWeight="bold" fontSize='4rem'>
-          Seja bem vindo ao Brazilian Edible Mushrooms
+        <Typography component="h1" variant="h3" fontWeight="bold" fontSize='3rem'>
+        Seja bem-vindo ao universo dos Cogumelos Comestíveis do Brasil (Projeto BEM)
         </Typography>
         <Typography variant="h6" mt={2} fontSize='1.5rem'>
-          Bem-vindo ao nosso espaço dedicado à pesquisa de cogumelos no Brasil! Explore conosco a diversidade e a beleza dos cogumelos nativos.
+        Explore conosco a diversidade de sabores dos cogumelos comestíveis do Brasil!
         </Typography>
       </TitleText>
       <RegisterBox>
@@ -79,7 +80,7 @@ const RegisterPage: React.FC = () => {
             name="username"
             autoComplete="username"
             autoFocus
-            sx={{ width: '100%', mb: 1, maxWidth: '300px' }}
+            sx={{ width: '100%', mb: 1, maxWidth: '500px' }}
             InputProps={{
               sx: {
                 borderRadius: '16px',
@@ -93,7 +94,7 @@ const RegisterPage: React.FC = () => {
             label="Instituição (opcional)"
             name="institution"
             autoComplete="institution"
-            sx={{ width: '100%', mb: 1, maxWidth: '300px' }}
+            sx={{ width: '100%', mb: 1, maxWidth: '500px' }}
             InputProps={{
               sx: {
                 borderRadius: '16px',
@@ -107,7 +108,7 @@ const RegisterPage: React.FC = () => {
             label="E-mail"
             name="email"
             autoComplete="email"
-            sx={{ width: '100%', mb: 1, maxWidth: '300px' }}
+            sx={{ width: '100%', mb: 1, maxWidth: '500px' }}
             InputProps={{
               sx: {
                 borderRadius: '16px',
@@ -122,7 +123,7 @@ const RegisterPage: React.FC = () => {
             type="password"
             id="password"
             autoComplete="new-password"
-            sx={{ width: '100%', mb: 1, maxWidth: '300px' }}
+            sx={{ width: '100%', mb: 1, maxWidth: '500px' }}
             InputProps={{
               sx: {
                 borderRadius: '16px',
@@ -137,7 +138,7 @@ const RegisterPage: React.FC = () => {
             type="password"
             id="confirmPassword"
             autoComplete="new-password"
-            sx={{ width: '100%', mb: 1, maxWidth: '300px' }}
+            sx={{ width: '100%', mb: 1, maxWidth: '500px' }}
             InputProps={{
               sx: {
                 borderRadius: '16px',
@@ -151,7 +152,7 @@ const RegisterPage: React.FC = () => {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 1, mb: 1, maxWidth: '300px', backgroundColor: '#c93e1e', borderRadius:'16px', '&:hover': { backgroundColor: '#C9302C' } }}
+            sx={{ mt: 1, mb: 1, maxWidth: '500px', backgroundColor: '#c93e1e', borderRadius:'16px', '&:hover': { backgroundColor: '#C9302C' } }}
           >
             Cadastre-se
           </Button>

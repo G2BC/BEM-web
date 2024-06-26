@@ -24,7 +24,7 @@ const LoginBox = styled(Paper)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  maxWidth: '400px', // Reduzido o tamanho máximo
+  maxWidth: '500px', // Reduzido o tamanho máximo
   width: '100%', // Garante que ocupe 100% da largura disponível
   height: '520px',
   borderRadius: '16px',
@@ -54,11 +54,11 @@ const LoginPage: React.FC = () => {
   return (
     <BackgroundImage>
       <TitleText>
-        <Typography component="h1" variant="h3" fontWeight="bold" fontSize='4rem'>
-          Seja bem vindo ao Brazilian Edible Mushrooms
+        <Typography component="h1" variant="h3" fontWeight="bold" fontSize='3rem'>
+        Seja bem-vindo ao universo dos Cogumelos Comestíveis do Brasil (Projeto BEM)
         </Typography>
         <Typography variant="h6" mt={2} fontSize='1.5rem'>
-          Bem-vindo ao nosso espaço dedicado à pesquisa de cogumelos no Brasil! Explore conosco a diversidade e a beleza dos cogumelos nativos.
+        Explore conosco a diversidade de sabores dos cogumelos comestíveis do Brasil!
         </Typography>
       </TitleText>
       <LoginBox>
@@ -81,7 +81,7 @@ const LoginPage: React.FC = () => {
             name="email"
             autoComplete="email"
             autoFocus
-            sx={{width:'100%', mb: 1, maxWidth: '300px' }}
+            sx={{width:'100%', mb: 1, maxWidth: '500px' }}
             InputProps={{
               sx: {
                 borderRadius: '16px',
@@ -96,7 +96,7 @@ const LoginPage: React.FC = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-            sx={{ width: '100%', mb: 1, maxWidth: '300px' }}
+            sx={{ width: '100%', mb: 1, maxWidth: '500px' }}
             InputProps={{
               sx: {
                 borderRadius: '16px',
@@ -111,7 +111,7 @@ const LoginPage: React.FC = () => {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 1, mb: 1, maxWidth: '300px', backgroundColor: '#c93e1e',borderRadius:'16px', '&:hover': { backgroundColor: '#C9302C' } }}
+            sx={{ mt: 1, mb: 1, maxWidth: '500px', backgroundColor: '#c93e1e',borderRadius:'16px', '&:hover': { backgroundColor: '#C9302C' } }}
           >
             Entrar
           </Button>
@@ -120,7 +120,7 @@ const LoginPage: React.FC = () => {
             <Typography variant="body2" color="textSecondary">
               Não possui uma conta?&nbsp;
             </Typography>
-            <Link href="#" variant="body2" sx={{ color: '#c93e1e', fontWeight: 'bold' }}>
+            <Link href="/register" variant="body2" sx={{ color: '#c93e1e', fontWeight: 'bold' }}>
               Cadastre-se
             </Link>
             </Grid>
