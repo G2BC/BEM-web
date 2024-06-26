@@ -24,7 +24,7 @@ const LoginBox = styled(Paper)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  maxWidth: '500px', // Reduzido o tamanho máximo
+  maxWidth: '400px', // Reduzido o tamanho máximo
   width: '100%', // Garante que ocupe 100% da largura disponível
   height: '520px',
   borderRadius: '16px',
@@ -69,7 +69,7 @@ const LoginPage: React.FC = () => {
           </Typography>
         </LogoBox>
         <Box mb={2}/>
-        <Typography component="h1" variant="h6" fontWeight="bold" mb={2}>
+        <Typography component="h1" variant="h5" fontWeight="bold" mb={2}>
           Utilize o seu e-mail e a senha para acessar:
         </Typography>
         <Box component="form" noValidate sx={{ mt: 1 }}>

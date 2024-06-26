@@ -25,7 +25,7 @@ const RegisterBox = styled(Paper)(({ theme }) => ({
   maxWidth: '500px',
   width: '100%',
   borderRadius: '16px',
-  margin: theme.spacing(5),
+  margin: theme.spacing(2),
   boxSizing: 'border-box',
   [theme.breakpoints.down('sm')]: {
     padding: theme.spacing(4), // Reduzir padding em telas menores
@@ -68,7 +68,7 @@ const RegisterPage: React.FC = () => {
           </Typography>
         </LogoBox>
         <Box mb={2}/>
-        <Typography component="h1" variant="h6" fontWeight="bold" mb={2}>
+        <Typography component="h1" variant="h5" fontWeight="bold" mb={2}>
           Por favor, preencha os campos abaixo para cadastrar-se:
         </Typography>
         <Box component="form" noValidate sx={{ mt: 1 }}>
@@ -80,7 +80,7 @@ const RegisterPage: React.FC = () => {
             name="username"
             autoComplete="username"
             autoFocus
-            sx={{ width: '100%', mb: 1, maxWidth: '500px' }}
+            sx={{ width: '100%', mb: 1, maxWidth: '440px' }}
             InputProps={{
               sx: {
                 borderRadius: '16px',
@@ -94,7 +94,7 @@ const RegisterPage: React.FC = () => {
             label="Instituição (opcional)"
             name="institution"
             autoComplete="institution"
-            sx={{ width: '100%', mb: 1, maxWidth: '500px' }}
+            sx={{ width: '100%', mb: 1, maxWidth: '440px' }}
             InputProps={{
               sx: {
                 borderRadius: '16px',
@@ -108,7 +108,7 @@ const RegisterPage: React.FC = () => {
             label="E-mail"
             name="email"
             autoComplete="email"
-            sx={{ width: '100%', mb: 1, maxWidth: '500px' }}
+            sx={{ width: '100%', mb: 1, maxWidth: '440px' }}
             InputProps={{
               sx: {
                 borderRadius: '16px',
@@ -123,7 +123,7 @@ const RegisterPage: React.FC = () => {
             type="password"
             id="password"
             autoComplete="new-password"
-            sx={{ width: '100%', mb: 1, maxWidth: '500px' }}
+            sx={{ width: '100%', mb: 1, maxWidth: '440px' }}
             InputProps={{
               sx: {
                 borderRadius: '16px',
@@ -138,21 +138,21 @@ const RegisterPage: React.FC = () => {
             type="password"
             id="confirmPassword"
             autoComplete="new-password"
-            sx={{ width: '100%', mb: 1, maxWidth: '500px' }}
+            sx={{ width: '100%', mb: 1, maxWidth: '440px' }}
             InputProps={{
               sx: {
                 borderRadius: '16px',
               },
             }}
           />
-          <Box mb={2} display="flex" justifyContent="center">
+          <Box mb={1} display="flex" justifyContent="center">
             <ReCAPTCHA sitekey="YOUR_RECAPTCHA_SITE_KEY" />
           </Box>
           <Button
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 1, mb: 1, maxWidth: '500px', backgroundColor: '#c93e1e', borderRadius:'16px', '&:hover': { backgroundColor: '#C9302C' } }}
+            sx={{ mt: 1, mb: 1, maxWidth: '200px', backgroundColor: '#c93e1e', borderRadius:'16px', '&:hover': { backgroundColor: '#C9302C' } }}
           >
             Cadastre-se
           </Button>
