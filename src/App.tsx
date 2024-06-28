@@ -22,7 +22,7 @@ const App: React.FC = () => {
           </Route>
           <Route path='/mushroom/:uuid' Component={ViewMushroomPage}>
           </Route>
-          <Route path='/listofcollaborators'Component={Collaborators}>
+          <Route path='/collaborators'Component={Collaborators}>
           </Route>
         </Routes>
       </BrowserRouter>
