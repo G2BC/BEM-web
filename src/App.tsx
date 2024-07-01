@@ -21,7 +21,7 @@ const Layout: React.FC = () => {
         <Route path='/' Component={HomePage} />
         <Route path='/list' Component={ListMushroomsPage} />
         <Route path='/mushroom/:uuid' Component={ViewMushroomPage} />
-        <Route path='/listofcollaborators' Component={Collaborators} />
+        <Route path='/collaborators' Component={Collaborators} />
         <Route path='/especialistregister' Component={EspecialistRegister} />
       </Routes>
       {!hideHeaderAndFooter && <Footer />}
