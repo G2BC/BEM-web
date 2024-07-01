@@ -9,10 +9,11 @@ import ListMushroomsPage from './components/Pages/ListMushrooms/ListMushroomsPag
 import ViewMushroomPage from './components/Pages/ViewMushroom/ViewMushroomPage';
 import LoginPage from './components/Login/LoginPage';
 import RegisterPage from './components/Register/RegisterPage';
+import Collaborators from './components/Pages/ListofCollaborators/Collaborators';
 
 const Layout: React.FC = () => {
   const location = useLocation();
-  const hideHeaderAndFooter = location.pathname === '/login' || location.pathname === '/register';
+  const hideHeaderAndFooter = location.pathname === '/collaborators' || location.pathname === '/login' || location.pathname === '/register';
 
   return (
     <>
@@ -21,6 +22,7 @@ const Layout: React.FC = () => {
         <Route path='/' Component={HomePage} />
         <Route path='/list' Component={ListMushroomsPage} />
         <Route path='/mushroom/:uuid' Component={ViewMushroomPage} />
+        <Route path='/collaborators' Component={Collaborators} />
         <Route path='/login' Component={LoginPage} />
         <Route path='/register' Component={RegisterPage} />
       </Routes>
