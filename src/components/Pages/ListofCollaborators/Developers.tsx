@@ -1,16 +1,21 @@
 import React from 'react';
 import { Container, Typography, Grid, Avatar } from '@mui/material';
 
-import dev1Image from '../../../assets/AlexandreFilho.png';
+import dev1 from '../../../assets/Developer.png';
+import dev2 from '../../../assets/Developer2.png';
+import dev3 from '../../../assets/Developer3.png';
+import dev4 from '../../../assets/Developer4.png';
+import dev5 from '../../../assets/Developer5.png';
+import dev6 from '../../../assets/Developer6.png';
 
 
 const developers = [
-  { name: 'Pedro Benevides', role: 'Backend', image: dev1Image },
-  { name: 'Uendel Lima', role: 'Backend', image: dev1Image },
-  { name: 'Deivisson Gomes', role: 'Frontend', image: dev1Image },
-  { name: 'Rafael Coutinho', role: 'Frontend', image: dev1Image },
-  { name: 'Iuri Brandão', role: 'Frontend', image: dev1Image },
-  { name: 'Ítalo Cruz', role: 'UI/UX Designer', image: dev1Image },
+  { name: 'Pedro Benevides', role: 'Backend', image: dev1 },
+  { name: 'Uendel Lima', role: 'Backend', image: dev2 },
+  { name: 'Deivisson Gomes', role: 'Frontend', image: dev3 },
+  { name: 'Rafael Coutinho', role: 'Frontend', image: dev4 },
+  { name: 'Iuri Brandão', role: 'Frontend', image: dev5 },
+  { name: 'Ítalo Cruz', role: 'UI/UX Designer', image: dev6 },
 ];
 
 const Developers: React.FC = () => {
@@ -26,7 +31,7 @@ const Developers: React.FC = () => {
               <Avatar
                 src={dev.image}
                 alt={dev.name}
-                style={{ width: '100px', height: '100px', margin: '0 auto 10px auto' }}
+                style={{ width: '150px', height: '150px', margin: '0 auto 10px auto' }}
               />
               <Typography variant="h6" style={{ fontWeight: 'bold' }}>
                 {dev.name}
