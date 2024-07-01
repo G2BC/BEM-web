@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import BEM1Icon from "../../assets/BEM1.png";
 import BEM2Icon from "../../assets/BEM2.png";
 import BEM3Icon from "../../assets/BEM3.png";
@@ -13,7 +12,6 @@ import BEM10Icon from "../../assets/BEM10.png";
 import P1Icon from "../../assets/P1.png";
 import P2Icon from "../../assets/P2.png";
 import { SubtitileContainer, SubtitleTitle, SubtitleItem, ItemLeft, MushroomIcon, SubtitleTooltip, TooltipImage } from "./BemSubtitle.styles";
-
 
 interface Icons {
   [key: string]: string;
@@ -138,19 +136,15 @@ const BemSubtitle: React.FC<BemSubtitleProps> = ({ filter }) => {
     },
   ];
 
-
   return (
     <SubtitileContainer className="legend-container">
       <SubtitleTitle>Classificação dos Cogumelos com Ocorrência no Brasil</SubtitleTitle>
       {classifications.map((bem) => (
-        <SubtitleItem key={bem.name} onClick={((event: any) => {
-          filter(bem.name)
-        })}>
+        <SubtitleItem key={bem.name} onClick={() => filter(bem.name)}>
           <ItemLeft>
             <MushroomIcon src={icons[bem.name]} alt="Mushroom Icon" />
             <span>{bem.name}</span>
           </ItemLeft>
-          {/* <span>{bem.species} Espécies</span> */}
           <SubtitleTooltip className="tooltip">
             <TooltipImage src={bem.tooltipImage} alt={`${bem.name} image`} />
             {bem.tooltip}

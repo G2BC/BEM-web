@@ -57,13 +57,12 @@ const HomePage: React.FC = () => {
     }
 
     return (
-        <div>
-            <h1>Mapa de Calor BEM</h1>
+        <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
             {fungisHeatMap != undefined ?
                 <>
                     <Grid container spacing={1} direction="row" justifyContent='center' alignItems='stretch'>
-                        <Grid item xs={10} marginBottom={5}>
-                            <MapContainer center={[-14.235004, -51.92528]} zoom={4} id="heatmap" style={{ height: '100%', width: '100%', marginLeft: '15px'}}>
+                        <Grid item xs={10} marginBottom={5} style={{ flex: 1 }}>
+                            <MapContainer center={[-14.235004, -51.92528]} zoom={4} id="heatmap" style={{ height: '100%', width: '100%'}}>
                                 <TileLayer
                                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -71,7 +70,7 @@ const HomePage: React.FC = () => {
                                 <HeatMapLayer data={fungisHeatMap} />
                             </MapContainer>
                         </Grid>
-                        <Grid item xs={2} marginBottom={7}>
+                        <Grid item xs={2} marginBottom={7} style={{ width: '320px', backgroundColor: '#fff', zIndex: 1, boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)'}}>
                             <BemSubtitle filter={classificationFilter} />
                         </Grid>
                     </Grid>

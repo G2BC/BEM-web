@@ -4,33 +4,42 @@ export const SubtitileContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: #fff;
-  border: 1px solid #ccc;
-  width: 250px;
+  border: 0px solid #ccc;
+  width: 300px;
   font-family: Arial, sans-serif;
-  margin-left: auto; /* Adicionado para movê-lo para a direita */
-  margin-right: 20px; /* Espaçamento opcional à direita */
-  margin-top: 20px;
+  margin: 0;
+  padding: 10px;
   z-index: 500;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: calc(100vh - 40px); /* Ajuste de altura máxima para caber na tela */
 `;
-
 
 export const SubtitleTitle = styled.h3`
   margin: 0;
-  padding: 10px;
+  padding: 15px;
   text-align: center;
-  background-color: #000;
+  background-color: #4CAF50;
   color: #fff;
-  font-size: 16px;
+  font-size: 18px;
+  border-bottom: 1px solid #ccc;
 `;
 
-export const SubtitleItem = styled.button`
+export const SubtitleItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
+  padding: 10px 15px;
+  border: none;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   position: relative;
+
+  &:hover {
+    background-color: #f9f9f9;
+  }
 
   &:hover .tooltip {
     visibility: visible;
@@ -50,18 +59,18 @@ export const SubtitleTooltip = styled.div`
   font-size: 12px;
   width: 200px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  right: 56%;
-  transform: translateX(-50%);
+  left: 0; /* Ajuste a posição para a esquerda */
+  top: 100%; /* Ajuste a posição para baixo */
+  transform: translateY(0%); /* Mantém na posição normal */
   z-index: 1000;
-  display:flex;
-  aligh-items:center;
+  display: flex;
+  align-items: center;
 `;
 
 export const ItemLeft = styled.div`
   display: flex;
   align-items: center;
 `;
-
 
 export const MushroomIcon = styled.img`
   width: 30px;
