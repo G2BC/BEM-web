@@ -1,11 +1,16 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Box, Grid } from "@mui/material";
-import Logo from '../../../assets/SLlogo.png';
+import Logo from "../../../assets/SLlogo.png";
+import MushroomProps from "../../../Interfaces/mushroom";
+
+interface SpeciesLinkCardListProps {
+  mushroom: MushroomProps;
+  occurrences: Array<any>;
+}
 
 interface SpeciesLinkCardProps {
   imageUrl: string;
@@ -23,7 +28,11 @@ const SpeciesLinkCard: React.FC<SpeciesLinkCardProps> = ({
   return (
     <Card sx={{ maxWidth: 350, marginBottom: 2, borderRadius: 2 }}>
       <Box sx={{ display: "flex", justifyContent: "center", padding: 2 }}>
-        <img src={imageUrl} alt={specimenCode} style={{ height: 60, borderRadius: '8px' }} />
+        <img
+          src={imageUrl}
+          alt={specimenCode}
+          style={{ height: 60, borderRadius: "8px" }}
+        />
       </Box>
       <CardContent>
         <Typography variant="h6" component="div">
@@ -43,66 +52,39 @@ const SpeciesLinkCard: React.FC<SpeciesLinkCardProps> = ({
   );
 };
 
-const SpeciesLinkCardList: React.FC = () => {
-  const mushrooms = [
-    {
+const SpeciesLinkCardList = (props: SpeciesLinkCardListProps) => {
+  const mushrooms = props.occurrences.map((oc) => {
+    return {
       imageUrl: Logo,
       specimenCode: "MBM 325647",
-      date: "2024-05-21",
-      location: "Reserva Biológica Cambuí, Curitiba, Paraná, Brazil",
-    },
-    {
-      imageUrl: Logo,
-      specimenCode: "MBM 325647",
-      date: "2024-05-21",
-      location: "Reserva Biológica Cambuí, Curitiba, Paraná, Brazil",
-    },
-    {
-      imageUrl: Logo,
-      specimenCode: "MBM 325647",
-      date: "2024-05-21",
-      location: "Reserva Biológica Cambuí, Curitiba, Paraná, Brazil",
-    },
-    {
-      imageUrl: Logo,
-      specimenCode: "MBM 325647",
-      date: "2024-05-21",
-      location: "Reserva Biológica Cambuí, Curitiba, Paraná, Brazil",
-    },
-    {
-        imageUrl: Logo,
-        specimenCode: "MBM 325647",
-        date: "2024-05-21",
-        location: "Reserva Biológica Cambuí, Curitiba, Paraná, Brazil",
-      },
-      {
-        imageUrl: Logo,
-        specimenCode: "MBM 325647",
-        date: "2024-05-21",
-        location: "Reserva Biológica Cambuí, Curitiba, Paraná, Brazil",
-      },
-      {
-        imageUrl: Logo,
-        specimenCode: "MBM 325647",
-        date: "2024-05-21",
-        location: "Reserva Biológica Cambuí, Curitiba, Paraná, Brazil",
-      },
-      {
-        imageUrl: Logo,
-        specimenCode: "MBM 325647",
-        date: "2024-05-21",
-        location: "Reserva Biológica Cambuí, Curitiba, Paraná, Brazil",
-      },
-   
-    
-    // Adicione mais cogumelos conforme necessário
-  ];
+      date:
+        oc.properties?.modified ??
+        `${oc.properties?.county ?? ""}, ${
+          oc.properties?.stateprovince ?? ""
+        }, ${oc.properties?.country ?? ""}`,
+      location: oc.properties?.locality ?? "",
+    };
+  });
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 4,paddingLeft: 25, paddingRight: 25  }}>
-      <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: 2 }}>
-        
-      </Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        marginTop: 4,
+        paddingLeft: 25,
+        paddingRight: 25,
+      }}
+    >
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: 2,
+        }}
+      ></Box>
       <Grid container spacing={3} justifyContent="center">
         {mushrooms.map((mushroom, index) => (
           <Grid item key={index} xs={12} sm={6} md={4} lg={3}>

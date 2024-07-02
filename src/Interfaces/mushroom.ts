@@ -1,3 +1,5 @@
+import Occurrence from "./occurrence";
+
 export default interface MushroomProps {
   id: number | null;
   uuid: string | null;
@@ -18,4 +20,5 @@ export default interface MushroomProps {
   updated_at: string | null;
   deleted_at: string | null;
   imageUrl: string | null;
+  occurrences: Array<Occurrence> | null;
 }

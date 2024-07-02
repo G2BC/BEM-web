@@ -1,22 +1,29 @@
-import * as React from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
-import INaturalistCard from './INaturalistCard';
-import SpeciesLinkCard from './SpeciesLinkCard';
-import LiteraturaCardList from './LiteraturaCard';
+import * as React from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import INaturalistCard from "./INaturalistCard";
+import SpeciesLinkCard from "./SpeciesLinkCard";
+import LiteraturaCardList from "./LiteraturaCard";
+import MushroomProps from "../../../Interfaces/mushroom";
+
+interface TabsViewMushroomProps {
+  mushroom: MushroomProps;
+  iNaturalistOccurrences: Array<any>;
+  speciesLinkOccurrences: Array<any>;
+}
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#e3ae97', // Cor laranja
+      main: "#e3ae97", // Cor laranja
     },
   },
 });
 
-export default function ColorTabs() {
-  const [value, setValue] = React.useState('one');
+export default function TabsViewMushroom(props: TabsViewMushroomProps) {
+  const [value, setValue] = React.useState("one");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -24,7 +31,7 @@ export default function ColorTabs() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: "100%" }}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -38,9 +45,21 @@ export default function ColorTabs() {
           <Tab value="three" label="Literatura" />
         </Tabs>
         <Box sx={{ p: 3 }}>
-          {value === 'one' && <INaturalistCard />}
-          {value === 'two' && <SpeciesLinkCard />}
-          {value === 'three' && <LiteraturaCardList />}
+          {value === "one" && (
+            <INaturalistCard
+              mushroom={props.mushroom}
+              occurrences={props.iNaturalistOccurrences}
+            />
+          )}
+          {value === "two" && (
+            <SpeciesLinkCard
+              mushroom={props.mushroom}
+              occurrences={props.speciesLinkOccurrences}
+            />
+          )}
+          {value === "three" && (
+            <LiteraturaCardList mushroom={props.mushroom} />
+          )}
         </Box>
       </Box>
     </ThemeProvider>

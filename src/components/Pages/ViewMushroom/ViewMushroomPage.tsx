@@ -19,6 +19,7 @@ import {
 import FungiService from "../../../services/FungiService";
 import MushroomProps from "../../../Interfaces/mushroom";
 import INaturalistService from "../../../services/INaturalistService";
+import SpeciesLinkService from "../../../services/SpeciesLinkService";
 
 interface ViewMushroomPageProps {
   uuid?: string;
@@ -27,7 +28,14 @@ interface ViewMushroomPageProps {
 const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
   const fungiService: FungiService = new FungiService();
   const iNaturalistService: INaturalistService = new INaturalistService();
+  const speciesLinkService: SpeciesLinkService = new SpeciesLinkService();
   const [mushroom, setMushroom] = useState<MushroomProps>();
+  const [iNaturalistOccurrences, setINaturalistOccurrences] = useState<
+    Array<any>
+  >([]);
+  const [speciesLinkOccurrences, setSpeciesLinkOccurrences] = useState<
+    Array<any>
+  >([]);
 
   useEffect(() => {
     const url = window.location.href;
@@ -40,13 +48,25 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
   const getMushroom = async () => {
     if (!uuid) return;
     const result = await fungiService.getByUuid(uuid);
-    if (!result) return;
-    let url = result.inaturalist_taxa
-      ? await iNaturalistService.getMushroomsPicture(result.inaturalist_taxa)
-      : "";
+    if (!result || !result.inaturalist_taxa) return;
+    let url = await iNaturalistService.getMushroomsPicture(
+      result.inaturalist_taxa
+    );
     result.imageUrl = url;
+    let iNaturalistAndSpeciesLinkOccurrences: [Array<any>, Array<any>] =
+      await Promise.all([
+        iNaturalistService.getMushroomOccurrences(result.inaturalist_taxa),
+        speciesLinkService.getOccurrences(result.scientific_name ?? ""),
+      ]);
 
     setMushroom(result);
+    if (
+      iNaturalistAndSpeciesLinkOccurrences &&
+      iNaturalistAndSpeciesLinkOccurrences.length > 1
+    ) {
+      setINaturalistOccurrences(iNaturalistAndSpeciesLinkOccurrences[0]);
+      setSpeciesLinkOccurrences(iNaturalistAndSpeciesLinkOccurrences[1]);
+    }
   };
 
   return (
@@ -86,7 +106,11 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
               />
             </MapContainer>
           </MapSection>
-          <TabsViewMushroom />
+          <TabsViewMushroom
+            mushroom={mushroom}
+            iNaturalistOccurrences={iNaturalistOccurrences}
+            speciesLinkOccurrences={speciesLinkOccurrences}
+          />
         </>
       )}
     </SpeciesContainer>

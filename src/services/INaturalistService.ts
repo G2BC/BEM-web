@@ -41,4 +41,21 @@ export default class INaturalistService {
       return null;
     }
   }
+
+  public async getMushroomOccurrences(taxonId: number): Promise<Array<any>> {
+    const url = `${this.basePath}/observations`;
+    const params = {
+      taxon_id: taxonId,
+      place_id: 6878,
+    };
+
+    try {
+      const response = await axios.get(url, { params });
+      console.log(response.data.results);
+      return response.data.results ?? [];
+    } catch (error) {
+      console.error(`Erro: ${error}`);
+      return [];
+    }
+  }
 }
