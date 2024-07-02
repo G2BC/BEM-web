@@ -199,7 +199,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
               ))}
             </Select>
           </MenuItem>
-
+              
           <MenuItem>
             <InputLabel id="select-bem-label" color='warning'>BEM</InputLabel>
             <Select
@@ -210,25 +210,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
               onOpen={handleOpenBem}
               onClose={handleCloseBem}
               onChange={handleChangeBem}
-              label="BEM"
-              sx={{
-                height: 50,
-                width: 200,
-                padding: '15px 20px',
-                borderBottom: '2px solid #ff5e14',
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderBottom: '#ff5e14', // default border color
-                  },
-                  '&:hover fieldset': {
-                    borderBottom: '#ff5e14', // border color when hovered
-                  },
-                  '&.Mui-focused fieldset': {
-                    borderBottom: '#ff5e14', // border color when focused
-                  },
-                },
-                borderRadius: 0, fontSize: 14, fontWeight: 'bold'
-              }}
+              sx={{ height: 50, width: 200, padding: '15px 20px', borderBottom: '2px solid #ff5e14', borderRadius: 0, fontSize: 14, fontWeight: 'bold' }}
             >
               <MenuItem value="">
                 <em>Nenhum</em>
@@ -244,8 +226,13 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
             </Select>
           </MenuItem>
 
-          <MenuItem sx={{ height: 50, width: 230, padding: '15px 20px', borderBottom: '2px solid #ff5e14', borderRadius: 0, fontSize: 14, fontWeight: 'bold' }}>
-            <TextField id="input-habitat" label="Habitat" variant="standard" color='warning' />
+          <MenuItem>    
+            <TextField
+              id="input-habitat"
+              label="Habitat"
+              color="warning"
+              sx={{ height: 50, width: 200, padding: '15px 20px', borderBottom: '2px solid #ff5e14', borderRadius: 0, fontSize: 14, fontWeight: 'bold' }}
+            />
           </MenuItem>
         </FormControl>
       </Menu>

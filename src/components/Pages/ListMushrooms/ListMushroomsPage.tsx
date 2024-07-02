@@ -86,13 +86,15 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
             {mushrooms.map((mushroom) => (
               <CardItem key={mushroom.id}>
                 <RecipeReviewCard
-                  title={mushroom.scientific_name}
-                  subheader={mushroom.popular_name}
+                  scientificName={mushroom.scientific_name}
+                  popularName={mushroom.popular_name}
                   imageUrl={mushroom.imageUrl || ""}
                   brazilianType={
                     mushroom.brazilian_type || mushroom.brazilian_type_synonym
                   }
                   onTap={() => handleOnTap(mushroom)}
+                  occurrencesCount={mushroom.occurrences_count}
+                  redListClassification={mushroom.threatened}
                 />
               </CardItem>
             ))}
