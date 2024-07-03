@@ -52,11 +52,11 @@ const RegisterPage: React.FC = () => {
   return (
     <BackgroundImage>
       <TitleText>
-        <Typography component="h1" variant="h3" fontWeight="bold" fontSize='4rem'>
-          Seja bem vindo ao Brazilian Edible Mushrooms
+        <Typography component="h1" variant="h3" fontWeight="bold" fontSize='3rem'>
+          Seja bem-vindo ao universo dos Cogumelos Comestíveis do Brasil (Projeto BEM)
         </Typography>
         <Typography variant="h6" mt={2} fontSize='1.5rem'>
-          Bem-vindo ao nosso espaço dedicado à pesquisa de cogumelos no Brasil! Explore conosco a diversidade e a beleza dos cogumelos nativos.
+          Explore conosco a diversidade de sabores dos cogumelos comestíveis do Brasil!
         </Typography>
       </TitleText>
       <RegisterBox>
