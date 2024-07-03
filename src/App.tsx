@@ -5,31 +5,39 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import FungiService from './services/FungiService';
 import HomePage from './components/Pages/HomePage/HomePage';
+import RegisterPage from './components/Pages/RegisterPage/RegisterPage';
 import ListMushroomsPage from './components/Pages/ListMushrooms/ListMushroomsPage';
 import ViewMushroomPage from './components/Pages/ViewMushroom/ViewMushroomPage';
 import Collaborators from './components/Pages/ListofCollaborators/Collaborators';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation  } from 'react-router-dom';
 
 
-const App: React.FC = () => {
+const Layout: React.FC = () => {
+  const location = useLocation();
+  const hideHeaderAndFooter = location.pathname === '/collaborators' || location.pathname === '/login' || location.pathname === '/register';
+
   return (
-    <div className="App">
-      <Header />
-      <BrowserRouter basename='/'>
-        <Routes>
-          <Route path='/' Component={HomePage}>
-          </Route>
-          <Route path='/list' Component={ListMushroomsPage}>
-          </Route>
-          <Route path='/mushroom/:uuid' Component={ViewMushroomPage}>
-          </Route>
-          <Route path='/collaborators'Component={Collaborators}>
-          </Route>
-        </Routes>
-      </BrowserRouter>
-      <Footer />
-    </div>
+    <>
+      {!hideHeaderAndFooter && <Header />}
+      <Routes>
+        <Route path='/' Component={HomePage} />
+        <Route path='/list' Component={ListMushroomsPage} />
+        <Route path='/mushroom/:uuid' Component={ViewMushroomPage} />
+        <Route path='/collaborators' Component={Collaborators} />
+        <Route path='/register' Component={RegisterPage} />
+      </Routes>
+      {!hideHeaderAndFooter && <Footer />}
+    </>
   );
 };
 
+const App: React.FC = () => {
+  return (
+    <BrowserRouter basename='/'>
+      <div className="App">
+        <Layout />
+      </div>
+    </BrowserRouter>
+  );
+};
 export default App;
