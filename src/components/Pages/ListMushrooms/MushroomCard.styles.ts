@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 import IconButton from "@mui/material/IconButton";
 
 export const CardContainer = styled.div`
@@ -27,7 +27,7 @@ export const CardHeader = styled.div`
 `;
 
 export const ScientificName = styled.h3`
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-style: italic;
   font-weight: 400;
@@ -38,7 +38,7 @@ export const ScientificName = styled.h3`
 `;
 
 export const PopularName = styled.p`
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 300;
   line-height: 1.5;
@@ -68,7 +68,7 @@ export const IconButtonWrapper = styled.div`
 export const ObservationCount = styled.span`
   margin-left: 8px; // Adiciona espaçamento entre o ícone e o texto
   font-size: 20px;
-  font-family: 'H5 Bold', sans-serif;
+  font-family: "H5 Bold", sans-serif;
   line-height: 1.5;
 `;
 
@@ -116,7 +116,7 @@ export const BrazilButtonOverlay = styled.div`
 
 // Estilização padrão para o IconButton
 export const CustomIconButton = styled(IconButton)`
-  padding: 5px 10px; 
+  padding: 5px 10px;
   &:hover {
     background-color: transparent;
   }

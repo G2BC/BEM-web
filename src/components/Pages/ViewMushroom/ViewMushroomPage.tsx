@@ -73,6 +73,7 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
       setSpeciesLinkOccurrences(iNaturalistAndSpeciesLinkOccurrences[1]);
       setCoordinates(iNaturalistAndSpeciesLinkOccurrences[2]);
     }
+    console.log(coordinates[0] ?? "vazio");
   };
 
   return (
@@ -102,7 +103,7 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
           </ContentSection>
           <MapSection>
             <MapContainer
-              center={coordinates ? coordinates[0] : null}
+              center={coordinates[0] ?? [-14.235, -51.9253]}
               zoom={4}
               style={{ height: "100%", width: "100%" }}
             >

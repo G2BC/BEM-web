@@ -10,13 +10,13 @@ export const Container = styled.div`
 export const CardGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; 
+  gap: 20px;
   justify-content: center;
 `;
 
 export const CardItem = styled.div`
-  margin: 10px; 
-  flex: 1 1 calc(33.333% - 20px); 
+  margin: 10px;
+  flex: 1 1 calc(33.333% - 20px);
   box-sizing: border-box;
   max-width: 280px;
 `;
@@ -28,9 +28,6 @@ export const Title = styled.h1`
 
 export const PaginationContainer = styled.div`
   margin-top: 20px;
-`;
-
-export const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
