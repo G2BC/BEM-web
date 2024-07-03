@@ -36,6 +36,7 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
   const [speciesLinkOccurrences, setSpeciesLinkOccurrences] = useState<
     Array<any>
   >([]);
+  const [coordinates, setCoordinates] = useState<Array<any>>([]);
 
   useEffect(() => {
     const url = window.location.href;
@@ -53,11 +54,15 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
       result.inaturalist_taxa
     );
     result.imageUrl = url;
-    let iNaturalistAndSpeciesLinkOccurrences: [Array<any>, Array<any>] =
-      await Promise.all([
-        iNaturalistService.getMushroomOccurrences(result.inaturalist_taxa),
-        speciesLinkService.getOccurrences(result.scientific_name ?? ""),
-      ]);
+    let iNaturalistAndSpeciesLinkOccurrences: [
+      Array<any>,
+      Array<any>,
+      Array<any>
+    ] = await Promise.all([
+      iNaturalistService.getMushroomOccurrences(result.inaturalist_taxa),
+      speciesLinkService.getOccurrences(result.scientific_name ?? ""),
+      speciesLinkService.getCoordinates(result.scientific_name ?? ""),
+    ]);
 
     setMushroom(result);
     if (
@@ -66,6 +71,7 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
     ) {
       setINaturalistOccurrences(iNaturalistAndSpeciesLinkOccurrences[0]);
       setSpeciesLinkOccurrences(iNaturalistAndSpeciesLinkOccurrences[1]);
+      setCoordinates(iNaturalistAndSpeciesLinkOccurrences[2]);
     }
   };
 
@@ -96,7 +102,7 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
           </ContentSection>
           <MapSection>
             <MapContainer
-              center={[-14.235, -51.9253]}
+              center={coordinates ? coordinates[0] : null}
               zoom={4}
               style={{ height: "100%", width: "100%" }}
             >
