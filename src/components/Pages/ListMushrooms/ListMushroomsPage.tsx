@@ -3,7 +3,12 @@ import FungiService from "../../../services/FungiService";
 import RecipeReviewCard from "./MushroomCard";
 import INaturalistService from "../../../services/INaturalistService";
 import Pagination from "@mui/material/Pagination";
-import { Container, CardGrid, CardItem } from "./ListMushroomsPage.styles";
+import {
+  Container,
+  CardGrid,
+  CardItem,
+  PaginationContainer,
+} from "./ListMushroomsPage.styles";
 
 interface ListMushroomsPageProps {
   taxonomy?: string;
@@ -16,7 +21,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
   taxonomy = "",
   state,
   bem,
-  habitat
+  habitat,
 }) => {
   const fungiService: FungiService = new FungiService();
   const iNaturalistService: INaturalistService = new INaturalistService();
@@ -33,7 +38,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
     if (params.get("page")) setPage(parseInt(params.get("page")!));
 
     getFungis();
-  }, []);
+  }, [page]);
 
   const getFungis = async () => {
     if (!taxonomy) return;
@@ -45,7 +50,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
       page ?? 1
     );
     if (!result) return;
-    const data = result.data;
+    const data = result.mushrooms;
     let urls = await Promise.all(
       data.map((item: any) =>
         iNaturalistService.getMushroomsPicture(item.inaturalist_taxa)
@@ -59,9 +64,18 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
 
   const handleChange = (_: any, p: number) => {
     setPage(p);
-    getFungis();
+    const params = new URLSearchParams(window.location.search);
+    params.set("page", p.toString());
+    window.history.pushState(
+      {},
+      "",
+      `${window.location.pathname}?${params.toString()}`
+    );
   };
-  console.log(mushrooms)
+
+  const handleOnTap = (mushroom: any) => {
+    window.location.href = `/mushroom/${mushroom.uuid}`;
+  };
 
   return (
     <Container>
@@ -78,17 +92,21 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
                   brazilianType={
                     mushroom.brazilian_type || mushroom.brazilian_type_synonym
                   }
+                  onTap={() => handleOnTap(mushroom)}
                   occurrencesCount={mushroom.occurrences_count}
                   redListClassification={mushroom.threatened}
                 />
               </CardItem>
             ))}
           </CardGrid>
-          <Pagination
-            shape="rounded"
-            count={pagesCount}
-            onChange={handleChange}
-          />
+          <PaginationContainer>
+            <Pagination
+              shape="rounded"
+              count={pagesCount}
+              page={page}
+              onChange={handleChange}
+            />
+          </PaginationContainer>
         </>
       ) : (
         <></>

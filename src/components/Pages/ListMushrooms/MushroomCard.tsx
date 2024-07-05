@@ -23,13 +23,14 @@ import {
   ExtinctionButtonIcon,
   ExtinctionButtonOverlay,
   CustomIconButton,
-} from './MushroomCard.styles';
+} from "./MushroomCard.styles";
 
 interface RecipeReviewCardProps {
   scientificName: string;
   popularName: string;
   imageUrl: string;
   brazilianType: string;
+  onTap: () => void;
   occurrencesCount: number;
   redListClassification: number;
 }
@@ -39,11 +40,12 @@ const RecipeReviewCard: React.FC<RecipeReviewCardProps> = ({
   popularName,
   imageUrl,
   brazilianType,
-  occurrencesCount
+  onTap,
+  occurrencesCount,
 }: RecipeReviewCardProps) => {
   return (
-    <CardContainer>
-      <CardImage src={imageUrl} alt={'Mushroom'} />
+    <CardContainer onClick={onTap} style={{ cursor: "pointer" }}>
+      <CardImage src={imageUrl} alt={"Mushroom"} />
       <CardHeader>
         <ScientificName>{scientificName}</ScientificName>
         <PopularName>{popularName}</PopularName>
@@ -55,8 +57,11 @@ const RecipeReviewCard: React.FC<RecipeReviewCardProps> = ({
             <ObservationCount>{occurrencesCount} Observações</ObservationCount>
           </CustomIconButton>
         </IconButtonWrapper>
-        
-        <Tooltip title="Este ícone representa que o cogumelo é do tipo brasileiro." arrow>
+
+        <Tooltip
+          title="Este ícone representa que o cogumelo é do tipo brasileiro."
+          arrow
+        >
           <BrazilButtonWrapper>
             <CustomIconButton aria-label="Brazil">
               <BrazilButtonIcon src={brazilImage} alt={"Brazil Image"} />
@@ -64,18 +69,26 @@ const RecipeReviewCard: React.FC<RecipeReviewCardProps> = ({
             </CustomIconButton>
           </BrazilButtonWrapper>
         </Tooltip>
-        
-        <Tooltip title="Este ícone representa a classificação de extinção do cogumelo." arrow>
+
+        <Tooltip
+          title="Este ícone representa a classificação de extinção do cogumelo."
+          arrow
+        >
           <ExtinctionButtonWrapper>
             <CustomIconButton aria-label="Extinção">
-              <ExtinctionButtonIcon src={extinctionImage} alt={"Extinction Image"} />
-              <ExtinctionButtonOverlay style={{ backgroundImage: `url(${vu})` }} />
+              <ExtinctionButtonIcon
+                src={extinctionImage}
+                alt={"Extinction Image"}
+              />
+              <ExtinctionButtonOverlay
+                style={{ backgroundImage: `url(${vu})` }}
+              />
             </CustomIconButton>
           </ExtinctionButtonWrapper>
         </Tooltip>
       </CardActionContainer>
     </CardContainer>
   );
-}
+};
 
 export default RecipeReviewCard;
