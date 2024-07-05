@@ -3,7 +3,7 @@ import { Box, Button, TextField, Typography, Link, Grid, Paper, Avatar } from '@
 import { styled } from '@mui/system';
 import background from '../../../assets/background.png'; // Importe a imagem de fundo
 import logo from '../../../assets/logoicon.png'; // Importe a imagem do logo
-import ReCAPTCHA from 'react-google-recaptcha';
+// import ReCAPTCHA from 'react-google-recaptcha';
 
 const BackgroundImage = styled('div')({
   backgroundImage: `url(${background})`,
@@ -144,9 +144,9 @@ const RegisterPage: React.FC = () => {
               },
             }}
           />
-          <Box mb={2} display="flex" justifyContent="center">
+          {/* <Box mb={2} display="flex" justifyContent="center">
             <ReCAPTCHA sitekey="YOUR_RECAPTCHA_SITE_KEY" />
-          </Box>
+          </Box> */}
           <Button
             type="submit"
             fullWidth
