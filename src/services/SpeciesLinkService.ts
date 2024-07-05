@@ -1,18 +1,19 @@
 import axios from "axios";
+import apiSpeciesLink from "./SpeciesLink";
 
 export default class SpeciesLinkService {
-  private basePath: string = "https://specieslink.net/ws/1.0";
-  private apiKey: string = process.env.SPECIES_LINK_KEY ?? "";
+  private basePath: string = "/search";
+  private apiKey: string = 'VjSPRSjDJKAdk8ojl3PR';
 
   public async getCoordinates(scientificName: string): Promise<Array<any>> {
-    const url = `${this.basePath}/search`;
+    console.log(process.env.SPECIES_LINK_KEY)
     const params = {
       apikey: this.apiKey,
       scientificName: scientificName,
     };
 
     try {
-      const response = await axios.get(url, { params });
+      const response = await apiSpeciesLink.get(`${this.basePath}`, { params });
       if (!response.data.features) return [];
 
       return response.data.features.map((feature: any) => ({
@@ -26,7 +27,6 @@ export default class SpeciesLinkService {
   }
 
   public async getOccurrences(scientificName: string): Promise<Array<any>> {
-    const url = `${this.basePath}/search`;
     const params = {
       apikey: this.apiKey,
       scientificName: scientificName,
@@ -34,7 +34,7 @@ export default class SpeciesLinkService {
     };
 
     try {
-      const response = await axios.get(url, { params });
+      const response = await apiSpeciesLink.get(`${this.basePath}`, { params });
       return response.data.features ?? [];
     } catch (error) {
       console.error(`Erro: ${error}`);

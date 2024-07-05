@@ -51,7 +51,6 @@ export default class INaturalistService {
 
     try {
       const response = await axios.get(url, { params });
-      console.log(response.data.results);
       return response.data.results ?? [];
     } catch (error) {
       console.error(`Erro: ${error}`);
