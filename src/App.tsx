@@ -9,12 +9,12 @@ import RegisterPage from './components/Pages/RegisterPage/RegisterPage';
 import ListMushroomsPage from './components/Pages/ListMushrooms/ListMushroomsPage';
 import ViewMushroomPage from './components/Pages/ViewMushroom/ViewMushroomPage';
 import Collaborators from './components/Pages/ListofCollaborators/Collaborators';
-import { BrowserRouter, Route, Routes, useLocation  } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 
 
 const Layout: React.FC = () => {
   const location = useLocation();
-  const hideHeaderAndFooter = location.pathname === '/collaborators' || location.pathname === '/login' || location.pathname === '/register';
+  const hideHeaderAndFooter = location.pathname === '/login' || location.pathname === '/register';
 
   return (
     <>

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import * as L from 'leaflet';
-import 'leaflet.heat'; // Certifique-se de que este import funciona após a declaração do módulo.
+import 'leaflet.heat';
 
 
 interface HeatMapLayerProps {

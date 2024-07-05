@@ -86,12 +86,8 @@ export default function TabsComponent(props: TabsComponentProps) {
         <Tab value={1}>Taxonomia</Tab>
       </TabsList>
       <TabPanel value={0}>
-        Laetiporus sulphureus foi descrito pela primeira vez como Boletus
-        sulphureus pelo micologista francês Pierre Bulliard em 1789. Ele teve
-        muitos sinônimos e finalmente recebeu seu nome atual em 1920 pelo
-        micologista americano William Murrill. Laetiporus significa "com poros
-        brilhantes" e sulphureus significa a cor do enxofre.
-        <br />
+        {props.mushroom.description || 'Em breve traremos uma descrição sobre este cogumelo.'}
+        {/* <br />
         <br />
         Investigações na América do Norte mostraram que existem várias espécies
         semelhantes dentro do que foi considerado L. sulphureus, e que o
@@ -99,7 +95,7 @@ export default function TabsComponent(props: TabsComponentProps) {
         Montanhas Rochosas. As análises filogenéticas de sequências de ITS,
         subunidades nucleares grandes e subunidades pequenas mitocondriais de
         rDNA de coleções norte-americanas delinearam cinco clados distintos no
-        clado central de Laetiporus.
+        clado central de Laetiporus. */}
       </TabPanel>
       <TabPanel value={1}>
         <div>
@@ -110,7 +106,7 @@ export default function TabsComponent(props: TabsComponentProps) {
           <p>➔ Família: {props.mushroom.family}</p>
           <p>➔ Gênero: {props.mushroom.genus}</p>
           <p>
-            <i>➔ {props.mushroom.specie}</i>
+            ➔Espécie: <i>{props.mushroom.specie}</i>
           </p>
         </div>
       </TabPanel>

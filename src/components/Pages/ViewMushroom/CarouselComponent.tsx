@@ -21,18 +21,18 @@ export default function CarouselComponent(props: CarouselComponentProps) {
 
   return (
     <div className="slider-container">
-      <Slider asNavFor={nav2 as any} ref={sliderRef1}>
-        {props.photos.map((photo, index) => (
-          <div key={index}>
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              style={{ width: "100%", height: "300px", objectFit: "cover" }}
-            />
-          </div>
-        ))}
-      </Slider>
-      <Slider
+      {/* <Slider asNavFor={nav2 as any} ref={sliderRef1}> */}
+      {/* {props.photos.map((photo, index) => ( */}
+      <div key={props.photos[0].src}>
+        <img
+          src={props.photos[0].src}
+          alt={props.photos[0].alt}
+          style={{ width: "100%", height: "300px", objectFit: "cover" }}
+        />
+      </div>
+      {/* ))} */}
+      {/* </Slider> */}
+      {/* <Slider
         asNavFor={nav1 as any}
         ref={sliderRef2}
         slidesToShow={3}
@@ -42,13 +42,13 @@ export default function CarouselComponent(props: CarouselComponentProps) {
         {props.photos.map((photo, index) => (
           <div key={index}>
             <img
-              src={photo.src}
-              alt={photo.alt}
+              src={props.photos[0].src}
+              alt={props.photos[0].alt}
               style={{ width: "100%", height: "100px", objectFit: "cover" }}
             />
           </div>
         ))}
-      </Slider>
+      </Slider> */}
     </div>
   );
 }

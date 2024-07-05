@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import FungiService from "../../../services/FungiService";
 import { Grid } from "@mui/material";
 import BemSubtitle from "../../Classifications/BemSubtitle";
-import HeatMap from "../../HeatMap/HeatMapLayer";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import "leaflet.heat"; // Certifique-se de que este import funciona após a declaração do módulo.
+import "leaflet.heat";
 import stateCoordinates from "../../../Utils/StateCoordinates";
 import HeatMapLayer from "../../HeatMap/HeatMapLayer";
 
@@ -57,6 +56,7 @@ const HomePage: React.FC = () => {
     data: { state: string; intensity: number }[]
   ): [number, number, number][] => {
     return data.map(({ state, intensity }) => {
+
       let coords = stateCoordinates[state];
 
       return [coords[0], coords[1], intensity] as [number, number, number];
