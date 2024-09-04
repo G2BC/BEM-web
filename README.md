@@ -15,5 +15,8 @@ Certifique de possuir [node v21.7.2](https://nodejs.org/en/download)
 ## Contêiner
 Certifique de possuir [Docker](https://docs.docker.com/desktop/)
 1. Clonar o repositório
-2. Acessar o diretório da aplicação e executar o comando `docker build -t bem-web .`
-3. Com a imagem criada inicialize o contêiner com o comando `docker run -d -p 3000:3000 bem-web`
+
+> [!IMPORTANT]
+> Renomeie o arquivo `RENAME_TO_DOTENV.md` para `.env`
+
+2. Inicialize o container com `docker compose up --build`

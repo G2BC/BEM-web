@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  bem-web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL}
+      REACT_APP_API_PORT: ${REACT_APP_API_PORT}
+      REACT_APP_ENV: ${REACT_APP_ENV}
+      SPECIES_LINK_KEY: ${SPECIES_LINK_KEY}
+    env_file:
+      - .env
+    volumes:
+      - .:/root/bem-web
+      - /root/bem-web/node_modules
+    stdin_open: true
+    tty: true
