@@ -79,7 +79,6 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
 
   return (
     <Container>
-      <h1>Lista de Cogumelos</h1>
       {mushrooms != undefined ? (
         <>
           <CardGrid>
