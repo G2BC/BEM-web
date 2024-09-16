@@ -45,12 +45,6 @@ export const PopularName = styled.p`
   text-align: left;
   margin: 0;
   color: gray;
-  &::before {
-    content: "(";
-  }
-  &::after {
-    content: ")";
-  }
 `;
 
 export const CardActionContainer = styled.div`

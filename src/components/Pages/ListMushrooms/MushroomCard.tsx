@@ -48,7 +48,7 @@ const RecipeReviewCard: React.FC<RecipeReviewCardProps> = ({
       <CardImage src={imageUrl} alt={"Mushroom"} />
       <CardHeader>
         <ScientificName>{scientificName}</ScientificName>
-        <PopularName>{popularName}</PopularName>
+        <PopularName>{popularName ? `(${popularName})` : ""}</PopularName>
       </CardHeader>
       <CardActionContainer>
         <IconButtonWrapper>
