@@ -74,6 +74,20 @@ const HomePage: React.FC = () => {
             justifyContent="center"
             alignItems="stretch"
           >
+
+            <Grid
+              item
+              xs={2}
+              marginBottom={7}
+              style={{
+                width: "320px",
+                backgroundColor: "#fff",
+                zIndex: 1,
+                boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <BemSubtitle filter={classificationFilter} />
+            </Grid>
             <Grid item xs={10} marginBottom={5} style={{ flex: 1 }}>
               <MapContainer
                 center={[-14.235004, -51.92528]}
@@ -88,24 +102,11 @@ const HomePage: React.FC = () => {
                 <HeatMapLayer data={fungisHeatMap} />
               </MapContainer>
             </Grid>
-            <Grid
-              item
-              xs={2}
-              marginBottom={7}
-              style={{
-                width: "320px",
-                backgroundColor: "#fff",
-                zIndex: 1,
-                boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-              }}
-            >
-              <BemSubtitle filter={classificationFilter} />
-            </Grid>
           </Grid>
         </>
       ) : (
-        <></>
-      )}
+          <></>
+        )}
     </div>
   );
 };
