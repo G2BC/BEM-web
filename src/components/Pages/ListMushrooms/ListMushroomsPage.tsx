@@ -108,8 +108,8 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
           </PaginationContainer>
         </>
       ) : (
-        <></>
-      )}
+          <></>
+        )}
     </Container>
   );
 };

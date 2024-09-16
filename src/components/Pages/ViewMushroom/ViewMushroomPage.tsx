@@ -87,7 +87,7 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
               <StatusBadge src={VU} alt="VU" />
             </div>
             <Name>
-              {mushroom.popular_name ? `(${mushroom.popular_name})` : ""}
+              {mushroom.popular_name}
             </Name>
           </Header>
           <ContentSection>
