@@ -5,7 +5,7 @@ import SearchArea from '../Utils/SearchArea/SearchArea';
 
 const headerLinks = [
   { text: 'Início', link: '/' },
-  { text: 'Explorar', link: '/' },
+  { text: 'Explorar', link: '/list?taxonomy=%&state=&bem=&habitat=' },
   { text: 'Como citar', link: '/' },
   { text: 'Sobre', link: '/' },
   { text: 'Instruções', link: '/' },
