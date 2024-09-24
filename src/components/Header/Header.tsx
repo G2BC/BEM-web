@@ -3,6 +3,16 @@ import { HeaderContainer, LogoImage, HeadList, HeadItem, HeadLink, HeadButtonEnt
 import Logo from '../../assets/cogumelo.png';
 import SearchArea from '../Utils/SearchArea/SearchArea';
 
+const headerLinks = [
+  { text: 'Início', link: '/' },
+  { text: 'Explorar', link: '/' },
+  { text: 'Como citar', link: '/' },
+  { text: 'Sobre', link: '/' },
+  { text: 'Instruções', link: '/' },
+  { text: 'Contato', link: '/' },
+  { text: 'Colaboradores', link: '/collaborators' }
+];
+
 const Header: React.FC = () => {
   return (
     <HeaderContainer>
@@ -15,33 +25,9 @@ const Header: React.FC = () => {
           <HeadLink href="/">BEM</HeadLink>
         </HeadItem>
 
-        <HeadItem>
-          <NormalHeadText href="/">Início</NormalHeadText>
-        </HeadItem>
-
-        <HeadItem>
-          <NormalHeadText href="/">Explorar</NormalHeadText>
-        </HeadItem>
-
-        <HeadItem>
-          <NormalHeadText href="/">Como citar</NormalHeadText>
-        </HeadItem>
-
-        <HeadItem>
-          <NormalHeadText href="/">Sobre</NormalHeadText>
-        </HeadItem>
-
-        <HeadItem>
-          <NormalHeadText href="/">Instruções</NormalHeadText>
-        </HeadItem>
-
-        <HeadItem>
-          <NormalHeadText href="/">Contato</NormalHeadText>
-        </HeadItem>
-
-        <HeadItem>
-          <NormalHeadText href="/collaborators">Colaboradores</NormalHeadText>
-        </HeadItem>
+        {headerLinks.map((headerLink) => {
+          return <HeadItem><NormalHeadText href={headerLink.link}>{headerLink.text}</NormalHeadText></HeadItem>
+        })};
 
         <HeadItem>
           <SearchArea />
