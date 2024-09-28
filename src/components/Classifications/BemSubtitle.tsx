@@ -138,7 +138,7 @@ const BemSubtitle: React.FC<BemSubtitleProps> = ({ filter }) => {
 
   return (
     <SubtitileContainer className="legend-container">
-      <SubtitleTitle>Classificação dos Cogumelos com Ocorrência no Brasil</SubtitleTitle>
+      <SubtitleTitle>Visualize a distribuição dos cogumelos comestíveis no Brasil e escolha uma das categorias abaixo para visualizar essas informações.</SubtitleTitle>
       {classifications.map((bem) => (
         <SubtitleItem key={bem.name} onClick={() => filter(bem.name)}>
           <ItemLeft>
