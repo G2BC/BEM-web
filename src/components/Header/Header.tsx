@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeaderContainer, LogoImage, HeadList, HeadItem, HeadLink, HeadButtonEnter, HeadButtonRegister, NormalHeadText } from './Header.styles';
-import Logo from '../../assets/cogumelo.png';
+import Logo from '../../assets/cogumelo.svg';
 import SearchArea from '../Utils/SearchArea/SearchArea';
 
 const headerLinks = [
@@ -19,10 +19,6 @@ const Header: React.FC = () => {
       <HeadList>
         <HeadItem className="head-logo">
           <LogoImage src={Logo} alt="Logo" />
-        </HeadItem>
-
-        <HeadItem>
-          <HeadLink href="/">BEM</HeadLink>
         </HeadItem>
 
         {headerLinks.map((headerLink) => {

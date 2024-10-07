@@ -10,8 +10,8 @@ export const HeaderContainer = styled.nav`
 `;
 
 export const LogoImage = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 120px;
+  height: 90px;
   padding-right: 13px; /* Espaço à direita */
 `;
 
