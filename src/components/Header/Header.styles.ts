@@ -79,7 +79,7 @@ export const HeadLinkHover = styled(HeadLink)`
   }
 `;
 
-export const HeadButtonEnter = styled.button({
+export const HeadButtonEnter = styled.a({
   background: '#ff5e14',
   borderRadius: 3,
   padding: '13px 20px',
@@ -89,6 +89,7 @@ export const HeadButtonEnter = styled.button({
   fontWeight: 'bold',
   cursor: 'pointer',
   transition: 'background-color 0.3s ease, color 0.3s ease',
+  textDecoration: 'none',
 
   '&:hover': {
     background: '#ffffff',
@@ -96,7 +97,7 @@ export const HeadButtonEnter = styled.button({
   }
 });
 
-export const HeadButtonRegister = styled.button({
+export const HeadButtonRegister = styled.a({
   background: '#ff5e14',
   borderRadius: 3,
   padding: '13px 20px',
@@ -106,6 +107,7 @@ export const HeadButtonRegister = styled.button({
   fontWeight: 'bold',
   cursor: 'pointer',
   transition: 'background-color 0.3s ease, color 0.3s ease',
+  textDecoration: 'none',
 
   '&:hover': {
     background: '#fff',

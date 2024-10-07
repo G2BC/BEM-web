@@ -34,10 +34,10 @@ const Header: React.FC = () => {
         </HeadItem>
 
         <HeadItem className="head-buttons">
-          <HeadButtonEnter>
+          <HeadButtonEnter href="/login">
             Entrar
           </HeadButtonEnter>
-          <HeadButtonRegister>
+          <HeadButtonRegister href="/register">
             Cadastrar
           </HeadButtonRegister>
         </HeadItem>
