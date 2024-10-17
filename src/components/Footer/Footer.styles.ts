@@ -27,25 +27,6 @@ export const LogoFooter = styled.div`
   margin-right: 20px; /* Adiciona margem à direita para separar o logotipo da lista de páginas */
 `;
 
-export const BigLogo = styled.h2`
-  margin-right: 50px;
-  font-size: 3rem;
-  color: white;
-  text-align: center;
-  position: relative;
-  display: inline-block;
-
-  text-shadow:
-    1px 1px 0 #ff5e14,
-    2px 2px 0 #ff5e14,
-    3px 3px 0 #ff5e14,
-    4px 4px 0 #ff5e14;
-
-  span {
-    display: block;
-  }
-`;
-
 export const FooterLogo = styled.div`
   flex: 1;
 `;
@@ -129,12 +110,18 @@ export const FooterBottom = styled.div`
   width: 100%;
   color: white;
 `;
+export const VerticalLine = styled.div`
+  border-left: 6px solid #ff5e14; 
+  height: 220px; 
+  margin: 0 10px; 
+  align-self: center; 
+`;
 
 export const FooterButton = styled.button({
   background: '#ff5e14',
   padding: '13px 20px',
   border: '1px solid #ff5e14',
-  borderRadius: 3,
+  borderRadius: 15,
   color: '#fff',
   fontSize: '16px',
   fontWeight: 'bold',

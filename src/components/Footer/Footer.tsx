@@ -1,6 +1,6 @@
 import React from 'react';
-import { FooterContainer, FooterContent, FooterLogo, FooterSection, FooterHeading, BigLogo, FooterImage, FooterList, FooterListItem, FooterLink, JoinUsSection, FooterBottom, FooterButton } from './Footer.styles'; 
-import Logo from './../../assets/cogumelo.png';
+import { FooterContainer, FooterContent, FooterLogo, FooterSection, FooterHeading,  FooterImage, FooterList, FooterListItem, FooterLink, JoinUsSection, FooterBottom, FooterButton, VerticalLine } from './Footer.styles'; 
+import Logo from './../../assets/cogumelo.svg';
 
 const Footer: React.FC = () => {
   return (
@@ -8,11 +8,7 @@ const Footer: React.FC = () => {
       <FooterContent>
         
             <FooterLogo>
-              <BigLogo>
-                <span>Brazilian</span>
-                <span>Edible</span>
-                <span>Mushrooms</span>
-              </BigLogo>
+              <img src= {Logo}  alt="Brazilian Edible Mushrooms Logo"  width="300" height="200"/>
             </FooterLogo>
          
             
@@ -24,7 +20,9 @@ const Footer: React.FC = () => {
               <FooterListItem><FooterLink href="#">Sobre o Projeto</FooterLink></FooterListItem>
               <FooterListItem><FooterLink href="#">Como Citar</FooterLink></FooterListItem>
             </FooterList>
-        
+
+            <VerticalLine />
+            
             <JoinUsSection>
               <FooterHeading>Junte-se a nós:</FooterHeading>
               <p>Venha se unir à nossa comunidade fungística e explore o mundo dos cogumelos conosco!</p>
