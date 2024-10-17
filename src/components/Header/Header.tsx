@@ -2,6 +2,7 @@ import React from 'react';
 import { HeaderContainer, LogoImage, HeadList, HeadItem, HeadLink, HeadButtonEnter, HeadButtonRegister, NormalHeadText } from './Header.styles';
 import Logo from '../../assets/cogumelo.png';
 import SearchArea from '../Utils/SearchArea/SearchArea';
+import { useNavigate } from "react-router-dom";
 
 const headerLinks = [
   { text: 'Início', link: '/' },
@@ -14,6 +15,14 @@ const headerLinks = [
 ];
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate("/login"); 
+  };
+  const handleRegisterClick = () => {
+  navigate("/register");  
+  };
   return (
     <HeaderContainer>
       <HeadList>
@@ -34,16 +43,17 @@ const Header: React.FC = () => {
         </HeadItem>
 
         <HeadItem className="head-buttons">
-          <HeadButtonEnter>
-            Entrar
+          <HeadButtonEnter onClick={handleLoginClick}>
+            Entrar 
           </HeadButtonEnter>
-          <HeadButtonRegister>
+          <HeadButtonRegister onClick={handleRegisterClick}>
             Cadastrar
           </HeadButtonRegister>
         </HeadItem>
       </HeadList>
     </HeaderContainer>
   );
+
 };
 
 export default Header;
