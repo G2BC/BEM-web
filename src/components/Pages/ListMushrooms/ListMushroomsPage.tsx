@@ -3,6 +3,7 @@ import FungiService from "../../../services/FungiService";
 import RecipeReviewCard from "./MushroomCard";
 import INaturalistService from "../../../services/INaturalistService";
 import Pagination from "@mui/material/Pagination";
+import SearchArea from '../../Utils/SearchArea/SearchArea';
 import {
   Container,
   CardGrid,
@@ -79,6 +80,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
 
   return (
     <Container>
+      <SearchArea />
       {mushrooms != undefined ? (
         <>
           <CardGrid>

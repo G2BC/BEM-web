@@ -115,6 +115,10 @@ export const VerticalLine = styled.div`
   height: 220px; 
   margin: 0 10px; 
   align-self: center; 
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const FooterButton = styled.button({
