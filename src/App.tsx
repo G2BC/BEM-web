@@ -10,7 +10,8 @@ import ListMushroomsPage from './components/Pages/ListMushrooms/ListMushroomsPag
 import ViewMushroomPage from './components/Pages/ViewMushroom/ViewMushroomPage';
 import Collaborators from './components/Pages/ListofCollaborators/Collaborators';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
-
+import Developers from './components/Pages/ListofCollaborators/Developers';
+import LoginPage from './components/Pages/LoginPage/LoginPage';
 
 const Layout: React.FC = () => {
   const location = useLocation();
@@ -25,6 +26,8 @@ const Layout: React.FC = () => {
         <Route path='/mushroom/:uuid' Component={ViewMushroomPage} />
         <Route path='/collaborators' Component={Collaborators} />
         <Route path='/register' Component={RegisterPage} />
+        <Route path='/login' Component={LoginPage} />
+        <Route path='/dev' Component={Developers} />
       </Routes>
       {!hideHeaderAndFooter && <Footer />}
     </>
