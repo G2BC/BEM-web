@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Button, TextField, Typography, Link, Grid, Paper, Avatar } from '@mui/material';
 import { styled } from '@mui/system';
-import background from '../../../assets/background.png'; // Importe a imagem de fundo
-import logo from '../../../assets/logoicon.png'; // Importe a imagem do logo
+import background from '../../../assets/background.png'; 
+import logo from '../../../assets/logoicon.png'; 
 // import ReCAPTCHA from 'react-google-recaptcha';
 
 const BackgroundImage = styled('div')({
