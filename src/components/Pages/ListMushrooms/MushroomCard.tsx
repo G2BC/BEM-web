@@ -2,7 +2,7 @@ import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import observationImage from "../../../assets/observationButton.svg";
-import tipoBrasileiro from "../../../assets/brasilT.png";
+import brasilianType from "../../../assets/brasilT.png";
 import tipoSinonimo from "../../../assets/brasilTS.png";
 import imagemPadrao from "../../../assets/white.png";
 import defaultImage from "../../../assets/defaultImage.png";
