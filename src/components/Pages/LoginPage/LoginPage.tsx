@@ -9,7 +9,7 @@ const BackgroundImage = styled('div')({
   backgroundImage: `url(${background})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  minHeight: '100vh', // Ajustado para usar minHeight em vez de height
+  minHeight: '100vh', 
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -28,7 +28,7 @@ const RegisterBox = styled(Paper)(({ theme }) => ({
   margin: theme.spacing(2),
   boxSizing: 'border-box',
   [theme.breakpoints.down('sm')]: {
-    padding: theme.spacing(4), // Reduzir padding em telas menores
+    padding: theme.spacing(4), 
   },
 }));
 
@@ -36,10 +36,10 @@ const TitleText = styled(Box)(({ theme }) => ({
   color: 'white',
   maxWidth: '50%',
   [theme.breakpoints.down('md')]: {
-    display: 'none', // Ocultar o texto de boas-vindas em telas menores
+    display: 'none', 
   },
   marginBottom: theme.spacing(2),
-  textAlign: 'left', // Justificar o texto
+  textAlign: 'left', 
 }));
 
 const LogoBox = styled(Box)({
