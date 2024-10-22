@@ -2,9 +2,9 @@ import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import observationImage from "../../../assets/observationButton.svg";
-import brasilianType from "../../../assets/brasilT.png";
-import tipoSinonimo from "../../../assets/brasilTS.png";
-import imagemPadrao from "../../../assets/white.png";
+import flagBrazilianType from "../../../assets/brasilT.png";
+import flagSynonymType from "../../../assets/brasilTS.png";
+import defaultImageWhite from "../../../assets/white.png";
 import defaultImage from "../../../assets/defaultImage.png";
 import extinctionImage0 from "../../../assets/NE.svg";
 import extinctionImage1 from "../../../assets/DD.svg";
@@ -43,17 +43,14 @@ interface RecipeReviewCardProps {
   occurrencesCount: number;
   redListClassification: number;
 }
-/*Função para identificar se é tipo brasileiro = "T" 
-  Se é tipo sinônimo = "TS"
-  E se é null em ambas = " "
-*/
+
 const getBrazilImage = (brazilianType: String) => {
   if(brazilianType === "T"){
-    return tipoBrasileiro;
+    return flagBrazilianType;
   }else if(brazilianType === "TS"){
-    return tipoSinonimo;
+    return flagSynonymType;
   }else{
-    return imagemPadrao;
+    return defaultImageWhite;
   }
 }
 
@@ -73,7 +70,6 @@ const getExtinctionImage = (redListClassification: number) => {
 };
 
 const getImageSrc = (imageUrl: string | null | undefined): string => {
-  // Verifica se imageUrl é válido, se não for, retorna a imagem padrão
   return imageUrl ? imageUrl : defaultImage;
 };
 
@@ -86,7 +82,6 @@ const RecipeReviewCard: React.FC<RecipeReviewCardProps> = ({
   onTap,
   occurrencesCount,
 }: RecipeReviewCardProps) => {
-  //const imageSrc = imageUrl ? imageUrl : defaultImage;
   const imageSrc = getImageSrc(imageUrl);
   return (
     <CardContainer onClick={onTap} style={{ cursor: "pointer" }}>
