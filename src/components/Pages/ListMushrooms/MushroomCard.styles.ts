@@ -11,13 +11,25 @@ export const CardContainer = styled.div`
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white; 
+  transition: transform 0.3s ease-in-out; 
+  font-style: italic;
+  
+  &:hover {
+    transform: scale(1.05); 
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%; 
+    margin: 10px 0;
+  }
 `;
 
 export const CardImage = styled.img`
   width: 100%;
-  height: 250px;
+  height: 200px;
   object-fit: cover;
-  margin-bottom: 15px;
+  margin-bottom: 15px;  
 `;
 
 export const CardHeader = styled.div`
@@ -27,31 +39,24 @@ export const CardHeader = styled.div`
 `;
 
 export const ScientificName = styled.h3`
-  font-family: "Roboto", sans-serif;
-  font-size: 24px;
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.5;
-  text-align: left;
-  margin: 0;
-  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0;
+  text-align: Left;
 `;
 
 export const PopularName = styled.p`
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  font-weight: 300;
-  line-height: 1.5;
+  font-size: 16px;
+  color: #666; 
+  margin: 5px 0;
   text-align: left;
-  margin: 0;
-  color: gray;
 `;
 
 export const CardActionContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+  align-items: left;
+  padding: 0px;
 `;
 
 export const IconButtonWrapper = styled.div`
@@ -60,8 +65,8 @@ export const IconButtonWrapper = styled.div`
 `;
 
 export const ObservationCount = styled.span`
-  margin-left: 8px; // Adiciona espaçamento entre o ícone e o texto
-  font-size: 20px;
+  margin-left: 8px; 
+  font-size: 12px;
   font-family: "H5 Bold", sans-serif;
   line-height: 1.5;
 `;
