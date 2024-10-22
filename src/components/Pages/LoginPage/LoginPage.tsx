@@ -3,7 +3,6 @@ import { Box, Button, TextField, Typography, Link, Grid, Paper, Avatar } from '@
 import { styled } from '@mui/system';
 import background from '../../../assets/background.png'; 
 import logo from '../../../assets/logoicon.png'; 
-// import ReCAPTCHA from 'react-google-recaptcha';
 
 const BackgroundImage = styled('div')({
   backgroundImage: `url(${background})`,
