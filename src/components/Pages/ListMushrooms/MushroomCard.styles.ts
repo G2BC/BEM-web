@@ -11,16 +11,16 @@ export const CardContainer = styled.div`
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: white; /* Cor de fundo */
-  transition: transform 0.3s ease-in-out; /* Animação suave ao passar o mouse */
+  background-color: white; 
+  transition: transform 0.3s ease-in-out; 
   font-style: italic;
   
   &:hover {
-    transform: scale(1.05); /* Efeito de hover para destacar o card */
+    transform: scale(1.05); 
   }
 
   @media (max-width: 768px) {
-    max-width: 100%; /* Para telas menores, o card ocupa 100% da largura */
+    max-width: 100%; 
     margin: 10px 0;
   }
 `;
@@ -47,7 +47,7 @@ export const ScientificName = styled.h3`
 
 export const PopularName = styled.p`
   font-size: 16px;
-  color: #666; /* Cor mais clara para contraste */
+  color: #666; 
   margin: 5px 0;
   text-align: left;
 `;
@@ -65,7 +65,7 @@ export const IconButtonWrapper = styled.div`
 `;
 
 export const ObservationCount = styled.span`
-  margin-left: 8px; // Adiciona espaçamento entre o ícone e o texto
+  margin-left: 8px; 
   font-size: 12px;
   font-family: "H5 Bold", sans-serif;
   line-height: 1.5;
