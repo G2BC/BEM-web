@@ -151,7 +151,24 @@ const collaborators = [
 const Collaborators: React.FC = () => {
   return (
     <Container style={{ padding: '20px', fontFamily: 'Arial, sans-serif', marginLeft: '60px' }}>
-      <Typography variant="h4" style={{ textAlign: 'left', marginBottom: '40px',marginTop:'20px', fontWeight:'bold' }}>
+      {/* Seção Sobre */}
+      <Typography variant="h4" style={{ textAlign: 'center', marginBottom: '20px', marginTop: '20px', fontWeight: 'bold' }}>
+        Sobre
+      </Typography>
+      <Typography variant="body1" style={{ textAlign: 'center', marginBottom: '40px' }}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </Typography>
+
+      {/* Seção Como Citar */}
+      <Typography variant="h4" style={{ textAlign: 'center', marginBottom: '20px', marginTop: '20px', fontWeight: 'bold' }}>
+        Como Citar
+      </Typography>
+      <Typography variant="body1" style={{ textAlign: 'center', marginBottom: '40px' }}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </Typography>
+
+      {/* Seção Nossos Colaboradores */}
+      <Typography variant="h4" style={{ textAlign: 'center', marginBottom: '40px', marginTop: '20px', fontWeight: 'bold' }}>
         Nossos Colaboradores
       </Typography>
       <Grid container direction="column" spacing={4}>
@@ -164,10 +181,10 @@ const Collaborators: React.FC = () => {
                 style={{ borderRadius: '50%', width: '150px', height: '150px' }}
               />
               <Box>
-                <Typography variant="h6" style={{ margin: '0', textAlign: 'left',fontWeight:'bold' }}>
+                <Typography variant="h6" style={{ margin: '0', textAlign: 'left', fontWeight: 'bold' }}>
                   {collab.name}
                 </Typography>
-                <Typography variant="body1" style={{ textAlign: 'left',fontSize:'15px' }}>
+                <Typography variant="body1" style={{ textAlign: 'left', fontSize: '15px' }}>
                   {collab.description}
                 </Typography>
               </Box>
@@ -182,3 +199,4 @@ const Collaborators: React.FC = () => {
 };
 
 export default Collaborators;
+

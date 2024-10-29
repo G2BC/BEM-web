@@ -7,11 +7,9 @@ import { useNavigate } from "react-router-dom";
 const headerLinks = [
   { text: 'Início', link: '/' },
   { text: 'Explorar', link: '/list?taxonomy=%&state=&bem=&habitat=' },
-  { text: 'Como citar', link: '/' },
-  { text: 'Sobre', link: '/' },
+  { text: 'Sobre', link:'/collaborators' },
   { text: 'Instruções', link: '/' },
   { text: 'Contato', link: '/' },
-  { text: 'Colaboradores', link: '/collaborators' }
 ];
 
 const Header: React.FC = () => {
@@ -45,18 +43,17 @@ const Header: React.FC = () => {
               <NormalHeadText href={headerLink.link}>{headerLink.text}</NormalHeadText>
             </HeadItem>
           ))}
-
-          <HeadItem className="head-buttons">
-            <HeadButtonEnter>Entrar</HeadButtonEnter>
-            <HeadButtonRegister>Cadastrar</HeadButtonRegister>
-          </HeadItem>
         </MobileMenu>
 
         {headerLinks.map((headerLink) => {
           return <LinkContainer><HeadItem><NormalHeadText href={headerLink.link}>{headerLink.text}</NormalHeadText></HeadItem></LinkContainer>
         })};
 
+      <HeadItem>
+          <SearchArea />
+        </HeadItem>
       <MainButtonContainer>
+
       <HeadItem className="head-buttons">
           <HeadButtonEnter onClick={handleLoginClick}>
             Entrar 
