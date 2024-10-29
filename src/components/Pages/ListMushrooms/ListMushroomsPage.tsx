@@ -3,13 +3,12 @@ import FungiService from "../../../services/FungiService";
 import RecipeReviewCard from "./MushroomCard";
 import INaturalistService from "../../../services/INaturalistService";
 import Pagination from "@mui/material/Pagination";
-import SearchArea from '../../Utils/SearchArea/SearchArea';
-import {
-  Container,
-  CardGrid,
-  CardItem,
-  PaginationContainer,
-} from "./ListMushroomsPage.styles";
+import { Container, CardGrid, CardItem, PaginationContainer } from "./ListMushroomsPage.styles";
+import styled from "styled-components";
+import comestiveis from "../../../assets/comestiveis.svg";
+import observacoes from "../../../assets/observacoes.svg";
+import riscoExtincao from "../../../assets/riscoExtincao.svg";
+import tipoBrasileira from "../../../assets/tipoBrasileiro.svg";
 
 interface ListMushroomsPageProps {
   taxonomy?: string;
@@ -17,6 +16,53 @@ interface ListMushroomsPageProps {
   bem?: number;
   habitat?: string;
 }
+
+const InfoBanner = styled.div`
+  position: relative;
+  width: 100vw;
+  left: calc(-50vw + 50%);
+  background-color: #131313;
+  color: #fff;
+  padding: 16px;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  z-index: 1;
+  transform: translateY(-18px);
+`;
+
+const InfoItem = styled.div`
+  flex: 1;
+  margin: 0 8px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  padding: 10px; 
+`;
+
+const Icon = styled.img`
+  width: 32px; 
+  height: 32px; 
+  margin-right: 32px;
+`;
+
+const InfoText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+`;
+
+const InfoTitle = styled.h3`
+  margin: 0; 
+  font-size: 1.2em;
+`;
+
+const InfoValue = styled.p`
+  margin: 6;
+  font-size: 1.2em; 
+  font-weight: bold; 
+  text-align: center; 
+`;
 
 const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
   taxonomy = "",
@@ -29,6 +75,11 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
   const [mushrooms, setMushrooms] = useState<Array<any>>([]);
   const [page, setPage] = useState<number>(1);
   const [pagesCount, setPagesCount] = useState<number>(1);
+  
+  const [edibleSpeciesCount, setEdibleSpeciesCount] = useState<number>(0);
+  const [observationsCount, setObservationsCount] = useState<number>(0);
+  const [threatenedSpeciesCount, setThreatenedSpeciesCount] = useState<number>(0);
+  const [brazilianTypeSpeciesCount, setBrazilianTypeSpeciesCount] = useState<number>(0);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -39,6 +90,8 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
     if (params.get("page")) setPage(parseInt(params.get("page")!));
 
     getFungis();
+    fetchInfoBannerData(); 
+
   }, [page]);
 
   const getFungis = async () => {
@@ -63,6 +116,20 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
     setPagesCount(result.last_page);
   };
 
+  const fetchInfoBannerData = async () => {
+    try {
+      const response = await fetch("http://localhost/api/infos/sub_menu");
+      const data = await response.json();
+
+      setEdibleSpeciesCount(data.edible_species || 0);
+      setObservationsCount(data.occurrences || 0);
+      setThreatenedSpeciesCount(data.threatened || 0);
+      setBrazilianTypeSpeciesCount(data.brasilian_type_species || 0);
+    } catch (error) {
+      console.error("Error fetching banner data:", error);
+    }
+  };
+
   const handleChange = (_: any, p: number) => {
     setPage(p);
     const params = new URLSearchParams(window.location.search);
@@ -80,7 +147,37 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
 
   return (
     <Container>
-      <SearchArea />
+      <InfoBanner>
+        <InfoItem>
+          <Icon src={comestiveis} alt="Espécies comestíveis" />
+          <InfoText>
+            <InfoTitle>Espécies Comestíveis<br />Do Brasil</InfoTitle>
+            <InfoValue>{edibleSpeciesCount}</InfoValue> 
+          </InfoText>
+        </InfoItem>
+        <InfoItem>
+          <Icon src={observacoes} alt="Observações" />
+          <InfoText>
+            <InfoTitle>Observações</InfoTitle>
+            <InfoValue>{observationsCount}</InfoValue> 
+          </InfoText>
+        </InfoItem>
+        <InfoItem>
+          <Icon src={riscoExtincao} alt="Espécies em risco de extinção" />
+          <InfoText>
+            <InfoTitle>Espécies Em<br />Risco de Extinção</InfoTitle>
+            <InfoValue>{threatenedSpeciesCount}</InfoValue>
+          </InfoText>
+        </InfoItem>
+        <InfoItem>
+          <Icon src={tipoBrasileira} alt="Espécie Tipo Brasileiras" />
+          <InfoText>
+            <InfoTitle>Espécies Tipo<br />Brasileiras</InfoTitle>
+            <InfoValue>{brazilianTypeSpeciesCount}</InfoValue> 
+          </InfoText>
+        </InfoItem>
+      </InfoBanner>
+
       {mushrooms != undefined ? (
         <>
           <CardGrid>
@@ -110,8 +207,8 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
           </PaginationContainer>
         </>
       ) : (
-          <></>
-        )}
+        <></>
+      )}
     </Container>
   );
 };
