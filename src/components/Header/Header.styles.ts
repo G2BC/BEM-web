@@ -82,10 +82,10 @@ export const HeadLinkHover = styled(HeadLink)`
 `;
 
 export const HeadButtonEnter = styled.button({
-  background: '#ff5e14',
-  borderRadius: 3,
-  padding: '13px 20px',
-  border: '1px solid #ff5e14',
+  background: '#c93e1e',
+  borderRadius: 10,
+  padding: '10px 20px',
+  border: '1px solid #c93e1e',
   color: '#fff',
   fontSize: '16px',
   fontWeight: 'bold',
@@ -99,10 +99,10 @@ export const HeadButtonEnter = styled.button({
 });
 
 export const HeadButtonRegister = styled.button({
-  background: '#ff5e14',
-  borderRadius: 3,
-  padding: '13px 20px',
-  border: '1px solid #ff5e14',
+  background: 'rgba(19, 19,19, 1.0)',
+  borderRadius: 10,
+  padding: '10px 20px',
+  border: '2px solid #ff5e14',
   color: '#fff',
   fontSize: '16px',
   fontWeight: 'bold',
@@ -115,14 +115,15 @@ export const HeadButtonRegister = styled.button({
   }
 });
 
-export const NormalHeadText = styled.a({
-  color: '#fff',
-  textDecoration: 'none',
+export const NormalHeadText = styled.a`
+  font-size: 22px; /* Altere o valor conforme necessário */
+  color: #fff;
+  text-decoration: none;
 
-  '&:hover': {
-    color: '#ff5e14',
+  &:hover {
+    color: '#ff5e14';
   }
-});
+`;
 
 export const HamburgerMenu = styled.div`
   display: none;
