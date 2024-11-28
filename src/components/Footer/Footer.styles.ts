@@ -122,9 +122,9 @@ export const VerticalLine = styled.div`
 `;
 
 export const FooterButton = styled.button({
-  background: '#ff5e14',
+  background: '#c93e1e',
   padding: '13px 20px',
-  border: '1px solid #ff5e14',
+  border: '1px solid #c93e1e',
   borderRadius: 15,
   color: '#fff',
   fontSize: '16px',

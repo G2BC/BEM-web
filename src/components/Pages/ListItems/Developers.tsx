@@ -7,6 +7,9 @@ import dev3 from '../../../assets/Developer3.png';
 import dev4 from '../../../assets/Developer4.png';
 import dev5 from '../../../assets/Developer5.png';
 import dev6 from '../../../assets/Developer6.png';
+import dev7 from '../../../assets/Developer7.png';
+import dev8 from '../../../assets/Developer8.png';
+import dev9 from '../../../assets/Developer9.png';
 
 
 const developers = [
@@ -16,6 +19,9 @@ const developers = [
   { name: 'Rafael Coutinho', role: 'Frontend', image: dev4 },
   { name: 'Iuri Brandão', role: 'Frontend', image: dev5 },
   { name: 'Ítalo Cruz', role: 'UI/UX Designer', image: dev6 },
+  { name: 'Adeonita Souza', role: 'Backend', image: dev7 },
+  { name: 'Vitor Bitencourt', role: 'Full Stack', image: dev8 },
+  { name: 'Davi Barbosa', role: 'Full Stack', image: dev9 },
 ];
 
 const Developers: React.FC = () => {

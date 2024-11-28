@@ -5,6 +5,7 @@ export const HeaderContainer = styled.nav`
   margin: 0;
   padding: 0;
   overflow: hidden; /* Adicionado para evitar overflow */
+  height: 10%;
   width: 100%; /* Garante que o contêiner ocupe 100% da largura */
   box-sizing: border-box; /* Inclui padding e border na largura e altura do elemento */
 `;
@@ -116,7 +117,7 @@ export const HeadButtonRegister = styled.button({
 });
 
 export const NormalHeadText = styled.a`
-  font-size: 22px; /* Altere o valor conforme necessário */
+  font-size: 16px; 
   color: #fff;
   text-decoration: none;
 
