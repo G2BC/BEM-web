@@ -14,8 +14,6 @@ const HomePage: React.FC = () => {
   const [fungisHeatMap, setFungisHeatMap] =
     useState<[number, number, number][]>();
   const [fungisOccurrencesCount, setFungisOccurrencesCount] = useState<any>();
-
-  // Estado para controlar a visibilidade da imagem inicial
   const [showBackground, setShowBackground] = useState(true);
 
   useEffect(() => {
