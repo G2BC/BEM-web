@@ -165,7 +165,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
           <Icon src={riscoExtincao} alt="Espécies em Risco de Extinção" />
           <InfoText>
             <InfoTitle>Espécies Em<br />Risco de Extinção</InfoTitle>
-            <InfoValue>{threatenedSpeciesCount}</InfoValue> 
+            <InfoValue>{threatenedSpeciesCount}</InfoValue>
           </InfoText>
         </InfoItem>
         <InfoItem>
