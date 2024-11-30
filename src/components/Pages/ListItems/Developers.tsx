@@ -19,7 +19,7 @@ const developers = [
   { name: 'Rafael Coutinho', role: 'Frontend', image: dev4 },
   { name: 'Iuri Brandão', role: 'Frontend', image: dev5 },
   { name: 'Ítalo Cruz', role: 'UI/UX Designer', image: dev6 },
-  { name: 'Adeonita Souza', role: 'Backend', image: dev7 },
+  { name: 'Adeonita Sousa', role: 'Backend', image: dev7 },
   { name: 'Vitor Bitencourt', role: 'Full Stack', image: dev8 },
   { name: 'Davi Barbosa', role: 'Full Stack', image: dev9 },
 ];
