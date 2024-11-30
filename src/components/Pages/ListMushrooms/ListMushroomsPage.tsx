@@ -58,7 +58,7 @@ const InfoTitle = styled.h3`
 `;
 
 const InfoValue = styled.p`
-  margin: 5; 
+  margin: 5;
   font-size: 1em; 
   font-weight: bold; 
   text-align: center;
