@@ -120,7 +120,6 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
     try {
       const response = await fetch("http://localhost/api/infos/sub_menu");
       const data = await response.json();
-      
       setEdibleSpeciesCount(data.edible_species || 0);
       setObservationsCount(data.occurrences || 0);
       setThreatenedSpeciesCount(data.threatened || 0);
