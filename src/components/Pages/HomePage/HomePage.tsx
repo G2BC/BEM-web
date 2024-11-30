@@ -62,7 +62,6 @@ const HomePage: React.FC = () => {
     return data.map(({ state, intensity }) => {
 
       let coords = stateCoordinates[state];
-      
       return [coords[0], coords[1], intensity] as [number, number, number];
     });
   };
