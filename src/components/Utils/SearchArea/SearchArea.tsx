@@ -199,7 +199,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                         '&.Mui-focused fieldset': {
                           borderColor: '#fff',
                         },
-                        svg: { color: '#fff' }, 
+                        svg: { color: '#fff' },
                         color: '#fff', 
                       },
                       label: { color: '#fff' },
