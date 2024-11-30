@@ -48,7 +48,7 @@ const Icon = styled.img`
 
 const InfoText = styled.div`
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center; 
 `;
 
