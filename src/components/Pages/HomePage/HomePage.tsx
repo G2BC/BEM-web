@@ -15,7 +15,6 @@ const HomePage: React.FC = () => {
     useState<[number, number, number][]>();
   const [fungisOccurrencesCount, setFungisOccurrencesCount] = useState<any>();
 
-  // Estado para controlar a visibilidade da imagem inicial
   const [showBackground, setShowBackground] = useState(true);
 
   useEffect(() => {
@@ -82,20 +81,20 @@ const HomePage: React.FC = () => {
             alignItems: "center",
             cursor: "pointer",
             transition: "opacity 0.5s ease",
-            opacity: showBackground ? 1 : 0, // Suaviza a transição
+            opacity: showBackground ? 1 : 0, 
           }}
-          onClick={() => setShowBackground(false)} // Esconde a imagem ao clicar
+          onClick={() => setShowBackground(false)}
         >
           <h1
             style={{
               color: "white",
               fontSize: "2rem",
               textAlign: "center",
-              backgroundColor: "rgba(0, 0, 0, 0.1)", // Fundo semitransparente para contraste
+              backgroundColor: "rgba(0, 0, 0, 0.1)",
               padding: "20px",
               borderRadius: "10px",
-              animation: "pulse 5s infinite", // Animação de destaque
-              cursor: "pointer", // Indica que é clicável
+              animation: "pulse 5s infinite",
+              cursor: "pointer", 
             }}
           >
             Seja bem-vindo ao universo dos cogumelos <br />
@@ -127,7 +126,6 @@ const HomePage: React.FC = () => {
         </div>
       )}
 
-      {/* Conteúdo principal */}
       {!showBackground && (
         <div
           id="main-content"
@@ -152,8 +150,7 @@ const HomePage: React.FC = () => {
               >
                 <BemSubtitle filter={classificationFilter} />
               </Grid>
-
-              {/* Mapa */}
+              
               <Grid
                 item
                 xs={12}
