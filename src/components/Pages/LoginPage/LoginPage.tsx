@@ -51,11 +51,11 @@ const LoginPage: React.FC = () => {
   return (
     <BackgroundImage>
       <TitleText>
-        <Typography component="h1" variant="h3" fontWeight="bold" fontSize='3rem'>
-          Seja bem vindo<br/>ao Brazilian<br/>Edible Mushrooms<br/>
+        <Typography component="h1" variant="h3" fontWeight="bold" fontSize='2rem'>
+          Seja bem-vindo ao universo dos Cogumelos Comestíveis do Brasil (Projeto BEM)
         </Typography>
-        <Typography variant="h6" mt={2} fontSize='1.5rem'>
-          Bem vindo ao nosso espaço dedicado à pesquisa de <br/>cogumelos no Brasil! Explore conosco a diversidade e<br/> a beleza dos cogumelos nativos.
+        <Typography variant="h6" mt={2} fontSize='1.2rem'>
+          Esse é nosso espaço dedicado à pesquisa de <br/>cogumelos no Brasil! Explore conosco a diversidade e<br/> a beleza dos cogumelos nativos.
         </Typography>
       </TitleText>
       <RegisterBox>
@@ -99,10 +99,6 @@ const LoginPage: React.FC = () => {
               },
             }}
           />
-                    
-          {/* <Box mb={2} display="flex" justifyContent="center">
-            <ReCAPTCHA sitekey="YOUR_RECAPTCHA_SITE_KEY" />
-          </Box> */}
           <Button
             type="submit"
             fullWidth
@@ -110,7 +106,7 @@ const LoginPage: React.FC = () => {
             sx={{ mt: 1, mb: 1, maxWidth: '300px', backgroundColor: '#c93e1e', borderRadius:'16px', textTransform: 'none','&:hover': { backgroundColor: '#C9302C' } }}
           >
             Entrar
-            </Button>
+          </Button>
           <Grid container justifyContent="center" mt={2}>
             <Typography variant="body2" color="textSecondary">
               Não possui uma conta? &nbsp;

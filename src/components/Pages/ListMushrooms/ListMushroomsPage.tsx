@@ -22,7 +22,7 @@ interface ListMushroomsPageProps {
 const InfoBanner = styled.div`
   position: relative;
   width: 100vw;
-  left: calc(-50vw + 50%);
+  left: calc(-50vw + 51%);
   background-color: #131313;
   color: #fff;
   padding: 16px;
@@ -37,9 +37,9 @@ const InfoItem = styled.div`
   flex: 1;
   margin: 0 8px;
   display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  padding: 10px; 
+  align-items: center;
+  justify-content: center;
+  padding: 8px; 
 `;
 
 const Icon = styled.img`
@@ -56,14 +56,14 @@ const InfoText = styled.div`
 
 const InfoTitle = styled.h3`
   margin: 0; 
-  font-size: 1.2em;
+  font-size: 1em;
 `;
 
 const InfoValue = styled.p`
-  margin: 6;
-  font-size: 1.2em; 
+  margin: 5;
+  font-size: 1em; 
   font-weight: bold; 
-  text-align: center; 
+  text-align: center;
 `;
 
 const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
@@ -122,7 +122,6 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
   const fetchInfoBannerData = async () => {
     try {
       const data = await infosService.getSubMenu();
-      // const data = await response.json();
 
       setEdibleSpeciesCount(data?.edible_species || 0);
       setObservationsCount(data?.occurrences || 0);
@@ -152,7 +151,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
     <Container>
       <InfoBanner>
         <InfoItem>
-          <Icon src={comestiveis} alt="Espécies comestíveis" />
+          <Icon src={comestiveis} alt="Espécies Comestíveis" />
           <InfoText>
             <InfoTitle>Espécies Comestíveis<br />Do Brasil</InfoTitle>
             <InfoValue>{edibleSpeciesCount}</InfoValue>
@@ -166,7 +165,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
           </InfoText>
         </InfoItem>
         <InfoItem>
-          <Icon src={riscoExtincao} alt="Espécies em risco de extinção" />
+          <Icon src={riscoExtincao} alt="Espécies em Risco de Extinção" />
           <InfoText>
             <InfoTitle>Espécies Em<br />Risco de Extinção</InfoTitle>
             <InfoValue>{threatenedSpeciesCount}</InfoValue>

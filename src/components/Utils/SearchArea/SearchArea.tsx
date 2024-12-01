@@ -134,7 +134,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
       <Dialog open={isDialogOpen} onClose={handleCloseDialog} maxWidth="md" fullWidth PaperProps={{
         sx: {
         borderRadius: 5,
-        backgroundColor: '#000', 
+        backgroundColor: '#000',
     },
   }}>
         <DialogTitle sx={{ backgroundColor: '#000', color: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -161,7 +161,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                   sx={{
                     '.MuiOutlinedInput-root': {
                       fieldset: {
-                        borderColor: '#fff', 
+                        borderColor: '#fff',
                       },
                       '&:hover fieldset': {
                         borderColor: '#fff',
@@ -202,7 +202,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                         svg: { color: '#fff' },
                         color: '#fff', 
                       },
-                      label: { color: '#fff' }, 
+                      label: { color: '#fff' },
                     }}
                   >
                     <MenuItem value="">
@@ -237,9 +237,9 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                           borderColor: '#fff',
                         },
                         svg: { color: '#fff' }, 
-                        color: '#fff', 
+                        color: '#fff',
                       },
-                      label: { color: '#fff' }, 
+                      label: { color: '#fff' },
                     }}
                   >
                     <MenuItem value="">
@@ -266,7 +266,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                     sx={{
                       '.MuiOutlinedInput-root': {
                         fieldset: {
-                          borderColor: '#fff', 
+                          borderColor: '#fff',
                         },
                         '&:hover fieldset': {
                           borderColor: '#fff',
@@ -274,7 +274,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                         '&.Mui-focused fieldset': {
                           borderColor: '#fff',
                         },
-                        svg: { color: '#fff' }, 
+                        svg: { color: '#fff' },
                         color: '#fff', 
                       },
                       label: { color: '#fff' }, 
@@ -283,7 +283,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                     <MenuItem value="">
                       <em>Nenhum</em>
                     </MenuItem>
-                    {habitats.options.map((habitat) => ( 
+                    {habitats.options.map((habitat) => (
                       <MenuItem key={habitat.id} value={habitat.value}>
                         {habitat.value}
                       </MenuItem>

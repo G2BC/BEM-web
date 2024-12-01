@@ -5,7 +5,7 @@ export const SubtitileContainer = styled.div`
   flex-direction: column;
   background: #fff;
   border: 0px solid #ccc;
-  width: 300px;
+  width: 310px;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 10px;
@@ -19,9 +19,9 @@ export const SubtitleTitle = styled.h3`
   margin: 0;
   padding: 15px;
   text-align: center;
-  background-color: #4CAF50;
+  background-color: #131313;
   color: #fff;
-  font-size: 18px;
+  font-size: 14px;
   border-bottom: 1px solid #ccc;
 `;
 

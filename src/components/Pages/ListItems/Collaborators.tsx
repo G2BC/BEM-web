@@ -151,23 +151,6 @@ const collaborators = [
 const Collaborators: React.FC = () => {
   return (
     <Container style={{ padding: '20px', fontFamily: 'Arial, sans-serif', marginLeft: '60px' }}>
-      {/* Seção Sobre */}
-      <Typography variant="h4" style={{ textAlign: 'center', marginBottom: '20px', marginTop: '20px', fontWeight: 'bold' }}>
-        Sobre
-      </Typography>
-      <Typography variant="body1" style={{ textAlign: 'center', marginBottom: '40px' }}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </Typography>
-
-      {/* Seção Como Citar */}
-      <Typography variant="h4" style={{ textAlign: 'center', marginBottom: '20px', marginTop: '20px', fontWeight: 'bold' }}>
-        Como Citar
-      </Typography>
-      <Typography variant="body1" style={{ textAlign: 'center', marginBottom: '40px' }}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </Typography>
-
-      {/* Seção Nossos Colaboradores */}
       <Typography variant="h4" style={{ textAlign: 'center', marginBottom: '40px', marginTop: '20px', fontWeight: 'bold' }}>
         Nossos Colaboradores
       </Typography>
@@ -199,4 +182,3 @@ const Collaborators: React.FC = () => {
 };
 
 export default Collaborators;
-
