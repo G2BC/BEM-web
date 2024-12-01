@@ -60,7 +60,7 @@ const HomePage: React.FC = () => {
   ): [number, number, number][] => {
     return data.map(({ state, intensity }) => {
 
-      let coords = stateCoordinates[state];
+      let coords = stateCoordinates[state]; 
       return [coords[0], coords[1], intensity] as [number, number, number];
     });
   };
@@ -83,14 +83,14 @@ const HomePage: React.FC = () => {
             transition: "opacity 0.5s ease",
             opacity: showBackground ? 1 : 0, 
           }}
-          onClick={() => setShowBackground(false)}
+          onClick={() => setShowBackground(false)} 
         >
           <h1
             style={{
               color: "white",
               fontSize: "2rem",
               textAlign: "center",
-              backgroundColor: "rgba(0, 0, 0, 0.1)",
+              backgroundColor: "rgba(0, 0, 0, 0.1)", 
               padding: "20px",
               borderRadius: "10px",
               animation: "pulse 5s infinite",
@@ -150,7 +150,7 @@ const HomePage: React.FC = () => {
               >
                 <BemSubtitle filter={classificationFilter} />
               </Grid>
-              
+
               <Grid
                 item
                 xs={12}
