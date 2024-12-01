@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Typography, Grid, Box } from '@mui/material';
 
 import mainInstitutionImage from '../../../assets/MainInstitution.png'; 
+import institution1Image from '../../../assets/Institution1.png';
 import institution2Image from '../../../assets/Institution2.png';
 import institution3Image from '../../../assets/Institution3.png';
 import institution4Image from '../../../assets/Institution4.png';
@@ -12,8 +13,10 @@ import institution8Image from '../../../assets/Institution8.png';
 import institution9Image from '../../../assets/Institution9.png';
 import institution10Image from '../../../assets/Institution10.png';
 
+
 const institutions = [
   { image: mainInstitutionImage, main: true },
+  { image: institution1Image },
   { image: institution2Image },
   { image: institution3Image },
   { image: institution4Image },

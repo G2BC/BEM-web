@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { HeaderContainer, LogoImage, HeadList, HeadItem, HeadButtonEnter, HeadButtonRegister, NormalHeadText, HamburgerMenu, MobileMenu, LinkContainer, MainButtonContainer } from './Header.styles';
-import Logo from '../../assets/Logo.svg';
+import Logo from '../../assets/cogumelo.svg';
 import SearchArea from '../Utils/SearchArea/SearchArea';
 import { useNavigate } from "react-router-dom";
 
 const headerLinks = [
   { text: 'Início', link: '/' },
   { text: 'Explorar', link: '/list?taxonomy=%&state=&bem=&habitat=' },
-  { text: 'Sobre', link:'/collaborators' },
+  { text: 'Sobre', link:'/about' },
   { text: 'Instruções', link: '/' },
   { text: 'Contato', link: '/' },
 ];
@@ -47,7 +47,7 @@ const Header: React.FC = () => {
 
         {headerLinks.map((headerLink) => {
           return <LinkContainer><HeadItem><NormalHeadText href={headerLink.link}>{headerLink.text}</NormalHeadText></HeadItem></LinkContainer>
-        })};
+        })}
 
       <HeadItem>
           <SearchArea />

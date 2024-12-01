@@ -9,7 +9,7 @@ const BackgroundImage = styled('div')({
   backgroundImage: `url(${background})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  minHeight: '100vh', // Ajustado para usar minHeight em vez de height
+  minHeight: '100vh',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -28,7 +28,7 @@ const RegisterBox = styled(Paper)(({ theme }) => ({
   margin: theme.spacing(2),
   boxSizing: 'border-box',
   [theme.breakpoints.down('sm')]: {
-    padding: theme.spacing(4), // Reduzir padding em telas menores
+    padding: theme.spacing(4),
   },
 }));
 
@@ -36,10 +36,10 @@ const TitleText = styled(Box)(({ theme }) => ({
   color: 'white',
   maxWidth: '50%',
   [theme.breakpoints.down('md')]: {
-    display: 'none', // Ocultar o texto de boas-vindas em telas menores
+    display: 'none',
   },
   marginBottom: theme.spacing(2),
-  textAlign: 'left', // Justificar o texto
+  textAlign: 'left',
 }));
 
 const LogoBox = styled(Box)({
@@ -52,11 +52,11 @@ const RegisterPage: React.FC = () => {
   return (
     <BackgroundImage>
       <TitleText>
-        <Typography component="h1" variant="h3" fontWeight="bold" fontSize='3rem'>
+        <Typography component="h1" variant="h3" fontWeight="bold" fontSize='2rem'>
           Seja bem-vindo ao universo dos Cogumelos Comestíveis do Brasil (Projeto BEM)
         </Typography>
-        <Typography variant="h6" mt={2} fontSize='1.5rem'>
-          Explore conosco a diversidade de sabores dos cogumelos comestíveis do Brasil!
+        <Typography variant="h6" mt={2} fontSize='1.2rem'>
+          Bem vindo ao nosso espaço dedicado à pesquisa de <br/>cogumelos no Brasil! Explore conosco a diversidade e<br/> a beleza dos cogumelos nativos.
         </Typography>
       </TitleText>
       <RegisterBox>
@@ -143,16 +143,13 @@ const RegisterPage: React.FC = () => {
                 borderRadius: '16px',
               },
             }}
-          />
-          {/* <Box mb={2} display="flex" justifyContent="center">
-            <ReCAPTCHA sitekey="YOUR_RECAPTCHA_SITE_KEY" />
-          </Box> */}
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 1, mb: 1, maxWidth: '300px', backgroundColor: '#c93e1e', borderRadius:'16px', '&:hover': { backgroundColor: '#C9302C' } }}
-          >
+
+          /><Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 1, mb: 1, maxWidth: '300px', backgroundColor: '#c93e1e', borderRadius:'16px', '&:hover': { backgroundColor: '#C9302C' } }}
+        >
             Cadastre-se
           </Button>
           <Grid container justifyContent="center" mt={2}>
