@@ -2,10 +2,9 @@ import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import observationImage from "../../../assets/observationButton.svg";
-import extinctionImage from "../../../assets/extinctionButton.svg";
-import brazilImage from "../../../assets/brazil.svg";
-import vu from "../../../assets/vu.svg";
-import ts from "../../../assets/ts.svg";
+import defaultImage from "../../../assets/defaultImage.png";
+import {getBrazilImage, getBrazilTitle} from "../../../Utils/brazilianType";
+import {getExtinctionImage, getExtinctionTitle} from "../../../Utils/extinctionFlag";
 
 import {
   CardContainer,
@@ -35,58 +34,62 @@ interface RecipeReviewCardProps {
   redListClassification: number;
 }
 
+const getImageSrc = (imageUrl: string | null | undefined): string => {
+  return imageUrl ? imageUrl : defaultImage;
+};
+
 const RecipeReviewCard: React.FC<RecipeReviewCardProps> = ({
   scientificName,
   popularName,
   imageUrl,
   brazilianType,
+  redListClassification,
   onTap,
   occurrencesCount,
 }: RecipeReviewCardProps) => {
+  const imageSrc = getImageSrc(imageUrl);
   return (
     <CardContainer onClick={onTap} style={{ cursor: "pointer" }}>
-      <CardImage src={imageUrl} alt={"Mushroom"} />
+      <CardImage src={imageSrc} alt={"Mushroom"} />
       <CardHeader>
         <ScientificName>{scientificName}</ScientificName>
-        <PopularName>{popularName}</PopularName>
+        <PopularName>{popularName ? popularName : <br />}</PopularName>
       </CardHeader>
+
       <CardActionContainer>
         <IconButtonWrapper>
           <CustomIconButton aria-label="Observações">
             <img src={observationImage} alt={"Observation Image"} />
-            <ObservationCount>{occurrencesCount} Observações</ObservationCount>
+            <ObservationCount>Observações:{occurrencesCount}</ObservationCount>
           </CustomIconButton>
         </IconButtonWrapper>
 
         <Tooltip
-          title="Este ícone representa que o cogumelo é do tipo brasileiro."
+          title={getBrazilTitle(brazilianType)}
           arrow
         >
           <BrazilButtonWrapper>
             <CustomIconButton aria-label="Brazil">
-              <BrazilButtonIcon src={brazilImage} alt={"Brazil Image"} />
-              <BrazilButtonOverlay style={{ backgroundImage: `url(${ts})` }} />
+              {getBrazilImage(brazilianType) && (
+                <BrazilButtonIcon src={getBrazilImage(brazilianType)} alt="Brazil Image" />
+              )}
             </CustomIconButton>
           </BrazilButtonWrapper>
+
         </Tooltip>
 
         <Tooltip
-          title="Este ícone representa a classificação de extinção do cogumelo."
+          title={getExtinctionTitle(redListClassification)}
           arrow
         >
           <ExtinctionButtonWrapper>
             <CustomIconButton aria-label="Extinção">
-              <ExtinctionButtonIcon
-                src={extinctionImage}
-                alt={"Extinction Image"}
-              />
-              <ExtinctionButtonOverlay
-                style={{ backgroundImage: `url(${vu})` }}
-              />
+              <ExtinctionButtonIcon src={getExtinctionImage(redListClassification)} alt={"Extinction Image"} />
             </CustomIconButton>
           </ExtinctionButtonWrapper>
         </Tooltip>
       </CardActionContainer>
+
     </CardContainer>
   );
 };
