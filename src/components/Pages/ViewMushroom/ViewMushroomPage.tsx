@@ -3,6 +3,10 @@ import VU from "../../../assets/Group 133.png";
 import TabsComponent from "../../Utils/Tabs/TabsComponent";
 import CarouselComponent from "./CarouselComponent";
 import TabsViewMushroom from "./TabsViewMushroom";
+import { getBrazilImage, getBrazilTitle } from "../../../Utils/brazilianType";
+import { getExtinctionImage, getExtinctionTitle } from "../../../Utils/extinctionFlag";
+import Tooltip from "@mui/material/Tooltip"; // Importe o Tooltip aqui
+
 import {
   SpeciesContainer,
   Header,
@@ -19,10 +23,10 @@ import MushroomProps from "../../../Interfaces/mushroom";
 import INaturalistService from "../../../services/INaturalistService";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import L from 'leaflet';
-import iconUrl from 'leaflet/dist/images/marker-icon.png';
-import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
-import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
+import L from "leaflet";
+import iconUrl from "leaflet/dist/images/marker-icon.png";
+import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
+import shadowUrl from "leaflet/dist/images/marker-shadow.png";
 
 // Defina o caminho dos ícones manualmente
 L.Icon.Default.mergeOptions({
@@ -30,6 +34,7 @@ L.Icon.Default.mergeOptions({
   iconUrl: iconUrl,
   shadowUrl: shadowUrl,
 });
+
 interface ViewMushroomPageProps {
   uuid?: string;
 }
@@ -45,6 +50,9 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
     Array<any>
   >([]);
   const [coordinates, setCoordinates] = useState<Array<any>>([]);
+  const [carouselPhotos, setCarouselPhotos] = useState<
+    Array<{ src: string; alt: string }>
+  >([]);
 
   useEffect(() => {
     const url = window.location.href;
@@ -56,25 +64,30 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
 
   const getMushroom = async () => {
     if (!uuid) return;
-    const result = await fungiService.getByUuid(uuid);
 
-    if (!result || !result.inaturalist_taxa) return;
-    let url = await iNaturalistService.getMushroomsPicture(
-      result.inaturalist_taxa
-    );
-    result.imageUrl = url;
+    try {
+      const result = await fungiService.getByUuid(uuid);
+      if (!result) return;
 
-    setMushroom(result);
-    if (result.occurrences && result.occurrences.length > 0) {
-      let coordinates = result.occurrences.filter((occurrence) => occurrence.latitude && occurrence.longitude).map((occurrence) => {
+      setMushroom(result);
 
-        return [occurrence.latitude, occurrence.longitude]
-      });
-      setINaturalistOccurrences(result.occurrences.filter((occurrence) => occurrence.inaturalist_taxa));
-      setSpeciesLinkOccurrences(result.occurrences.filter((occurrence) => occurrence.specieslink_id));
-      setCoordinates(coordinates);
+      // Obtém as fotos do iNaturalist
+      if (result.inaturalist_taxa) {
+        const photos = await iNaturalistService.getAllMushroomsPictures(
+          result.inaturalist_taxa
+        );
+
+        if (photos.length > 0) {
+          const formattedPhotos = photos.map((url) => ({
+            src: url,
+            alt: result.scientific_name || "Mushroom Image",
+          }));
+          setCarouselPhotos(formattedPhotos);
+        }
+      }
+    } catch (error) {
+      console.error("Erro ao buscar dados do cogumelo:", error);
     }
-
   };
 
   return (
@@ -84,25 +97,41 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
           <Header>
             <div style={{ display: "flex", alignItems: "center" }}>
               <ScientificName>{mushroom.scientific_name}</ScientificName>
-              <StatusBadge src={VU} alt="VU" />
+              {(mushroom.brazilian_type ||
+                mushroom.brazilian_type_synonym) && (
+                <Tooltip title={getBrazilTitle(mushroom.brazilian_type) ?? getBrazilTitle(mushroom.brazilian_type_synonym) ?? "Informação não disponível"} arrow>
+                <StatusBadge
+                  src={
+                    getBrazilImage(mushroom.brazilian_type) ||
+                    getBrazilImage(mushroom.brazilian_type_synonym)
+                  }
+                  alt="Brazil Flag"
+                />
+              </Tooltip>
+              )}
+              {/* Envolvendo o StatusBadge com o Tooltip para mostrar o título de extinção */}
+              <Tooltip title={getExtinctionTitle(mushroom.threatened)} arrow>
+                <StatusBadge
+                  src={getExtinctionImage(mushroom.threatened)}
+                  alt="VU"
+                />
+              </Tooltip>
             </div>
-            <Name>
-              {mushroom.popular_name}
-            </Name>
+            <Name>{mushroom.popular_name}</Name>
           </Header>
+
           <ContentSection>
             <CarouselContainer>
-              <CarouselComponent
-                photos={[
-                  { src: mushroom.imageUrl!, alt: mushroom.scientific_name! },
-                ]}
-              />
+              {/* Passa as imagens para o componente de carrossel */}
+              <CarouselComponent photos={carouselPhotos} />
             </CarouselContainer>
             <TabsContainer>
               <TabsComponent mushroom={mushroom} />
             </TabsContainer>
           </ContentSection>
-          <MapSection>
+
+          {/* Comentando a seção do mapa */}
+          {/* <MapSection>
             <MapContainer
               center={coordinates[0] ?? [-14.235, -51.9253]}
               zoom={4}
@@ -114,25 +143,22 @@ const ViewMushroomPage: React.FC<ViewMushroomPageProps> = ({ uuid = "" }) => {
               />
               {coordinates && coordinates.length > 0 ? (
                 coordinates.map((positions, index) => (
-                  <Marker position={positions} key={index}>
-                    {/* <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup> */}
-                  </Marker>
+                  <Marker position={positions} key={index}></Marker>
                 ))
-              ) :
-                (<></>)}
+              ) : (
+                <></>
+              )}
             </MapContainer>
-          </MapSection>
+          </MapSection> */}
+
           <TabsViewMushroom
             mushroom={mushroom}
             iNaturalistOccurrences={iNaturalistOccurrences}
             speciesLinkOccurrences={speciesLinkOccurrences}
           />
         </>
-      )
-      }
-    </SpeciesContainer >
+      )}
+    </SpeciesContainer>
   );
 };
 

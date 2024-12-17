@@ -17,6 +17,7 @@ interface ListMushroomsPageProps {
   habitat?: string;
 }
 
+// Componente de banner informativo
 const InfoBanner = styled.div`
   position: relative;
   width: 100vw;
@@ -48,7 +49,7 @@ const Icon = styled.img`
 
 const InfoText = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   align-items: center; 
 `;
 
@@ -58,7 +59,7 @@ const InfoTitle = styled.h3`
 `;
 
 const InfoValue = styled.p`
-  margin: 5;
+  margin: 5; 
   font-size: 1em; 
   font-weight: bold; 
   text-align: center;
@@ -91,7 +92,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
 
     getFungis();
     fetchInfoBannerData(); 
-
+    
   }, [page]);
 
   const getFungis = async () => {
@@ -165,7 +166,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
           <Icon src={riscoExtincao} alt="Espécies em Risco de Extinção" />
           <InfoText>
             <InfoTitle>Espécies Em<br />Risco de Extinção</InfoTitle>
-            <InfoValue>{threatenedSpeciesCount}</InfoValue>
+            <InfoValue>{threatenedSpeciesCount}</InfoValue> 
           </InfoText>
         </InfoItem>
         <InfoItem>
