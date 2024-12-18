@@ -92,7 +92,6 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
 
     getFungis();
     fetchInfoBannerData(); 
-    
   }, [page]);
 
   const getFungis = async () => {
