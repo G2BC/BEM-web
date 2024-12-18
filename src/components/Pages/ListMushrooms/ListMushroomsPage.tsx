@@ -91,7 +91,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
     if (params.get("page")) setPage(parseInt(params.get("page")!));
 
     getFungis();
-    fetchInfoBannerData();
+    fetchInfoBannerData(); 
     
   }, [page]);
 
