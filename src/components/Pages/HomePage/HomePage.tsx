@@ -150,7 +150,6 @@ const HomePage: React.FC = () => {
               >
                 <BemSubtitle filter={classificationFilter} />
               </Grid>
-
               <Grid
                 item
                 xs={12}
