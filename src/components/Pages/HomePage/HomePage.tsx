@@ -81,9 +81,9 @@ const HomePage: React.FC = () => {
             alignItems: "center",
             cursor: "pointer",
             transition: "opacity 0.5s ease",
-            opacity: showBackground ? 1 : 0, 
+            opacity: showBackground ? 1 : 0,
           }}
-          onClick={() => setShowBackground(false)} 
+          onClick={() => setShowBackground(false)}
         >
           <h1
             style={{
@@ -93,7 +93,7 @@ const HomePage: React.FC = () => {
               backgroundColor: "rgba(0, 0, 0, 0.1)", 
               padding: "20px",
               borderRadius: "10px",
-              animation: "pulse 5s infinite",
+              animation: "pulse 5s infinite", 
               cursor: "pointer", 
             }}
           >

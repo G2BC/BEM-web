@@ -13,10 +13,9 @@ import institution8Image from '../../../assets/Institution8.png';
 import institution9Image from '../../../assets/Institution9.png';
 import institution10Image from '../../../assets/Institution10.png';
 
-
 const institutions = [
   { image: mainInstitutionImage, main: true },
-  { image: institution1Image },
+  { image: institution1Image, main: true },
   { image: institution2Image },
   { image: institution3Image },
   { image: institution4Image },
@@ -35,25 +34,41 @@ const Institutions: React.FC = () => {
         Instituições
       </Typography>
       <Grid container spacing={4} justifyContent="center">
-        <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-          <Box 
-            component="img" 
-            src={institutions[0].image} 
-            alt="Main Institution" 
-            sx={{ 
-              width: '200px', 
-              height: '200px', 
-              objectFit: 'contain'
-            }} 
-          />
-        </Grid>
+        {/* Main and Institution 1 Images Side by Side */}
         <Grid container item xs={12} spacing={4} justifyContent="center">
-          {institutions.slice(1, 5).map((inst, index) => (
+          <Grid item xs={6} style={{ display: 'flex', justifyContent: 'center' }}>
+            <Box 
+              component="img" 
+              src={institutions[0].image} 
+              alt="Main Institution" 
+              sx={{ 
+                width: '200px', 
+                height: '200px', 
+                objectFit: 'contain'
+              }} 
+            />
+          </Grid>
+          <Grid item xs={6} style={{ display: 'flex', justifyContent: 'center' }}>
+            <Box 
+              component="img" 
+              src={institutions[1].image} 
+              alt="Institution 1" 
+              sx={{ 
+                width: '200px', 
+                height: '200px', 
+                objectFit: 'contain'
+              }} 
+            />
+          </Grid>
+        </Grid>
+        {/* Remaining Institutions */}
+        <Grid container item xs={12} spacing={4} justifyContent="center">
+          {institutions.slice(2, 6).map((inst, index) => (
             <Grid item xs={6} sm={3} key={index} style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
               <Box 
                 component="img" 
                 src={inst.image} 
-                alt={`Institution ${index + 1}`} 
+                alt={`Institution ${index + 2}`} 
                 sx={{ 
                   width: '150px', 
                   height: '150px', 
@@ -64,12 +79,12 @@ const Institutions: React.FC = () => {
           ))}
         </Grid>
         <Grid container item xs={12} spacing={4} justifyContent="center">
-          {institutions.slice(5).map((inst, index) => (
+          {institutions.slice(6).map((inst, index) => (
             <Grid item xs={6} sm={2.4} key={index} style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
               <Box 
                 component="img" 
                 src={inst.image} 
-                alt={`Institution ${index + 5 + 1}`} 
+                alt={`Institution ${index + 6 + 1}`} 
                 sx={{ 
                   width: '150px', 
                   height: '150px', 

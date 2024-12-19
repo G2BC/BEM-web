@@ -9,8 +9,6 @@ import comestiveis from "../../../assets/comestiveis.svg";
 import observacoes from "../../../assets/observacoes.svg";
 import riscoExtincao from "../../../assets/riscoExtincao.svg";
 import tipoBrasileira from "../../../assets/tipoBrasileiro.svg";
-import InfosService from "../../../services/InfosService";
-
 
 interface ListMushroomsPageProps {
   taxonomy?: string;
@@ -19,6 +17,7 @@ interface ListMushroomsPageProps {
   habitat?: string;
 }
 
+// Componente de banner informativo
 const InfoBanner = styled.div`
   position: relative;
   width: 100vw;
@@ -50,7 +49,7 @@ const Icon = styled.img`
 
 const InfoText = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   align-items: center; 
 `;
 
@@ -60,7 +59,7 @@ const InfoTitle = styled.h3`
 `;
 
 const InfoValue = styled.p`
-  margin: 5;
+  margin: 5; 
   font-size: 1em; 
   font-weight: bold; 
   text-align: center;
@@ -74,7 +73,6 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
 }) => {
   const fungiService: FungiService = new FungiService();
   const iNaturalistService: INaturalistService = new INaturalistService();
-  const infosService: InfosService = new InfosService();
   const [mushrooms, setMushrooms] = useState<Array<any>>([]);
   const [page, setPage] = useState<number>(1);
   const [pagesCount, setPagesCount] = useState<number>(1);
@@ -93,8 +91,8 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
     if (params.get("page")) setPage(parseInt(params.get("page")!));
 
     getFungis();
-    fetchInfoBannerData();
-
+    fetchInfoBannerData(); 
+    
   }, [page]);
 
   const getFungis = async () => {
@@ -121,12 +119,12 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
 
   const fetchInfoBannerData = async () => {
     try {
-      const data = await infosService.getSubMenu();
-
-      setEdibleSpeciesCount(data?.edible_species || 0);
-      setObservationsCount(data?.occurrences || 0);
-      setThreatenedSpeciesCount(data?.threatened || 0);
-      setBrazilianTypeSpeciesCount(data?.brasilian_type_species || 0);
+      const response = await fetch("http://localhost/api/infos/sub_menu");
+      const data = await response.json();
+      setEdibleSpeciesCount(data.edible_species || 0);
+      setObservationsCount(data.occurrences || 0);
+      setThreatenedSpeciesCount(data.threatened || 0);
+      setBrazilianTypeSpeciesCount(data.brasilian_type_species || 0);
     } catch (error) {
       console.error("Error fetching banner data:", error);
     }
@@ -154,7 +152,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
           <Icon src={comestiveis} alt="Espécies Comestíveis" />
           <InfoText>
             <InfoTitle>Espécies Comestíveis<br />Do Brasil</InfoTitle>
-            <InfoValue>{edibleSpeciesCount}</InfoValue>
+            <InfoValue>{edibleSpeciesCount}</InfoValue> 
           </InfoText>
         </InfoItem>
         <InfoItem>
@@ -168,14 +166,14 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
           <Icon src={riscoExtincao} alt="Espécies em Risco de Extinção" />
           <InfoText>
             <InfoTitle>Espécies Em<br />Risco de Extinção</InfoTitle>
-            <InfoValue>{threatenedSpeciesCount}</InfoValue>
+            <InfoValue>{threatenedSpeciesCount}</InfoValue> 
           </InfoText>
         </InfoItem>
         <InfoItem>
           <Icon src={tipoBrasileira} alt="Espécie Tipo Brasileiras" />
           <InfoText>
             <InfoTitle>Espécies Tipo<br />Brasileiras</InfoTitle>
-            <InfoValue>{brazilianTypeSpeciesCount}</InfoValue>
+            <InfoValue>{brazilianTypeSpeciesCount}</InfoValue> 
           </InfoText>
         </InfoItem>
       </InfoBanner>
