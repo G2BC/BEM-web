@@ -22,19 +22,25 @@ export default class INaturalistService {
     }
   }
 
-  public async getAllMushroomsPictures(taxonId: number): Promise<string[]> {
-    try {
-      const response = await axios.get(`${this.basePath}/taxa/${taxonId}`);
-      const photos = response.data.results[0]?.taxon_photos || [];
+  public async getAllMushroomsPictures(
+    taxonId: number
+  ): Promise<Array<any> | null> {
+    const url = `${this.basePath}/observations`;
+    const params = {
+      taxon_id: taxonId,
+      photos: "true",
+    };
 
-      // Extrai as URLs das fotos
-      return photos.map((photo: any) => photo.photo.medium_url || photo.photo.url);
+    try {
+      const response = await axios.get(url, { params });
+      if (!response.data.results) return null;
+      const observations = response.data.results;
+      return observations.map((obs: any) => obs.taxon.default_photo.medium_url);
     } catch (error) {
-      console.error("Erro ao buscar imagens do iNaturalist:", error);
-      return [];
+      console.error(`Erro: ${error}`);
+      return null;
     }
   }
-
 
   public async getMushroomOccurrences(taxonId: number): Promise<Array<any>> {
     const url = `${this.basePath}/observations`;
