@@ -14,11 +14,13 @@ export default interface MushroomProps {
   specie: string | null;
   scientific_name: string | null;
   popular_name: string | null;
-  threatened: number | null;
+  threatened: number;
   description: string | null;
   created_at: string | null;
   updated_at: string | null;
   deleted_at: string | null;
   imageUrl: string | null;
   occurrences: Array<Occurrence> | null;
+  brazilian_type: string | null;
+  brazilian_type_synonym:string | null,
 }
