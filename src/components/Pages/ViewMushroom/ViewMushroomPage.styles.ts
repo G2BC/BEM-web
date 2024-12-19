@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import IconButton from "@mui/material/IconButton";
 
 export const SpeciesContainer = styled.div`
   display: flex;
@@ -32,7 +31,7 @@ export const Name = styled.h2`
 
 export const StatusBadge = styled.img`
   margin-left: 8px;
-  width: 35px;
+  width: 80px;
   height: 35px;
 `;
 
@@ -56,14 +55,3 @@ export const CarouselContainer = styled.div`
   width: 40%;
   margin: 16px 16px 16px 0;
 `;
-
-export const CustomIconButton = styled(IconButton)`
-  padding: 5px 10px;
-  &:hover {
-    background-color: transparent;
-  }
-  &:focus-visible {
-    background-color: transparent;
-  }
-`;
-
