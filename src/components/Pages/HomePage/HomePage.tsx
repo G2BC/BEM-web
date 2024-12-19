@@ -83,7 +83,7 @@ const HomePage: React.FC = () => {
             transition: "opacity 0.5s ease",
             opacity: showBackground ? 1 : 0,
           }}
-          onClick={() => setShowBackground(false)}
+          onClick={() => setShowBackground(false)} 
         >
           <h1
             style={{
