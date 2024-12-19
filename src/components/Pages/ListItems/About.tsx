@@ -164,7 +164,7 @@ const Collaborators: React.FC = () => {
       </Typography>
       <Typography variant="body1" style={{ textAlign: 'justify', marginBottom: '40px' }}>
         Drewinski, M.P., Corrêa-Santos, M.P., Lima, V.X. et al. Over 400 food resources from Brazil:
-        evidence-based records of wild edible mushrooms. IMA Fungus 15, 40 (2024).{' '}
+        evidence-based records of wild edible mushrooms. <i>IMA Fungus</i> 15, 40 (2024).{' '}
         <a
           href="https://doi.org/10.1186/s43008-024-00171-8"
           target="_blank"
