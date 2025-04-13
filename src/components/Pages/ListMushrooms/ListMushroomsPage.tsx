@@ -31,6 +31,9 @@ const InfoBanner = styled.div`
   text-align: center;
   z-index: 1;
   transform: translateY(-18px);
+  @media (max-width: 768px) {
+    display: grid;
+  }
 `;
 
 const InfoItem = styled.div`
@@ -78,7 +81,7 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
   const [mushrooms, setMushrooms] = useState<Array<any>>([]);
   const [page, setPage] = useState<number>(1);
   const [pagesCount, setPagesCount] = useState<number>(1);
-  
+
   const [edibleSpeciesCount, setEdibleSpeciesCount] = useState<number>(0);
   const [observationsCount, setObservationsCount] = useState<number>(0);
   const [threatenedSpeciesCount, setThreatenedSpeciesCount] = useState<number>(0);
@@ -209,8 +212,8 @@ const ListMushroomsPage: React.FC<ListMushroomsPageProps> = ({
           </PaginationContainer>
         </>
       ) : (
-        <></>
-      )}
+          <></>
+        )}
     </Container>
   );
 };
