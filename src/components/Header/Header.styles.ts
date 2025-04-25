@@ -122,7 +122,7 @@ export const HeadButtonRegister = styled.button({
 });
 
 export const NormalHeadText = styled.a`
-  font-size: 16px; /* Altere o valor conforme necessário */
+  font-size: 16px; 
   color: #fff;
   text-decoration: none;
 

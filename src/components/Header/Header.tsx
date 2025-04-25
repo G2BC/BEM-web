@@ -24,7 +24,7 @@ const Header: React.FC = () => {
   };
   const handleRegisterClick = () => {
   navigate("/register");  
-  };  
+  };
 
   return (
     <HeaderContainer>

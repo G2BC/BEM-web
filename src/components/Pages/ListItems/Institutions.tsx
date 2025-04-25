@@ -13,9 +13,10 @@ import institution8Image from '../../../assets/Institution8.png';
 import institution9Image from '../../../assets/Institution9.png';
 import institution10Image from '../../../assets/Institution10.png';
 
+
 const institutions = [
   { image: mainInstitutionImage, main: true },
-  { image: institution1Image, main: true },
+  { image: institution1Image },
   { image: institution2Image },
   { image: institution3Image },
   { image: institution4Image },

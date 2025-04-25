@@ -31,7 +31,7 @@ const Tab = styled(BaseTab)`
   font-weight: 600;
   background-color: transparent;
   width: 100%;
-  padding: 25px 12px;
+  padding: 10px 12px;
   margin: 6px;
   border: none;
   border-radius: 7px;
@@ -84,37 +84,32 @@ export default function TabsComponent(props: TabsComponentProps) {
       <TabsList>
         <Tab value={0}>Sobre</Tab>
         <Tab value={1}>Taxonomia</Tab>
-        <Tab value={2}> Outras Informações</Tab>
       </TabsList>
       <TabPanel value={0}>
-        <div style={{ textAlign: 'justify' }}>
         {props.mushroom.description || 'Em breve traremos uma descrição sobre este cogumelo.'}
-        </div>
+        {/* <br />
+        <br />
+        Investigações na América do Norte mostraram que existem várias espécies
+        semelhantes dentro do que foi considerado L. sulphureus, e que o
+        verdadeiro L. sulphureus pode estar restrito a regiões a leste das
+        Montanhas Rochosas. As análises filogenéticas de sequências de ITS,
+        subunidades nucleares grandes e subunidades pequenas mitocondriais de
+        rDNA de coleções norte-americanas delinearam cinco clados distintos no
+        clado central de Laetiporus. */}
       </TabPanel>
       <TabPanel value={1}>
-        <div style={{ textAlign: "left" }}>
-          <p style={{ marginLeft: "6rem" }}>↳ Reino: {props.mushroom.kingdom}</p>
-          <p style={{ marginLeft: "8rem" }}>↳ Filo: {props.mushroom.phylum}</p>
-          <p style={{ marginLeft: "10rem" }}>↳ Classe: {props.mushroom.class}</p>
-          <p style={{ marginLeft: "12rem" }}>↳ Ordem: {props.mushroom.order}</p>
-          <p style={{ marginLeft: "14rem" }}>↳ Família: {props.mushroom.family}</p>
-          <p style={{ marginLeft: "16rem" }}>↳ Gênero: <i>{props.mushroom.genus}</i></p>
-          <p style={{ marginLeft: "18rem" }}>↳ Espécie: <i>{props.mushroom.specie}</i>
+        <div>
+          <p>➔ Reino: {props.mushroom.kingdom}</p>
+          <p>➔ Filo: {props.mushroom.phylum}</p>
+          <p>➔ Classe: {props.mushroom.class}</p>
+          <p>➔ Ordem: {props.mushroom.order}</p>
+          <p>➔ Família: {props.mushroom.family}</p>
+          <p>➔ Gênero: {props.mushroom.genus}</p>
+          <p>
+            ➔Espécie: <i>{props.mushroom.specie}</i>
           </p>
         </div>
       </TabPanel>
-      <TabPanel value={2}>
-      <div style={{ textAlign: "left" }}>
-        <p style={{ marginLeft: "8rem" }}><b>Morfotipo:</b> Baseado no livro</p>
-        <p style={{ marginLeft: "8rem" }}><b>Classificação:</b> Bem {props.mushroom.bem} </p>
-        <p style={{ marginLeft: "8rem" }}><b>Ocorrências:</b> Quantidade de ocorrências </p>
-        <p style={{ marginLeft: "8rem" }}><b>Habitat:</b> Bioma</p>
-        <p style={{ marginLeft: "8rem" }}><b>Sabor:</b> Inserir...</p>
-        <p style={{ marginLeft: "8rem" }}><b>Palavras-chaves:</b> Definir as palavras chave</p>
-        <p style={{ marginLeft: "8rem" }}><b>Parecido com:</b> Definir com o que é parecido</p>
-      </div>
-      </TabPanel>
-
     </Tabs>
   );
 }

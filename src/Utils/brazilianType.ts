@@ -12,17 +12,13 @@ export const getBrazilImage = (brazilianType: string | null) => {
     }
   };
   
-  export const getBrazilTitle = (brazilianType: string | null): string => {
-    if (brazilianType === null) {
-      return "Informação não disponível"; // Ou outro valor padrão
-    }
-  
+export const getBrazilTitle = (brazilianType: string) => {
     switch (brazilianType) {
       case "T":
         return "Tipo Brasileiro";
       case "TS":
         return "Sinônimo Tipo Brasileiro";
       default:
-        return "Tipo desconhecido"; // Valor padrão para tipos desconhecidos
+        return "";
     }
   };
