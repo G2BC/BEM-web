@@ -150,23 +150,42 @@ const collaborators = [
 
 const Collaborators: React.FC = () => {
   return (
-    <Container style={{ padding: '20px', fontFamily: 'Arial, sans-serif', marginLeft: '60px' }}>
+    <Container
+      sx={{
+        padding: '20px',
+        fontFamily: 'Arial, sans-serif',
+        marginLeft: { xs: 0, md: '60px' }
+      }}
+    >
       {/* Seção Sobre */}
-      <Typography variant="h4" style={{ textAlign: 'center', marginBottom: '20px', marginTop: '20px', fontWeight: 'bold' }}>
+      <Typography
+        variant="h4"
+        sx={{
+          textAlign: 'center',
+          marginBottom: '20px',
+          marginTop: '20px',
+          fontWeight: 'bold'
+        }}
+      >
         Sobre
       </Typography>
-      <Typography variant="body1" style={{ textAlign: 'justify', marginBottom: '40px' }}>
-
-        Muitas espécies de fungos formadores de cogumelos têm sido colhidas na natureza e utilizadas para alimentação e medicina há milhares de anos. No Brasil, o conhecimento sobre a diversidade de cogumelos comestíveis silvestres permanece disperso e pouco estudado. Com base em novas amostras, revisão de registros bibliográficos e buscas no GenBank, registramos 408 espécies de cogumelos comestíveis silvestres no Brasil, das quais 349 podem ser consumidas com segurança e 59 precisam de algum processo para serem consumidas de forma segura. Além disso, outras 149 espécies representam táxons com evidências de consumo pouco claras ou status de comestibilidade não confirmado. Um total de 83 das 408 espécies comestíveis representa registros consistentes no Brasil com base em dados moleculares e/ou tipos nomenclaturais brasileiros. Outros 325 registros representam espécies que necessitam de investigações taxonômicas adicionais para confirmar sua identidade e ocorrência no país, sendo 41 delas usualmente consumidas pela população brasileira. As 284 espécies restantes podem representar novos recursos alimentares para o país. Geramos 156 sequências de DNA, representando 39 espécies dentro de 28 gêneros. Os cogumelos comestíveis são um importante produto florestal não madeireiro, e o conhecimento sobre eles agrega valor à biodiversidade local e à população, aumentando o incentivo à conservação aliada ao desenvolvimento rural sustentável.
-
+      <Typography variant="body1" sx={{ textAlign: 'justify', marginBottom: '40px' }}>
+      Muitas espécies de fungos formadores de cogumelos têm sido colhidas na natureza e utilizadas para alimentação e medicina há milhares de anos. No Brasil, o conhecimento sobre a diversidade de cogumelos comestíveis silvestres permanece disperso e pouco estudado. Com base em novas amostras, revisão de registros bibliográficos e buscas no GenBank, registramos 408 espécies de cogumelos comestíveis silvestres no Brasil, das quais 349 podem ser consumidas com segurança e 59 precisam de algum processo para serem consumidas de forma segura. Além disso, outras 149 espécies representam táxons com evidências de consumo pouco claras ou status de comestibilidade não confirmado. Um total de 83 das 408 espécies comestíveis representa registros consistentes no Brasil com base em dados moleculares e/ou tipos nomenclaturais brasileiros. Outros 325 registros representam espécies que necessitam de investigações taxonômicas adicionais para confirmar sua identidade e ocorrência no país, sendo 41 delas usualmente consumidas pela população brasileira. As 284 espécies restantes podem representar novos recursos alimentares para o país. Geramos 156 sequências de DNA, representando 39 espécies dentro de 28 gêneros. Os cogumelos comestíveis são um importante produto florestal não madeireiro, e o conhecimento sobre eles agrega valor à biodiversidade local e à população, aumentando o incentivo à conservação aliada ao desenvolvimento rural sustentável.
       </Typography>
 
-      <Typography variant="h4" style={{ textAlign: 'center', marginBottom: '20px', marginTop: '20px', fontWeight: 'bold' }}>
+      <Typography
+        variant="h4"
+        sx={{
+          textAlign: 'center',
+          marginBottom: '20px',
+          marginTop: '20px',
+          fontWeight: 'bold'
+        }}
+      >
         Como Citar
       </Typography>
-      <Typography variant="body1" style={{ textAlign: 'justify', marginBottom: '40px' }}>
-        Drewinski, M.P., Corrêa-Santos, M.P., Lima, V.X. et al. Over 400 food resources from Brazil:
-        evidence-based records of wild edible mushrooms. <i>IMA Fungus</i> 15, 40 (2024).{' '}
+      <Typography variant="body1" sx={{ textAlign: 'start', marginBottom: '40px' }}>
+      Drewinski, M. P., Corrêa-Santos, M. P., Lima, V. X., Lima, F. T., Palacio, M., Borges, M. E. A., Trierveiler-Pereira, L., Magnago, A. C., Furtado, A. N. M., Lenz, A. R., Silva-Filho, A. G. S., Nascimento, C. C., Alvarenga, R. L. M., Gibertoni, T. B., Oliveira, J. J. S., Baltazar, J. M., Neves, M. A., Vargas-Isla, R., Ishikawa, N. K., & Menolli Jr, N. (Unpublished manuscript). Over 400 food resources from Brazil: Evidence-based records of wild edible mushrooms.
         <a
           href="https://doi.org/10.1186/s43008-024-00171-8"
           target="_blank"
@@ -177,24 +196,42 @@ const Collaborators: React.FC = () => {
         </a>
       </Typography>
 
-
-      <Typography variant="h4" style={{ textAlign: 'center', marginBottom: '40px', marginTop: '20px', fontWeight: 'bold' }}>
+      <Typography
+        variant="h4"
+        sx={{
+          textAlign: 'center',
+          marginBottom: '40px',
+          marginTop: '20px',
+          fontWeight: 'bold'
+        }}
+      >
         Nossos Colaboradores
       </Typography>
       <Grid container direction="column" spacing={4}>
         {collaborators.map((collab, index) => (
           <Grid item key={index}>
-            <Box display="flex" alignItems="center" gap="20px">
+            <Box
+              display="flex"
+              alignItems="center"
+              gap="20px"
+              flexDirection={{ xs: 'column', sm: 'row' }}
+              textAlign={{ xs: 'justify', sm: 'left' }}
+            >
               <Avatar
                 src={collab.image}
                 alt={collab.name}
-                style={{ borderRadius: '50%', width: '150px', height: '150px' }}
+                sx={{
+                  borderRadius: '50%',
+                  width: { xs: 100, sm: 150 },
+                  height: { xs: 100, sm: 150 },
+                  alignSelf: { xs: 'center', sm: 'flex-start' }
+                }}
               />
               <Box>
-                <Typography variant="h6" style={{ margin: '0', textAlign: 'left', fontWeight: 'bold' }}>
+                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                   {collab.name}
                 </Typography>
-                <Typography variant="body1" style={{ textAlign: 'left', fontSize: '15px' }}>
+                <Typography variant="body1" sx={{ fontSize: '15px' }}>
                   {collab.description}
                 </Typography>
               </Box>
