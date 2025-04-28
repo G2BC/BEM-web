@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Grid, Avatar } from '@mui/material';
+import { Container, Typography, Grid, Avatar, Box} from '@mui/material';
 
 import dev1 from '../../../assets/Developer.png';
 import dev2 from '../../../assets/Developer2.png';
@@ -26,29 +26,60 @@ const developers = [
 
 const Developers: React.FC = () => {
   return (
-    <Container style={{ padding: '20px', fontFamily: 'Arial, sans-serif',marginLeft:'15vh' }}>
-      <Typography variant="h4" style={{ textAlign: 'center', marginTop: '40px', marginBottom: '20px',fontWeight:'bold' }}>
+    <Container
+      sx={{
+        padding: '20px',
+        fontFamily: 'Arial, sans-serif',
+        marginLeft: { xs: 0, sm: '5vw', md: '10vw', lg: '15vh' },
+      }}
+    >
+      <Typography
+        variant="h4"
+        sx={{
+          textAlign: 'center',
+          marginTop: '40px',
+          marginBottom: '20px',
+          fontWeight: 'bold',
+        }}
+      >
         Nossos Desenvolvedores
       </Typography>
+
       <Grid container spacing={4} justifyContent="center">
         {developers.map((dev, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index} style={{display:'flex',justifyContent:'center',marginTop:'20px'}}>
-            <div style={{ textAlign: 'center' }}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            key={index}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '20px',
+            }}
+          >
+            <Box sx={{ textAlign: 'center' }}>
               <Avatar
                 src={dev.image}
                 alt={dev.name}
-                style={{ width: '150px', height: '150px', margin: '0 auto 10px auto' }}
+                sx={{
+                  width: '150px',
+                  height: '150px',
+                  margin: '0 auto 10px auto',
+                }}
               />
-              <Typography variant="h6" style={{ fontWeight: 'bold' }}>
+              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                 {dev.name}
               </Typography>
               <Typography variant="body2">{dev.role}</Typography>
-            </div>
+            </Box>
           </Grid>
         ))}
       </Grid>
     </Container>
   );
 };
+
 
 export default Developers;
