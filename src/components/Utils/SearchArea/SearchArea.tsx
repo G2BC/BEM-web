@@ -8,7 +8,7 @@ import getClassificationName from '../../../Utils/Enums/BemClassification';
 import SelectInterface from '../../../Interfaces/Select';
 import SelectStates from '../../../Utils/SelectStates';
 import SelectBemClassification from '../../../Utils/SelectBemClassification';
-import SelectHabitat from '../../../Utils/selectHabitat'; 
+import SelectHabitat from '../../../Utils/selectHabitat';
 
 interface SearchAreaProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -23,6 +23,10 @@ const FilterBox = styled.div`
   align-items: center;
   justify-content: center;
   background-color: transparent; /* Fundo transparente */
+
+  @media (max-width: 768px) {
+    display: block;
+  }
 `;
 
 const Container = styled.div`
@@ -66,6 +70,11 @@ const FilterContainer = styled.div`
   display: flex;
   gap: 10px;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+  display: grid;
+  justify-content: normal;
+  }
 `;
 
 const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
@@ -133,10 +142,10 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
 
       <Dialog open={isDialogOpen} onClose={handleCloseDialog} maxWidth="md" fullWidth PaperProps={{
         sx: {
-        borderRadius: 5,
-        backgroundColor: '#000',
-    },
-  }}>
+          borderRadius: 5,
+          backgroundColor: '#000',
+        },
+      }}>
         <DialogTitle sx={{ backgroundColor: '#000', color: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           Pesquisa e Filtros
           <CloseButton onClick={handleCloseDialog}>
@@ -169,13 +178,13 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                       '&.Mui-focused fieldset': {
                         borderColor: '#fff',
                       },
-                      input: { color: '#fff' }, 
+                      input: { color: '#fff' },
                     },
-                    label: { color: '#fff' }, 
+                    label: { color: '#fff' },
                   }}
                 />
               )}
-              sx={{ marginBlockStart: 1, marginBottom: 2}}
+              sx={{ marginBlockStart: 1, marginBottom: 2 }}
             />
 
             <FilterContainer>
@@ -191,7 +200,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                     sx={{
                       '.MuiOutlinedInput-root': {
                         fieldset: {
-                          borderColor: '#fff', 
+                          borderColor: '#fff',
                         },
                         '&:hover fieldset': {
                           borderColor: '#fff',
@@ -199,8 +208,8 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                         '&.Mui-focused fieldset': {
                           borderColor: '#fff',
                         },
-                        svg: { color: '#fff' }, 
-                        color: '#fff', 
+                        svg: { color: '#fff' },
+                        color: '#fff',
                       },
                       label: { color: '#fff' },
                     }}
@@ -236,7 +245,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                         '&.Mui-focused fieldset': {
                           borderColor: '#fff',
                         },
-                        svg: { color: '#fff' }, 
+                        svg: { color: '#fff' },
                         color: '#fff',
                       },
                       label: { color: '#fff' },
@@ -275,9 +284,9 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                           borderColor: '#fff',
                         },
                         svg: { color: '#fff' },
-                        color: '#fff', 
+                        color: '#fff',
                       },
-                      label: { color: '#fff' }, 
+                      label: { color: '#fff' },
                     }}
                   >
                     <MenuItem value="">
@@ -295,7 +304,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
           </FormControl>
         </DialogContent>
         <DialogActions sx={{ backgroundColor: '#000' }}>
-        <Button
+          <Button
             onClick={onClickSearchButton}
             variant="contained"
             sx={{ backgroundColor: '#ff5e14', color: '#fff', '&:hover': { backgroundColor: '#e04d0d' } }}
@@ -307,7 +316,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
           </Button>
         </DialogActions>
       </Dialog>
-    </Container>
+    </Container >
   );
 };
 

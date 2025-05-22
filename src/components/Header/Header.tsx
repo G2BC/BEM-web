@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { HeaderContainer, LogoImage, HeadList, HeadItem, HeadButtonEnter, HeadButtonRegister, NormalHeadText, HamburgerMenu, MobileMenu, LinkContainer, MainButtonContainer } from './Header.styles';
+import { HeaderContainer, LogoImage, HeadList, HeadItem, HeadButtonEnter, HeadButtonRegister, NormalHeadText, HamburgerMenu, MobileMenu, LinkContainer, MainButtonContainer, MenuHamburguer } from './Header.styles';
 import Logo from '../../assets/cogumelo.svg';
+import Manu from '../../assets/menu.svg';
 import SearchArea from '../Utils/SearchArea/SearchArea';
 import { useNavigate } from "react-router-dom";
 
@@ -23,7 +24,7 @@ const Header: React.FC = () => {
   };
   const handleRegisterClick = () => {
   navigate("/register");  
-  };  
+  };
 
   return (
     <HeaderContainer>
@@ -33,9 +34,9 @@ const Header: React.FC = () => {
           <LogoImage src={Logo} alt="Logo" />
         </HeadItem>
 
-        <HamburgerMenu onClick={toggleMobileMenu}>
-          ☰
-        </HamburgerMenu>
+        <HeadItem onClick={toggleMobileMenu}>
+          <MenuHamburguer src={Manu} alt="Logo" />
+        </HeadItem>
 
         <MobileMenu isOpen={isMobileMenuOpen}>
           {headerLinks.map((headerLink) => (

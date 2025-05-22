@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   bem-web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
     environment:
@@ -10,6 +12,7 @@ services:
       REACT_APP_API_PORT: ${REACT_APP_API_PORT}
       REACT_APP_ENV: ${REACT_APP_ENV}
       SPECIES_LINK_KEY: ${SPECIES_LINK_KEY}
+      CHOKIDAR_USEPOLLING: "true"
     env_file:
       - .env
     volumes:
@@ -17,3 +20,4 @@ services:
       - /root/bem-web/node_modules
     stdin_open: true
     tty: true
+    command: npm start  # Iniciar diretamente o comando de desenvolvimento

@@ -20,6 +20,11 @@ export const LogoImage = styled.img`
   }
 `;
 
+export const MenuHamburguer = styled.img`
+  width: 2rem;
+  height: 2rem;
+`;
+
 export const HeadList = styled.ul`
   list-style-type: none;
   display: flex;
@@ -117,7 +122,7 @@ export const HeadButtonRegister = styled.button({
 });
 
 export const NormalHeadText = styled.a`
-  font-size: 16px; /* Altere o valor conforme necessário */
+  font-size: 16px; 
   color: #fff;
   text-decoration: none;
 
@@ -155,13 +160,13 @@ export const MobileMenu = styled.div<{ isOpen: boolean }>`
 `;
 
 export const LinkContainer = styled.div`
-@media (max-width: 768px){
-display: none;
-}
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const MainButtonContainer = styled.div`
-@media (max-width: 768px){
-display: none;
-}
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
