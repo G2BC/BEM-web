@@ -2,14 +2,17 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="128"
-   height="128"
-   viewBox="0 0 33.866667 33.866666"
+   width="48.080757"
+   height="78.607346"
+   viewBox="0 0 12.721367 20.798193"
    version="1.1"
    id="svg1"
    xml:space="preserve"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
    sodipodi:docname="dna.svg"
+   inkscape:export-filename="dna32.svg"
+   inkscape:export-xdpi="39.080318"
+   inkscape:export-ydpi="39.080318"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -24,9 +27,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.98"
-     inkscape:cx="63.888889"
-     inkscape:cy="76.515152"
+     inkscape:zoom="5.22"
+     inkscape:cx="-4.6934866"
+     inkscape:cy="34.770115"
      inkscape:window-width="1600"
      inkscape:window-height="837"
      inkscape:window-x="-8"
@@ -36,9 +39,10 @@
      id="defs1" /><g
      inkscape:label="Camada 1"
      inkscape:groupmode="layer"
-     id="layer1"><g
+     id="layer1"
+     transform="translate(-10.57265,-6.5342365)"><g
        id="g10"
-       transform="translate(0,-1.4699078)"><image
+       transform="matrix(0.32,0,0,0.32,11.514667,11.044296)"><image
          width="39.754272"
          height="64.994354"
          preserveAspectRatio="none"
