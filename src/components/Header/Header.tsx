@@ -8,7 +8,7 @@ const headerLinks = [
   { text: 'Início', link: '/' },
   { text: 'Explorar', link: '/list?taxonomy=%&state=&bem=&habitat=' },
   { text: 'Sobre', link:'/about' },
-  { text: 'Instruções', link: '/' },
+  { text: 'Mapa', link: '/' },
   { text: 'Contato', link: '/' },
 ];
 
