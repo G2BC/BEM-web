@@ -1,0 +1,14 @@
+* [33m9db7cea[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mrefactor/remove-habitat-field[m[33m, [m[1;31morigin/refactor/remove-habitat-field[m[33m)[m refactor: ocultar campo de habitat do filtro de busca
+[31m|[m * [33ma0072c7[m[33m ([m[1;31morigin/development[m[33m)[m Merge pull request #34 from G2BC/BEM-53-criacao-de-branch-estavel
+[31m|[m[31m/[m[33m|[m 
+[31m|[m * [33mb8cd3ca[m feat: replace existing SVG with new design for improved visuals
+[31m|[m * [33m6a78908[m feat: add Dockerfile for development environment and update docker-compose configuration
+[31m|[m * [33m6a94bf1[m fix: update baseURL to use protocol from environment variables
+[31m|[m [33m|[m *   [33me49070f[m[33m ([m[1;31morigin/dev[m[33m)[m Merge pull request #33 from G2BC/feat/responsivo-pagina-sobre
+[31m|[m [33m|[m [34m|[m[33m\[m  
+[31m|[m [33m|[m [34m|[m[33m/[m  
+[31m|[m [33m|[m[33m/[m[34m|[m   
+[31m|[m * [34m|[m [33mc51b9d8[m[33m ([m[1;31morigin/feat/responsivo-pagina-sobre[m[33m)[m Merge branch 'dev' into feat/responsivo-pagina-sobre
+[31m|[m [36m|[m[34m\[m[34m|[m 
+[31m|[m [36m|[m *   [33md8aab03[m Merge pull request #32 from G2BC/style
+[31m|[m [36m|[m [1;32m|[m[1;33m\[m  
