@@ -255,7 +255,7 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
               </FilterBox>
 
               <FilterBox>
-                <FormControl variant="outlined" sx={{ minWidth: 200 }}>
+                <FormControl variant="outlined" sx={{ minWidth: 200, display: 'none' }}>
                   <InputLabel id="select-habitat-label" sx={{ color: '#fff' }}>Habitat</InputLabel>
                   <Select
                     labelId="select-habitat-label"
