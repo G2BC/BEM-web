@@ -8,7 +8,6 @@ import getClassificationName from '../../../Utils/Enums/BemClassification';
 import SelectInterface from '../../../Interfaces/Select';
 import SelectStates from '../../../Utils/SelectStates';
 import SelectBemClassification from '../../../Utils/SelectBemClassification';
-import SelectHabitat from '../../../Utils/selectHabitat'; 
 
 interface SearchAreaProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -72,12 +71,10 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
   const fungiService: FungiService = new FungiService();
   const states: SelectInterface = SelectStates();
   const bemClassifications: SelectInterface = SelectBemClassification();
-  const habitats: SelectInterface = SelectHabitat(); // Inicializando SelectHabitat
   const [fungis, setFungis] = useState<Array<any>>([]);
   const [state, setState] = useState<string>("");
   const [bem, setBem] = useState<string>("");
   const [taxon, setTaxon] = useState<string>("");
-  const [habitatValue, setHabitatValue] = useState<string>("");
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
   const handleOpenDialog = () => {
@@ -111,18 +108,11 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
     }
   };
 
-  const handleChangeHabitatValue = (event: SelectChangeEvent) => {
-    setHabitatValue(event.target.value);
-  };
 
   const onClickSearchButton = async () => {
-    let habitatTextField = document.getElementById(
-      "input-habitat"
-    ) as HTMLInputElement;
-    let habitatValue = habitatTextField?.value;
-
+    
     window.location.href = `/list?taxonomy=${taxon ?? ""}&state=${state ?? ""
-      }&bem=${bem ?? ""}&habitat=${habitatValue ?? ""}`;
+      }&bem=${bem ?? ""}`;
   };
 
   return (
@@ -248,44 +238,6 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
                     {bemClassifications.options.map((bem) => (
                       <MenuItem key={bem.id} value={bem.value}>
                         {bem.id}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </FilterBox>
-
-              <FilterBox>
-                <FormControl variant="outlined" sx={{ minWidth: 200 }}>
-                  <InputLabel id="select-habitat-label" sx={{ color: '#fff' }}>Habitat</InputLabel>
-                  <Select
-                    labelId="select-habitat-label"
-                    id="select-habitat"
-                    value={habitatValue}
-                    onChange={handleChangeHabitatValue}
-                    label="Habitat"
-                    sx={{
-                      '.MuiOutlinedInput-root': {
-                        fieldset: {
-                          borderColor: '#fff',
-                        },
-                        '&:hover fieldset': {
-                          borderColor: '#fff',
-                        },
-                        '&.Mui-focused fieldset': {
-                          borderColor: '#fff',
-                        },
-                        svg: { color: '#fff' },
-                        color: '#fff', 
-                      },
-                      label: { color: '#fff' }, 
-                    }}
-                  >
-                    <MenuItem value="">
-                      <em>Nenhum</em>
-                    </MenuItem>
-                    {habitats.options.map((habitat) => (
-                      <MenuItem key={habitat.id} value={habitat.value}>
-                        {habitat.value}
                       </MenuItem>
                     ))}
                   </Select>
