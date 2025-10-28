@@ -1,14 +1,24 @@
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
-import styled from 'styled-components';
-import SearchIcon from '@mui/icons-material/Search';
-import CloseIcon from '@mui/icons-material/Close';
-import { Autocomplete, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
-import FungiService from '../../../services/FungiService';
-import getClassificationName from '../../../Utils/Enums/BemClassification';
-import SelectInterface from '../../../Interfaces/Select';
-import SelectStates from '../../../Utils/SelectStates';
-import SelectBemClassification from '../../../Utils/SelectBemClassification';
-import SelectHabitat from '../../../Utils/selectHabitat'; 
+import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import styled from "styled-components";
+import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from "@mui/icons-material/Close";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import FungiService from "../../../services/FungiService";
+import getClassificationName from "../../../Utils/Enums/BemClassification";
+import SelectInterface from "../../../Interfaces/Select";
+import SelectStates from "../../../Utils/SelectStates";
+import SelectBemClassification from "../../../Utils/SelectBemClassification";
 
 interface SearchAreaProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -16,13 +26,13 @@ interface SearchAreaProps {
 }
 
 const FilterBox = styled.div`
-  border: 2px solid #fff; /* Borda branca */
-  border-radius: 8px; /* Bordas arredondadas */
-  padding: -1px; /* Espaçamento interno */
+  border: 2px solid #fff;
+  border-radius: 8px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent; /* Fundo transparente */
+  background-color: transparent;
 `;
 
 const Container = styled.div`
@@ -66,35 +76,19 @@ const FilterContainer = styled.div`
   display: flex;
   gap: 10px;
   justify-content: space-between;
+  margin-top: 20px;
 `;
 
 const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
   const fungiService: FungiService = new FungiService();
   const states: SelectInterface = SelectStates();
   const bemClassifications: SelectInterface = SelectBemClassification();
-  const habitats: SelectInterface = SelectHabitat(); // Inicializando SelectHabitat
+
   const [fungis, setFungis] = useState<Array<any>>([]);
   const [state, setState] = useState<string>("");
-  const [bem, setBem] = useState<string>("");
+  const [classification, setClassification] = useState<string>("");
   const [taxon, setTaxon] = useState<string>("");
-  const [habitatValue, setHabitatValue] = useState<string>("");
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
-
-  const handleOpenDialog = () => {
-    setIsDialogOpen(true);
-  };
-
-  const handleCloseDialog = () => {
-    setIsDialogOpen(false);
-  };
-
-  const handleChangeState = (event: SelectChangeEvent) => {
-    setState(event.target.value);
-  };
-
-  const handleChangeBem = (event: SelectChangeEvent) => {
-    setBem(event.target.value);
-  };
 
   useEffect(() => {
     getFungis();
@@ -111,18 +105,16 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
     }
   };
 
-  const handleChangeHabitatValue = (event: SelectChangeEvent) => {
-    setHabitatValue(event.target.value);
-  };
+  const handleOpenDialog = () => setIsDialogOpen(true);
+  const handleCloseDialog = () => setIsDialogOpen(false);
 
-  const onClickSearchButton = async () => {
-    let habitatTextField = document.getElementById(
-      "input-habitat"
-    ) as HTMLInputElement;
-    let habitatValue = habitatTextField?.value;
+  const handleChangeState = (event: SelectChangeEvent) => setState(event.target.value);
+  const handleChangeClassification = (event: SelectChangeEvent) =>
+    setClassification(event.target.value);
+  const handleChangeTaxon = (event: SelectChangeEvent) => setTaxon(event.target.value);
 
-    window.location.href = `/list?taxonomy=${taxon ?? ""}&state=${state ?? ""
-      }&bem=${bem ?? ""}&habitat=${habitatValue ?? ""}`;
+  const onClickSearchButton = () => {
+    window.location.href = `/list?taxonomy=${taxon ?? ""}&state=${state ?? ""}&classification=${classification ?? ""}`;
   };
 
   return (
@@ -131,174 +123,137 @@ const SearchArea: FC<SearchAreaProps> = ({ onChange, placeholder }) => {
         <SearchIcon />
       </SearchButton>
 
-      <Dialog open={isDialogOpen} onClose={handleCloseDialog} maxWidth="md" fullWidth PaperProps={{
-        sx: {
-        borderRadius: 5,
-        backgroundColor: '#000',
-    },
-  }}>
-        <DialogTitle sx={{ backgroundColor: '#000', color: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <Dialog
+        open={isDialogOpen}
+        onClose={handleCloseDialog}
+        maxWidth="md"
+        fullWidth
+        PaperProps={{
+          sx: { borderRadius: 5, backgroundColor: "#000" },
+        }}
+      >
+        <DialogTitle
+          sx={{
+            backgroundColor: "#000",
+            color: "#fff",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontWeight: "bold",
+          }}
+        >
           Pesquisa e Filtros
-          <CloseButton onClick={handleCloseDialog}>
-            <CloseIcon />
-          </CloseButton>
         </DialogTitle>
-        <DialogContent sx={{ backgroundColor: '#000' }}>
-          <FormControl fullWidth>
-            <Autocomplete
-              id="grouped-demo"
-              freeSolo
-              options={fungis?.sort((a: any, b: any) => a.bem - b.bem)}
-              onInputChange={(event, value) => (value ? setTaxon(value) : null)}
-              groupBy={(option: any) => option?.bemName}
-              getOptionLabel={(option: any) => option?.scientific_name}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Espécie"
-                  variant="outlined"
-                  fullWidth
+        <DialogContent sx={{ backgroundColor: "#000" }}>
+          <FilterContainer>
+            {/* Estado */}
+            <FilterBox style={{ minWidth: 200 }}>
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel id="select-state-label" sx={{ color: "#fff" }}>
+                  Estado
+                </InputLabel>
+                <Select
+                  labelId="select-state-label"
+                  value={state}
+                  onChange={handleChangeState}
+                  label="Estado"
                   sx={{
-                    '.MuiOutlinedInput-root': {
-                      fieldset: {
-                        borderColor: '#fff',
-                      },
-                      '&:hover fieldset': {
-                        borderColor: '#fff',
-                      },
-                      '&.Mui-focused fieldset': {
-                        borderColor: '#fff',
-                      },
-                      input: { color: '#fff' }, 
+                    ".MuiOutlinedInput-root": {
+                      fieldset: { borderColor: "#fff" },
+                      "&:hover fieldset": { borderColor: "#fff" },
+                      "&.Mui-focused fieldset": { borderColor: "#fff" },
+                      svg: { color: "#fff" },
+                      color: "#fff",
                     },
-                    label: { color: '#fff' }, 
+                    label: { color: "#fff" },
                   }}
-                />
-              )}
-              sx={{ marginBlockStart: 1, marginBottom: 2}}
-            />
+                >
+                  <MenuItem value="">
+                    <em>Nenhum</em>
+                  </MenuItem>
+                  {states.options.map((s) => (
+                    <MenuItem key={s.id} value={s.value}>
+                      {s.value}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </FilterBox>
 
-            <FilterContainer>
-              <FilterBox>
-                <FormControl variant="outlined" sx={{ minWidth: 200 }}>
-                  <InputLabel id="select-state-label" sx={{ color: '#fff' }}>Estado</InputLabel>
-                  <Select
-                    labelId="select-state-label"
-                    id="select-state"
-                    value={state}
-                    onChange={handleChangeState}
-                    label="Estado"
-                    sx={{
-                      '.MuiOutlinedInput-root': {
-                        fieldset: {
-                          borderColor: '#fff', 
-                        },
-                        '&:hover fieldset': {
-                          borderColor: '#fff',
-                        },
-                        '&.Mui-focused fieldset': {
-                          borderColor: '#fff',
-                        },
-                        svg: { color: '#fff' }, 
-                        color: '#fff', 
-                      },
-                      label: { color: '#fff' },
-                    }}
-                  >
-                    <MenuItem value="">
-                      <em>Nenhum</em>
+            {/* Espécie */}
+            <FilterBox style={{ minWidth: 200 }}>
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel id="select-taxon-label" sx={{ color: "#fff" }}>
+                  Espécie
+                </InputLabel>
+                <Select
+                  labelId="select-taxon-label"
+                  value={taxon}
+                  onChange={handleChangeTaxon}
+                  label="Espécie"
+                  sx={{
+                    ".MuiOutlinedInput-root": {
+                      fieldset: { borderColor: "#fff" },
+                      "&:hover fieldset": { borderColor: "#fff" },
+                      "&.Mui-focused fieldset": { borderColor: "#fff" },
+                      svg: { color: "#fff" },
+                      color: "#fff",
+                    },
+                    label: { color: "#fff" },
+                  }}
+                >
+                  <MenuItem value="">
+                    <em>Nenhum</em>
+                  </MenuItem>
+                  {fungis.map((f) => (
+                    <MenuItem key={f.id} value={f.scientific_name}>
+                      {f.scientific_name}
                     </MenuItem>
-                    {states.options.map((state) => (
-                      <MenuItem key={state.id} value={state.value}>
-                        {state.value}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </FilterBox>
-              <FilterBox>
-                <FormControl variant="outlined" sx={{ minWidth: 200 }}>
-                  <InputLabel id="select-bem-label" sx={{ color: '#fff' }}>BEM</InputLabel>
-                  <Select
-                    labelId="select-bem-label"
-                    id="select-bem"
-                    value={bem}
-                    onChange={handleChangeBem}
-                    label="BEM"
-                    sx={{
-                      '.MuiOutlinedInput-root': {
-                        fieldset: {
-                          borderColor: '#fff',
-                        },
-                        '&:hover fieldset': {
-                          borderColor: '#fff',
-                        },
-                        '&.Mui-focused fieldset': {
-                          borderColor: '#fff',
-                        },
-                        svg: { color: '#fff' }, 
-                        color: '#fff',
-                      },
-                      label: { color: '#fff' },
-                    }}
-                  >
-                    <MenuItem value="">
-                      <em>Nenhum</em>
-                    </MenuItem>
-                    {bemClassifications.options.map((bem) => (
-                      <MenuItem key={bem.id} value={bem.value}>
-                        {bem.id}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </FilterBox>
+                  ))}
+                </Select>
+              </FormControl>
+            </FilterBox>
 
-              <FilterBox>
-                <FormControl variant="outlined" sx={{ minWidth: 200 }}>
-                  <InputLabel id="select-habitat-label" sx={{ color: '#fff' }}>Habitat</InputLabel>
-                  <Select
-                    labelId="select-habitat-label"
-                    id="select-habitat"
-                    value={habitatValue}
-                    onChange={handleChangeHabitatValue}
-                    label="Habitat"
-                    sx={{
-                      '.MuiOutlinedInput-root': {
-                        fieldset: {
-                          borderColor: '#fff',
-                        },
-                        '&:hover fieldset': {
-                          borderColor: '#fff',
-                        },
-                        '&.Mui-focused fieldset': {
-                          borderColor: '#fff',
-                        },
-                        svg: { color: '#fff' },
-                        color: '#fff', 
-                      },
-                      label: { color: '#fff' }, 
-                    }}
-                  >
-                    <MenuItem value="">
-                      <em>Nenhum</em>
+            {/* Classificação */}
+            <FilterBox style={{ minWidth: 200 }}>
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel id="select-classification-label" sx={{ color: "#fff" }}>
+                  Classificação
+                </InputLabel>
+                <Select
+                  labelId="select-classification-label"
+                  value={classification}
+                  onChange={handleChangeClassification}
+                  label="Classificação"
+                  sx={{
+                    ".MuiOutlinedInput-root": {
+                      fieldset: { borderColor: "#fff" },
+                      "&:hover fieldset": { borderColor: "#fff" },
+                      "&.Mui-focused fieldset": { borderColor: "#fff" },
+                      svg: { color: "#fff" },
+                      color: "#fff",
+                    },
+                    label: { color: "#fff" },
+                  }}
+                >
+                  <MenuItem value="">
+                    <em>Nenhum</em>
+                  </MenuItem>
+                  {bemClassifications.options.map((b) => (
+                    <MenuItem key={b.id} value={b.value}>
+                      {`${b.id}`}
                     </MenuItem>
-                    {habitats.options.map((habitat) => (
-                      <MenuItem key={habitat.id} value={habitat.value}>
-                        {habitat.value}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </FilterBox>
-            </FilterContainer>
-          </FormControl>
+                  ))}
+                </Select>
+              </FormControl>
+            </FilterBox>
+          </FilterContainer>
         </DialogContent>
-        <DialogActions sx={{ backgroundColor: '#000' }}>
-        <Button
+        <DialogActions sx={{ backgroundColor: "#000" }}>
+          <Button
             onClick={onClickSearchButton}
             variant="contained"
-            sx={{ backgroundColor: '#ff5e14', color: '#fff', '&:hover': { backgroundColor: '#e04d0d' } }}
+            sx={{ backgroundColor: "#ff5e14", color: "#fff", "&:hover": { backgroundColor: "#e04d0d" } }}
           >
             Buscar
           </Button>
