@@ -17,6 +17,6 @@ Certifique de possuir [Docker](https://docs.docker.com/desktop/)
 1. Clonar o repositório
 
 > [!IMPORTANT]
-> Renomeie o arquivo `RENAME_TO_DOTENV.md` para `.env`
+> Renomeie o arquivo `.env.example` para `.env`
 
 2. Inicialize o container com `docker compose up --build`
